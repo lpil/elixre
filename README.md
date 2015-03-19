@@ -1,5 +1,7 @@
 # RegTest
 
+[![Build Status](https://travis-ci.org/lpil/reg-test.svg?branch=master)](https://travis-ci.org/lpil/reg-test)
+
 A Elixir regular expression editor & tester.
 
 Development documentation can be found
