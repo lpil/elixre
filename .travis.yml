@@ -5,18 +5,17 @@ otp_release:
   - 17.3
   - 17.0
 
-sudo: false
-
 before_install:
   - git clone https://github.com/elixir-lang/elixir
   - cd elixir
   - git checkout v1.0.3
   - cd ..
   - make -C elixir
+  - yes | MIX_ENV=test mix deps.get
 
 before_script: "export PATH=`pwd`/elixir/bin:$PATH"
 
-script: "yes | MIX_ENV=test mix do deps.get, test"
+script: "MIX_ENV=test mix test"
 
 notifications:
   email: false
