@@ -1,6 +1,6 @@
 # RegTest
 
-A Elixir regex editor & tester.
+A Elixir regular expression editor & tester.
 
 Development documentation can be found
 [here](https://github.com/lpil/reg_test/tree/master/doc).

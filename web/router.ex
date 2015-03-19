@@ -13,13 +13,12 @@ defmodule RegTest.Router do
   end
 
   scope "/", RegTest do
-    pipe_through :browser # Use the default browser stack
-
+    pipe_through :browser
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", RegTest do
-  #   pipe_through :api
-  # end
+  scope "/", RegTest do
+    pipe_through :api
+    get "/test", TestController, :index
+  end
 end
