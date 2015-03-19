@@ -19,6 +19,6 @@ defmodule RegTest.Router do
 
   scope "/", RegTest do
     pipe_through :api
-    get "/test", TestController, :index
+    post "/test", TestController, :index
   end
 end
