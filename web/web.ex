@@ -1,12 +1,12 @@
-defmodule RegTest.Web do
+defmodule Elixre.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use RegTest.Web, :controller
-      use RegTest.Web, :view
+      use Elixre.Web, :controller
+      use Elixre.Web, :view
 
   Keep the definitions in this module short and clean,
   mostly focused on imports, uses and aliases.
@@ -17,7 +17,7 @@ defmodule RegTest.Web do
       use Phoenix.View, root: "web/templates"
 
       # Import URL helpers from the router
-      import RegTest.Router.Helpers
+      import Elixre.Router.Helpers
 
       # Import all HTML functions (forms, tags, etc)
       use Phoenix.HTML
@@ -29,7 +29,7 @@ defmodule RegTest.Web do
       use Phoenix.Controller
 
       # Import URL helpers from the router
-      import RegTest.Router.Helpers
+      import Elixre.Router.Helpers
     end
   end
 

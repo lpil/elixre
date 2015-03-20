@@ -1,4 +1,4 @@
-defmodule RegTest.Mixfile do
+defmodule Elixre.Mixfile do
   use Mix.Project
 
   def project do
@@ -14,7 +14,7 @@ defmodule RegTest.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [mod: {RegTest, []},
+    [mod: {Elixre, []},
      applications: [:phoenix, :cowboy, :logger]]
   end
 

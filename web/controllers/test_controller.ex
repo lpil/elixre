@@ -1,7 +1,7 @@
-defmodule RegTest.TestController do
-  use RegTest.Web, :controller
+defmodule Elixre.TestController do
+  use Elixre.Web, :controller
 
-  import RegTest.Tester, only: [test: 2]
+  import Elixre.Tester, only: [test: 2]
 
   plug :action
 

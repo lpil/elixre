@@ -1,5 +1,5 @@
-defmodule RegTest.PageController do
-  use RegTest.Web, :controller
+defmodule Elixre.PageController do
+  use Elixre.Web, :controller
 
   plug :action
 

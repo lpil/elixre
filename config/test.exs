@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :reg_test, RegTest.Endpoint,
+config :reg_test, Elixre.Endpoint,
   http: [port: 4001],
   server: false
 

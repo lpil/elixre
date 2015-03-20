@@ -1,11 +1,11 @@
-defmodule RegTest.Tester do
+defmodule Elixre.Tester do
   @doc ~S"""
   Takes a regex in string form, and one or a list of subject strings
   to run the regex on, and returns the results of the test.
 
   ## Examples
 
-      iex> RegTest.Tester.test(~S".+ (\w+)", "Hello World!")
+      iex> Elixre.Tester.test(~S".+ (\w+)", "Hello World!")
       %{
         regex: ~S".+ (\w+)",
         results: [
@@ -13,7 +13,7 @@ defmodule RegTest.Tester do
         ]
       }
 
-      iex> RegTest.Tester.test("foo(.+)", ~w(foobar food foo))
+      iex> Elixre.Tester.test("foo(.+)", ~w(foobar food foo))
       %{
         regex: "foo(.+)",
         results: [

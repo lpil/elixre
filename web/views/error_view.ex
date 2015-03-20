@@ -1,5 +1,5 @@
-defmodule RegTest.ErrorView do
-  use RegTest.Web, :view
+defmodule Elixre.ErrorView do
+  use Elixre.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found - 404"

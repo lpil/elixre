@@ -6,11 +6,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :reg_test, RegTest.Endpoint,
+config :reg_test, Elixre.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "S0gXWNsZCCWVNxNLZ3wQmf9rhHNqLk1qnYtIgQO58x23FNu9ssC0K9Wc867YjiyU",
   debug_errors: false,
-  pubsub: [name: RegTest.PubSub,
+  pubsub: [name: Elixre.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

@@ -1,3 +1,3 @@
-defmodule RegTest.LayoutView do
-  use RegTest.Web, :view
+defmodule Elixre.LayoutView do
+  use Elixre.Web, :view
 end

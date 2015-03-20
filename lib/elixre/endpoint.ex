@@ -1,4 +1,4 @@
-defmodule RegTest.Endpoint do
+defmodule Elixre.Endpoint do
   use Phoenix.Endpoint, otp_app: :reg_test
 
   # Serve at "/" the given assets from "priv/static" directory
@@ -26,5 +26,5 @@ defmodule RegTest.Endpoint do
     signing_salt: "OfvwamQP",
     encryption_salt: "Ar/vd12f"
 
-  plug :router, RegTest.Router
+  plug :router, Elixre.Router
 end

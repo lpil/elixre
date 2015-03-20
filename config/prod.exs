@@ -6,7 +6,7 @@ use Mix.Config
 #
 # You should also configure the url host to something
 # meaningful, we use this information when generating URLs.
-config :reg_test, RegTest.Endpoint,
+config :reg_test, Elixre.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "example.com"]
 
@@ -15,7 +15,7 @@ config :reg_test, RegTest.Endpoint,
 # To get SSL working, you will need to add the `https` key
 # to the previous section:
 #
-#  config:reg_test, RegTest.Endpoint,
+#  config:reg_test, Elixre.Endpoint,
 #    ...
 #    https: [port: 443,
 #            keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
@@ -37,7 +37,7 @@ config :logger, level: :info
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :reg_test, RegTest.Endpoint, server: true
+#     config :reg_test, Elixre.Endpoint, server: true
 #
 
 # Finally import the config/prod.secret.exs
