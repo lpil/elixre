@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/lpil/reg-test.svg?branch=master)](https://travis-ci.org/lpil/reg-test)
 
-A Elixir regular expression editor & tester.
+An Elixir regular expression editor & tester.
 
 Development documentation can be found
 [here](https://github.com/lpil/reg_test/tree/master/doc).
