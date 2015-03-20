@@ -1,0 +1,1 @@
+{"version":3,"sources":["client/app/main.js"],"names":[],"mappings":";;;;IAAY,KAAK,mCAAM,OAAO;;AAE9B,KAAK,CAAC,IAAI,EAAE,CAAC","file":"client/app/main.js","sourcesContent":["import * as other from 'other';\n\nother.test();\n"]}
