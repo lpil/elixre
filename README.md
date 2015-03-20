@@ -24,8 +24,11 @@ mix phoenix.server
 
 ## Test it
 
+You've also got PhantomJS installed, right?
+
 ```
 mix test
+grunt test
 ```
 
 ## Notes

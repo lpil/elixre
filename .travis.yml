@@ -13,10 +13,13 @@ before_install:
   - make -C elixir
   - yes | MIX_ENV=test mix deps.get
   - MIX_ENV=test mix compile
+  - npm install
 
-before_script: "export PATH=`pwd`/elixir/bin:$PATH"
+before_script: export PATH=`pwd`/elixir/bin:$PATH
 
-script: "MIX_ENV=test mix test"
+script:
+  - MIX_ENV=test mix test
+  - grunt test
 
 notifications:
   email: false

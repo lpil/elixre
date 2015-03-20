@@ -9,6 +9,10 @@ module.exports = function(grunt) {
       js: {
         files: ['client/**/*.js'],
         tasks: ['js']
+      },
+      test: {
+        files: ['client/**/*.js'],
+        tasks: ['karma:test:run']
       }
     },
 
@@ -21,14 +25,26 @@ module.exports = function(grunt) {
           'priv/static/main.js': 'client/app/main.js'
         }
       }
+    },
+
+    karma: {
+      test: {
+        options: {
+          configFile: 'client/test/karma.conf.js'
+        }
+      }
     }
   });
+
+  grunt.registerTask('test', [
+    'browserify', 'karma:test'
+  ]);
 
   grunt.registerTask('js', [
     'browserify'
   ]);
 
   grunt.registerTask('default', [
-    'js', 'watch'
+    'js', 'karma:test', 'watch'
   ]);
 };
