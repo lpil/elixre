@@ -5,6 +5,13 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    watch: {
+      js: {
+        files: ['client/**/*.js'],
+        tasks: ['js']
+      }
+    },
+
     browserify: {
       options: {
         transform: ['babelify']
@@ -17,7 +24,11 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', [
+  grunt.registerTask('js', [
     'browserify'
+  ]);
+
+  grunt.registerTask('default', [
+    'js', 'watch'
   ]);
 };

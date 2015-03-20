@@ -1,10 +1,10 @@
 defmodule Elixre.Endpoint do
-  use Phoenix.Endpoint, otp_app: :reg_test
+  use Phoenix.Endpoint, otp_app: :elixre
 
   # Serve at "/" the given assets from "priv/static" directory
   plug Plug.Static,
-    at: "/", from: :reg_test,
-    only: ~w(css images js favicon.ico robots.txt)
+    at: "/", from: :elixre,
+    only: ~w(main.css images main.js favicon.ico robots.txt)
 
   plug Plug.Logger
 
@@ -22,7 +22,7 @@ defmodule Elixre.Endpoint do
 
   plug Plug.Session,
     store: :cookie,
-    key: "_reg_test_key",
+    key: "_elixre_key",
     signing_salt: "OfvwamQP",
     encryption_salt: "Ar/vd12f"
 

@@ -9,13 +9,13 @@
     <meta name="author" content="Louis Pilfold">
 
     <title>Elixre - An Elixir regular expression editor & tester</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <%# <link rel="stylesheet" href="<%= static_path(@conn, "/main.css") %1>"> %>
   </head>
 
   <body>
     <div class="container">
       <%= @inner %>
     </div>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="<%= static_path(@conn, "/main.js") %>"></script>
   </body>
 </html>

@@ -4,19 +4,20 @@
 
 An Elixir regular expression editor & tester.
 
-Development documentation can be found
-[here](https://github.com/lpil/reg_test/tree/master/doc).
-
 ## Install it
 
-You've got Erlang, and Elixir installed, right?
+You've got Erlang, Elixir, and Node installed, right?
 
 ```
 mix deps.get
+npm install
 ```
 
 ## Run it
 
+```
+grunt
+```
 ```
 mix phoenix.server
 ```

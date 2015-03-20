@@ -6,7 +6,7 @@
 use Mix.Config
 
 # Configures the endpoint
-config :reg_test, Elixre.Endpoint,
+config :elixre, Elixre.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "S0gXWNsZCCWVNxNLZ3wQmf9rhHNqLk1qnYtIgQO58x23FNu9ssC0K9Wc867YjiyU",
   debug_errors: false,
