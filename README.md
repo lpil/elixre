@@ -1,6 +1,6 @@
 # Elixre
 
-[![Build Status](https://travis-ci.org/lpil/reg-test.svg?branch=master)](https://travis-ci.org/lpil/reg-test)
+[![Build Status](https://travis-ci.org/lpil/elixre.svg?branch=master)](https://travis-ci.org/lpil/elixre)
 
 An Elixir regular expression editor & tester.
 
