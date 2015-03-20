@@ -8,11 +8,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: ['client/**/*.js'],
-        tasks: ['js']
-      },
-      test: {
-        files: ['client/**/*.js'],
-        tasks: ['karma:test:run']
+        tasks: ['js', 'karma:test']
       }
     },
 

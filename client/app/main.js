@@ -1,5 +1,7 @@
-import * as other from './other';
-
 require('angular');
 
-other.test();
+import { TestController } from './controllers/test_controller.js';
+
+angular
+  .module('elixre', [])
+  .controller('TestController', TestController);
