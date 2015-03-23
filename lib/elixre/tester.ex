@@ -27,7 +27,7 @@ defmodule Elixre.Tester do
 
       iex> Elixre.Tester.test("*foo", ~w(foobar food foo))
       %{
-        error: {'nothing to repeat', 0}
+        error: ["nothing to repeat", 0]
       }
   """
   def test(regex, subjects) do
@@ -40,9 +40,9 @@ defmodule Elixre.Tester do
           results: Enum.map(subjects, &result(regex, &1))
         }
 
-      {:error, error} ->
+      {:error, {error, pos}} ->
         %{
-          error: error
+          error: [to_string(error), pos]
         }
     end
   end
