@@ -30,7 +30,9 @@ defmodule Elixre.Tester do
         error: {'nothing to repeat', 0}
       }
   """
-  def test(regex, subjects) when is_list(subjects) do
+  def test(regex, subjects) do
+    subjects = List.wrap subjects
+
     case Regex.compile(regex) do
       {:ok, regex} ->
         %{
@@ -43,9 +45,6 @@ defmodule Elixre.Tester do
           error: error
         }
     end
-  end
-  def test(regex, subject) do
-    test(regex, [subject])
   end
 
   defp result(regex, subject) do

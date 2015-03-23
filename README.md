@@ -35,6 +35,8 @@ grunt test
 
 ### Phoenix
 
+[Thoughtbot Phoenix Example](https://robots.thoughtbot.com/testing-a-phoenix-elixir-json-api)
+
 [Example Phoenix blog app](https://github.com/drewolson/blox)
 
 ### Angular
