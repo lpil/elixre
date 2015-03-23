@@ -1,6 +1,7 @@
 # Elixre
 
 [![Build Status](https://travis-ci.org/lpil/elixre.svg?branch=master)](https://travis-ci.org/lpil/elixre)
+[![Code Climate](https://codeclimate.com/github/lpil/elixre/badges/gpa.svg)](https://codeclimate.com/github/lpil/elixre)
 
 An Elixir regular expression editor & tester.
 
