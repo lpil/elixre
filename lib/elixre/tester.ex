@@ -9,7 +9,7 @@ defmodule Elixre.Tester do
 
       iex> Elixre.Tester.test(~S".+ (\w+)", "Hello World!")
       %{
-        regex: ~r/.+ (\w+)/,
+        regex: ~S"~r/.+ (\w+)/",
         results: [
           %{subject: "Hello World!", result: ["Hello World", "World"]}
         ]
@@ -17,7 +17,7 @@ defmodule Elixre.Tester do
 
       iex> Elixre.Tester.test("foo(.+)", ~w(foobar food foo))
       %{
-        regex: ~r/foo(.+)/,
+        regex: ~S"~r/foo(.+)/",
         results: [
           %{subject: "foobar", result: ["foobar", "bar"]},
           %{subject: "food",   result: ["food", "d"]},
@@ -36,7 +36,7 @@ defmodule Elixre.Tester do
     case Regex.compile(regex) do
       {:ok, regex} ->
         %{
-          regex: regex,
+          regex: inspect(regex),
           results: Enum.map(subjects, &result(regex, &1))
         }
 
