@@ -1,7 +1,7 @@
 require('angular');
 
-import { TestController } from './controllers/test_controller.js';
+import { TestController } from './controllers/test_controller';
 
 angular
   .module('elixre', [])
-  .controller('TestController', TestController);
+  .controller('testController', TestController);
