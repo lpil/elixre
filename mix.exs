@@ -15,7 +15,17 @@ defmodule Elixre.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Elixre, []},
-     applications: [:phoenix, :cowboy, :logger]]
+     applications: applications(Mix.env)]
+  end
+
+  defp applications do
+    [:phoenix, :cowboy, :logger]
+  end
+  defp applications(:test) do
+    [:hound] ++ applications
+  end
+  defp applications(_) do
+    applications
   end
 
   # Specifies your project dependencies

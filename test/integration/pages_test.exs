@@ -4,13 +4,12 @@ defmodule HoundTest do
 
   hound_session
 
-  # test "the truth", meta do
-  #   navigate_to("http://example.com/guestbook.html")
+  # For this to work we need to start PhantomJS beforehand.
+  # What's the best way to do this?
 
-  #   element_id = find_element(:name, "message")
-  #   fill_field(element_id, "Happy Birthday ~!")
-  #   submit_element(element_id)
+  # test "Hound", meta do
+  #   navigate_to("http://www.google.com")
 
-  #   assert page_title() == "Thank you"
+  #   assert page_title() == "Google"
   # end
 end

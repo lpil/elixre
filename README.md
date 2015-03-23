@@ -33,6 +33,12 @@ grunt test
 
 ## Notes
 
+### Phoenix
+
+[Example Phoenix blog app](https://github.com/drewolson/blox)
+
+### Angular
+
 [GoCardless ES6 Angular Example](https://github.com/gocardless/es6-angularjs)
 
 [Sitepoint ES6 Angular](http://www.sitepoint.com/writing-angularjs-apps-using-es6/)
