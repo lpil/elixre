@@ -57,4 +57,36 @@ defmodule Elixre.TestControllerTest do
       "error" => ["nothing to repeat", 0]
     }
   end
+
+  ###############
+  #  Successes  #
+  ###############
+  
+  test "index with valid regex and one subject" do
+    params = %{"subject" => "foobar", "regex" => "o+(.)?"}
+    response = conn(:post, @index, params) |> send_request
+
+    assert response.status == 200
+    assert parse!(response.resp_body) == %{
+      "regex" => "~r/o+(.)?/",
+      "results" => [
+        %{"subject" => "foobar", "result" => ["oob", "b"]}
+      ]
+    }
+  end
+
+  test "index with valid regex and multiple subjects" do
+    params = %{"subject" => ["foo", "bar", "baz"], "regex" => "(?:f|b)(.+)"}
+    response = conn(:post, @index, params) |> send_request
+
+    assert response.status == 200
+    assert parse!(response.resp_body) == %{
+      "regex" => "~r/(?:f|b)(.+)/",
+      "results" => [
+        %{"result" => ["foo", "oo"], "subject" => "foo"},
+        %{"result" => ["bar", "ar"], "subject" => "bar"},
+        %{"result" => ["baz", "az"], "subject" => "baz"}
+      ]
+    }
+  end
 end
