@@ -11,7 +11,7 @@ defmodule Elixre.TesterTest do
   end
 
   
-  test "index with valid regex and one subject" do
+  test ".text with valid regex and one subject" do
     result   = @subject.test("o+(.)?", "foobar")
     expected = %{
       regex: "~r/o+(.)?/",
@@ -23,7 +23,7 @@ defmodule Elixre.TesterTest do
     assert expected == result
   end
 
-  test "index with valid regex and multiple subjects" do
+  test ".text with valid regex and multiple subjects" do
     result   = @subject.test("(?:f|b)(.+)", ["foo", "bar", "baz"])
     expected = %{
       regex: "~r/(?:f|b)(.+)/",
