@@ -7,7 +7,7 @@ function TestController($scope, $http) {
    *
    * Splits the subject on newline if $scope.split is true
    *
-   * Side effect: Updates the UI to display result
+   * Side effect: Updates the scope with the results or error from server
    *
    * @param {string} regex - The regex to test
    * @param {string} subject - The string on which to run the regex
@@ -20,7 +20,7 @@ function TestController($scope, $http) {
       subject: subject
     };
     $http.post('/test', args)
-      .success(data => console.log(data))
+      .success(data => $scope.results = data)
       .error(data => console.log(data));
   };
 
@@ -31,6 +31,7 @@ function TestController($scope, $http) {
   $scope.split   = true;
   $scope.regex   = '';
   $scope.subject = '';
+  $scope.results = undefined;
 }
 
 export { TestController };

@@ -12,6 +12,6 @@
   <div ng-click="test(regex, subject)">
     Submit
   </div>
-</main>
 
-{{ 1 + 1 }}
+  <results data="results">
+</main>
