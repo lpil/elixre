@@ -30,23 +30,7 @@ mix test
 grunt test
 ```
 
-## Notes
-
-### Phoenix
-
-[Thoughtbot Phoenix Example](https://robots.thoughtbot.com/testing-a-phoenix-elixir-json-api)
-
-[Example Phoenix blog app](https://github.com/drewolson/blox)
-
-### Angular
-
-[GoCardless ES6 Angular Example](https://github.com/gocardless/es6-angularjs)
-
-[Sitepoint ES6 Angular](http://www.sitepoint.com/writing-angularjs-apps-using-es6/)
-
-[Thoughtram ES6 Angular](http://blog.thoughtram.io/angularjs/es6/2015/01/23/exploring-angular-1.3-using-es6.html)
-
-# LICENCE
+## LICENCE
 
 ```
 Elixre - An Elixir regular expression editor & tester
@@ -59,8 +43,8 @@ License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
