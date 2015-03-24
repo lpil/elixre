@@ -9,6 +9,11 @@
     <textarea name="subject" ng-model="subject"></textarea>
   </p>
 
+  <p>
+    <label for="split">Split on newlines?</label>
+    <input type="checkbox" name="split" ng-model="split">
+  </p>
+
   <div ng-click="test(regex, subject)">
     Submit
   </div>
