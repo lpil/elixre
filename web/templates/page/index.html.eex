@@ -9,7 +9,7 @@
     <textarea name="subject" ng-model="subject"></textarea>
   </p>
 
-  <div ng-click="test()">
+  <div ng-click="test(regex, subject)">
     Submit
   </div>
 </main>
