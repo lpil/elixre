@@ -13,8 +13,9 @@ function TestController($scope, $http) {
    * @param {string} subject - The string on which to run the regex
    */
   const test = function test(regex, subject) {
-    if ($scope.split) { subject = subject.split('\n'); }
-
+    if ($scope.split) {
+      subject = subject.split('\n').filter(x => x !== '');
+    }
     const args = {
       regex: regex,
       subject: subject
