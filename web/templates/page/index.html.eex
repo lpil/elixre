@@ -1,3 +1,12 @@
+<h1>case, cond and if</h1>
+
+<pre>
+HELLO
+W<span class="highlight">ORL</span>D!
+</pre>
+
+Hello <code>world</code>
+
 <main ng-controller="testController">
   <p>
     <label for="regex">Regex</label>
@@ -14,9 +23,9 @@
     <input type="checkbox" name="split" ng-model="split">
   </p>
 
-  <div ng-click="test(regex, subject)">
+  <a href="" ng-click="test(regex, subject)">
     Submit
-  </div>
+  </a>
 
   <results data="results">
 </main>

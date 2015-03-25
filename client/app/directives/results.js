@@ -1,7 +1,7 @@
 'use strict';
 
 function resultsDirective() {
-  const defaultData = { regex: '', results: [] };
+  const defaultData = { regex: 'nil', results: [] };
 
   return {
     restrict: 'E',
@@ -14,7 +14,7 @@ function resultsDirective() {
       scope.data = defaultData;
 
       scope.$watch('data', () => {
-        var { regex, results } = scope.data;
+        const { regex, results } = scope.data;
         scope.regex   = regex;
         scope.results = results;
       });

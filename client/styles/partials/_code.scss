@@ -1,0 +1,21 @@
+pre,
+code {
+  background-color: $c-secondary;
+  border: 1px solid $c-secondary-dk;
+  color: $c-black;
+  font-family: Monaco, monospace, Courier, "Courier New";
+  font-size: 15px;
+
+  .highlight {
+    color: $c-bold;
+  }
+}
+
+
+code {
+  padding: 1px 3px;
+}
+
+pre {
+  padding: 15px 20px;
+}

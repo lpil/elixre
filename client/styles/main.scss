@@ -1,7 +1,4 @@
 @import 'modules/colours';
 
-$colour: pink;
-
-body {
-  background-color: $colour;
-}
+@import 'partials/typography';
+@import 'partials/code';
