@@ -27,5 +27,5 @@ Hello <code>world</code>
     Submit
   </a>
 
-  <results data="results">
+  <pre><div ng-repeat="case in return.results"><result data="case"></div></pre>
 </main>

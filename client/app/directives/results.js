@@ -1,8 +1,6 @@
 'use strict';
 
-function resultsDirective() {
-  const defaultData = { regex: 'nil', results: [] };
-
+function resultDirective() {
   return {
     restrict: 'E',
 
@@ -10,21 +8,10 @@ function resultsDirective() {
       data: '='
     },
 
-    link: scope => {
-      scope.data = defaultData;
-
-      scope.$watch('data', () => {
-        const { regex, results } = scope.data;
-        scope.regex   = regex;
-        scope.results = results;
-      });
-    },
-
-    template: `
-<h3 ng-bind="regex"></h3>
-<pre ng-bind="results | json"></pre>
-`
+    template:
+`# {{ data.subject }}
+{{ data.result || [] | json }}`
   };
 }
 
-export { resultsDirective };
+export { resultDirective };

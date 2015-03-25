@@ -21,7 +21,7 @@ function TestController($scope, $http) {
       subject: subject
     };
     $http.post('/test', args)
-      .success(data => $scope.results = data)
+      .success(data => $scope.return = data)
       .error(data => console.log(data));
   };
 
@@ -32,7 +32,7 @@ function TestController($scope, $http) {
   $scope.split   = true;
   $scope.regex   = '';
   $scope.subject = '';
-  $scope.results = undefined;
+  $scope.return  = undefined;
 }
 
 export { TestController };
