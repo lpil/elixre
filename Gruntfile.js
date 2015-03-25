@@ -9,6 +9,10 @@ module.exports = function(grunt) {
       js: {
         files: ['client/**/*.js'],
         tasks: ['js', 'karma:test']
+      },
+      scss: {
+        files: ['client/**/*.scss'],
+        tasks: ['scss']
       }
     },
 
@@ -29,6 +33,17 @@ module.exports = function(grunt) {
           configFile: 'client/test/karma.conf.js'
         }
       }
+    },
+
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      compile: {
+        files: {
+          'priv/static/main.css': 'client/styles/main.scss'
+        }
+      }
     }
   });
 
@@ -40,7 +55,11 @@ module.exports = function(grunt) {
     'browserify'
   ]);
 
+  grunt.registerTask('scss', [
+    'sass'
+  ]);
+
   grunt.registerTask('default', [
-    'js', 'karma:test', 'watch'
+    'scss', 'js', 'karma:test', 'watch'
   ]);
 };

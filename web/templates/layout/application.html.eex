@@ -9,7 +9,7 @@
     <meta name="author" content="Louis Pilfold">
 
     <title>Elixre - An Elixir regular expression editor & tester</title>
-    <%# <link rel="stylesheet" href="<%= static_path(@conn, "/main.css") %1>"> %>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/main.css") %>">
   </head>
 
   <body>
