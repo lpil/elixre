@@ -4,7 +4,15 @@ defmodule Elixre.Endpoint do
   # Serve at "/" the given assets from "priv/static" directory
   plug Plug.Static,
     at: "/", from: :elixre,
-    only: ~w(main.css images main.js favicon.ico robots.txt)
+    only: ~w(
+      favicon.ico
+      humans.txt
+      images
+      main.css
+      main.css.map
+      main.js
+      robots.txt
+    )
 
   plug Plug.Logger
 
