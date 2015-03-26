@@ -1,18 +1,23 @@
 <main class="test" role="main" ng-controller="testController">
-  <div>
-    <label for="regex">Regex</label>
-    <input name="regex" type="text"
-           ng-model="regex" ng-change="test(regex,subject)"/>
+  <div class="inputs">
+    <div>
+      <label for="regex">Regex</label>
+      <input name="regex" type="text"
+            ng-model="regex" ng-change="test(regex,subject)"/>
+    </div>
+
+    <div>
+      <label for="subject">Subject</label>
+      <textarea name="subject" rows=5
+                ng-model="subject" ng-change="test(regex,subject)"/></textarea>
+      <label for="split">Split on newlines?</label>
+      <input type="checkbox" name="split" ng-model="split">
+    </div>
   </div>
 
-  <div>
-    <label for="subject">Subject</label>
-    <textarea name="subject" rows=5
-              ng-model="subject" ng-change="test(regex,subject)"/></textarea>
-    <label for="split">Split on newlines?</label>
-    <input type="checkbox" name="split" ng-model="split">
+  <div class="results">
+    <pre><div class="results__result" 
+              ng-repeat="case in return.results"
+              ><result data="case"></div></pre>
   </div>
-
-  <pre class="results"><div class="results__result" 
-                            ng-repeat="case in return.results"><result data="case"></div></pre>
 </main>

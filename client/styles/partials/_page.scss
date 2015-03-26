@@ -1,6 +1,32 @@
 .container {
   margin: 0 auto;
   max-width: 1000px;
-  min-width: 400px;
+  min-width: 300px;
   padding: 0 20px;
+
+}
+
+.test {
+  @extend %clearfix;
+}
+
+
+@media (min-width: $mq-large) {
+  .inputs,
+  .results {
+    float: left;
+    width: 50%;
+  }
+
+  .inputs {
+    padding: 0 10px 0 0;
+  }
+
+  .results {
+    padding: 11px 0 0 10px;
+
+    pre {
+      min-height: 165px;
+    }
+  }
 }
