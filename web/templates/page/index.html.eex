@@ -10,22 +10,20 @@ Hello <code>world</code>
 <main ng-controller="testController">
   <p>
     <label for="regex">Regex</label>
-    <input name="regex" type="text" ng-model="regex"/>
+    <input name="regex" type="text"
+           ng-model="regex" ng-change="test(regex,subject)"/>
   </p>
 
   <p>
     <label for="subject">Subject</label>
-    <textarea name="subject" ng-model="subject"></textarea>
+    <textarea name="subject"
+              ng-model="subject" ng-change="test(regex,subject)"/></textarea>
   </p>
 
   <p>
     <label for="split">Split on newlines?</label>
     <input type="checkbox" name="split" ng-model="split">
   </p>
-
-  <a href="" ng-click="test(regex, subject)">
-    Submit
-  </a>
 
   <pre><div ng-repeat="case in return.results"><result data="case"></div></pre>
 </main>
