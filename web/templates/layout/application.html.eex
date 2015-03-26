@@ -21,5 +21,25 @@
       <%= @inner %>
     </div>
     <script src="<%= static_path(@conn, "/main.js") %>"></script>
+
+    <footer class="footer">
+      <p>
+        Elixre is
+        <a href="http://en.wikipedia.org/wiki/Free_software" target="_blank">
+        Free software</a>, available under the
+        <a href="https://gnu.org/licenses/agpl.html" target="_blank">GNU
+          AGPL3</a> licence.
+      </p>
+      <p>
+        The source code is freely available on
+        <a href="http://github.com/lpil/elixre" target="_blank">Github</a>.
+        (Contributions welcome!)
+      </p>
+      <p>
+        Copyright © 2015
+        <a href="http://lpil.uk/" target="_blank">Louis Pilfold</a>. All Rights
+        Reserved.
+      </p>
+    </footer>
   </body>
 </html>

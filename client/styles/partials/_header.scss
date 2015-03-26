@@ -1,4 +1,5 @@
 .header {
+  padding-top: 1em;
   text-align: center;
 
   h1 {
@@ -6,5 +7,6 @@
     font-size: 5em;
     line-height: 1em;
     margin: 0;
+    text-shadow: $c-grey-lt 2px 2px;
   }
 }
