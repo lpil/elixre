@@ -14,6 +14,10 @@
 
   <body>
     <div ng-app="elixre" class="container">
+      <header class="header">
+        <h1>Elixre</h1>
+        <h3>An Elixir regular expression editor & tester</h3>
+      </header>
       <%= @inner %>
     </div>
     <script src="<%= static_path(@conn, "/main.js") %>"></script>

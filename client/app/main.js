@@ -2,7 +2,7 @@ require('angular');
 
 import { TestController } from './controllers/test_controller';
 
-import { resultDirective } from './directives/results';
+import { resultDirective } from './directives/result';
 
 angular
   .module('elixre', [])

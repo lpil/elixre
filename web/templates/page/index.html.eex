@@ -1,13 +1,4 @@
-<h1>case, cond and if</h1>
-
-<pre>
-HELLO
-W<span class="highlight">ORL</span>D!
-</pre>
-
-Hello <code>world</code>
-
-<main ng-controller="testController">
+<main role="main" ng-controller="testController">
   <p>
     <label for="regex">Regex</label>
     <input name="regex" type="text"
@@ -25,5 +16,6 @@ Hello <code>world</code>
     <input type="checkbox" name="split" ng-model="split">
   </p>
 
-  <pre><div ng-repeat="case in return.results"><result data="case"></div></pre>
+  <pre class="results"><div class="results__result" 
+                            ng-repeat="case in return.results"><result data="case"></div></pre>
 </main>
