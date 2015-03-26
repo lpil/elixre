@@ -7,11 +7,8 @@
 
   <div>
     <label for="subject">Subject</label>
-    <textarea name="subject"
+    <textarea name="subject" rows=5
               ng-model="subject" ng-change="test(regex,subject)"/></textarea>
-  </div>
-
-  <div>
     <label for="split">Split on newlines?</label>
     <input type="checkbox" name="split" ng-model="split">
   </div>
