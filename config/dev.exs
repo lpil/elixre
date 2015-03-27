@@ -17,8 +17,8 @@ config :elixre, Elixre.Endpoint,
 # will use higher CPU in dev as the number of files
 # grow. Adjust as necessary.
 config :elixre, Elixre.Endpoint,
-  live_reload: [Path.expand("priv/static/js/app.js"),
-                Path.expand("priv/static/css/app.css"),
+  live_reload: [Path.expand("priv/static/main.js"),
+                Path.expand("priv/static/main.css"),
                 Path.expand("web/templates/**/*.eex")]
 
 # Enables code reloading for development
