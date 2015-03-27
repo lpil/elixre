@@ -8,8 +8,12 @@ function resultDirective() {
       data: '='
     },
 
+    link: (scope) => {
+      scope.data.subject = `# ${scope.data.subject.split('\n').join('\n# ')}`;
+    },
+
     template:
-`# {{ data.subject }}
+`{{ data.subject }}
 {{ data.result || [] | json }}`
   };
 }
