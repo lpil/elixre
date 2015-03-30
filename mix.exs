@@ -35,7 +35,8 @@ defmodule Elixre.Mixfile do
     [
       {:phoenix, "~> 0.10.0"},
       {:cowboy, "~> 1.0"},
-      {:hound, "~> 0.6.0"}
+      {:hound, "~> 0.6.0", only: :test},
+      {:shouldi, "~> 0.2.2", only: :test}
     ]
   end
 end
