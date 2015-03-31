@@ -1,10 +1,13 @@
 defmodule Elixre.PageControllerTest do
   use Elixre.ControllerCase, async: true
 
-  test "/" do
-    response = conn(:get, "/") |> send_request
+  with "/" do
+    setup context do
+      connection = conn(:get, "/") |> send_request
+      Dict.put context, :connection, connection
+    end
 
-    assert response.status == 200
-    assert String.contains?(response.resp_body, "Elixre")
+    should_respond_with :success
+    should_match_body_to "Elixre"
   end
 end

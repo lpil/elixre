@@ -4,6 +4,8 @@ defmodule Elixre.ControllerCase do
   using do
     quote do
       use Plug.Test
+      use ShouldI
+      import ShouldI.Matchers.Plug
 
       defp send_request(conn) do
         conn
@@ -14,4 +16,4 @@ defmodule Elixre.ControllerCase do
   end
 end
 
-ExUnit.start
+ExUnit.start(formatters: [ShouldI.CLIFormatter])

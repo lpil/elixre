@@ -9,84 +9,128 @@ defmodule Elixre.TestControllerTest do
   #  Params  #
   ############
 
-  test "index errors without subject or regex params" do
-    response = conn(:post, @index) |> send_request
-    assert response.status == 400
-    assert parse!(response.resp_body) == %{
-      "error" => %{ "missing params" => ["regex", "subject[]"] }
-    }
+  with "the index action" do
+    with "no subject or regex params" do
+      setup context do
+        get_index context
+      end
+
+      should_respond_with :bad_request
+
+      should "return error with missing params", ctx do
+        assert parse!(ctx.connection.resp_body) == %{
+          "error" => %{ "missing params" => ["regex", "subject[]"] }
+        }
+      end
+    end
+
+    with "only regex params" do
+      setup context do
+        params = %{"regex" => "foo"}
+        get_index context, params
+      end
+
+      should_respond_with :bad_request
+
+      should "return error with the missing subject param", ctx do
+        assert parse!(ctx.connection.resp_body) == %{
+          "error" => %{ "missing params" => ["subject[]"] }
+        }
+      end
+    end
+
+    with "only subject params" do
+      setup context do
+        params = %{"subject" => "foo"}
+        get_index context, params
+      end
+
+      should_respond_with :bad_request
+
+      should "return error with the missing regex param", ctx do
+        assert parse!(ctx.connection.resp_body) == %{
+          "error" => %{ "missing params" => ["regex"] }
+        }
+      end
+    end
+
+    with "both regex and subject params" do
+      setup context do
+        params = %{"subject" => "foo", "regex" => "bar"}
+        connection = conn(:post, @index, params) |> send_request
+        Dict.put context, :connection, connection
+      end
+
+      should_respond_with :success
+    end
+
+
+
+    with "an invalid regex" do
+      setup context do
+        params = %{"subject" => "foo", "regex" => "?"}
+        get_index context, params
+      end
+
+      should_respond_with :success
+
+      should "return error with reason", ctx do
+        assert parse!(ctx.connection.resp_body) == %{
+          "error" => ["nothing to repeat", 0]
+        }
+      end
+    end
+
+    with "a valid regex" do
+      with "one subject" do
+        setup context do
+          params = %{"subject" => "foobar", "regex" => "o+(.)?"}
+          get_index context, params
+        end
+
+        should_respond_with :success
+
+        should "return the results", ctx do
+          assert parse!(ctx.connection.resp_body) == %{
+            "regex" => "~r/o+(.)?/",
+            "results" => [
+              %{"subject" => "foobar", "result" => ["oob", "b"]}
+            ]
+          }
+        end
+      end
+
+      with "multiple subjects" do
+        setup context do
+          params = %{
+            "subject" => ["foo", "bar", "baz"],
+            "regex" => "(?:f|b)(.+)"
+          }
+          get_index context, params
+        end
+
+        should_respond_with :success
+
+        should "return the results", ctx do
+          assert parse!(ctx.connection.resp_body) == %{
+            "regex" => "~r/(?:f|b)(.+)/",
+            "results" => [
+              %{"result" => ["foo", "oo"], "subject" => "foo"},
+              %{"result" => ["bar", "ar"], "subject" => "bar"},
+              %{"result" => ["baz", "az"], "subject" => "baz"}
+            ]
+          }
+        end
+      end
+    end
   end
 
-  test "index errors without subject param" do
-    params = %{"regex" => "foo"}
-    response = conn(:post, @index, params) |> send_request
-
-    assert response.status == 400
-    assert parse!(response.resp_body) == %{
-      "error" => %{ "missing params" => ["subject[]"] }
-    }
+  defp get_index(context) do
+    connection = conn(:post, @index) |> send_request
+    Dict.put context, :connection, connection
   end
-
-  test "index errors without regex param" do
-    params = %{"subject" => "foo"}
-    response = conn(:post, @index, params) |> send_request
-
-    assert response.status == 400
-    assert parse!(response.resp_body) == %{
-      "error" => %{ "missing params" => ["regex"] }
-    }
-  end
-
-  test "index is 200 with regex and subject params" do
-    params = %{"subject" => "foo", "regex" => "foo"}
-    response = conn(:post, @index, params) |> send_request
-
-    assert response.status == 200
-  end
-
-  ############
-  #  Errors  #
-  ############
-
-  test "index with invalid regex" do
-    params = %{"subject" => "foo", "regex" => "?"}
-    response = conn(:post, @index, params) |> send_request
-
-    assert response.status == 200
-    assert parse!(response.resp_body) == %{
-      "error" => ["nothing to repeat", 0]
-    }
-  end
-
-  ###############
-  #  Successes  #
-  ###############
-  
-  test "index with valid regex and one subject" do
-    params = %{"subject" => "foobar", "regex" => "o+(.)?"}
-    response = conn(:post, @index, params) |> send_request
-
-    assert response.status == 200
-    assert parse!(response.resp_body) == %{
-      "regex" => "~r/o+(.)?/",
-      "results" => [
-        %{"subject" => "foobar", "result" => ["oob", "b"]}
-      ]
-    }
-  end
-
-  test "index with valid regex and multiple subjects" do
-    params = %{"subject" => ["foo", "bar", "baz"], "regex" => "(?:f|b)(.+)"}
-    response = conn(:post, @index, params) |> send_request
-
-    assert response.status == 200
-    assert parse!(response.resp_body) == %{
-      "regex" => "~r/(?:f|b)(.+)/",
-      "results" => [
-        %{"result" => ["foo", "oo"], "subject" => "foo"},
-        %{"result" => ["bar", "ar"], "subject" => "bar"},
-        %{"result" => ["baz", "az"], "subject" => "baz"}
-      ]
-    }
+  defp get_index(context, params) do
+    connection = conn(:post, @index, params) |> send_request
+    Dict.put context, :connection, connection
   end
 end
