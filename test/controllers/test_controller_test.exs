@@ -1,8 +1,6 @@
 defmodule Elixre.TestControllerTest do
   use Elixre.ControllerCase, async: true
 
-  import Poison.Parser, only: [parse!: 1]
-
   @index "/test"
 
   ############
@@ -16,12 +14,9 @@ defmodule Elixre.TestControllerTest do
       end
 
       should_respond_with :bad_request
-
-      should "return error with missing params", ctx do
-        assert parse!(ctx.connection.resp_body) == %{
-          "error" => %{ "missing params" => ["regex", "subject[]"] }
-        }
-      end
+      should_return_json_of %{
+        "error" => %{ "missing params" => ["regex", "subject[]"] }
+      }
     end
 
     with "only regex params" do
@@ -31,12 +26,9 @@ defmodule Elixre.TestControllerTest do
       end
 
       should_respond_with :bad_request
-
-      should "return error with the missing subject param", ctx do
-        assert parse!(ctx.connection.resp_body) == %{
-          "error" => %{ "missing params" => ["subject[]"] }
-        }
-      end
+      should_return_json_of %{
+        "error" => %{ "missing params" => ["subject[]"] }
+      }
     end
 
     with "only subject params" do
@@ -46,12 +38,9 @@ defmodule Elixre.TestControllerTest do
       end
 
       should_respond_with :bad_request
-
-      should "return error with the missing regex param", ctx do
-        assert parse!(ctx.connection.resp_body) == %{
-          "error" => %{ "missing params" => ["regex"] }
-        }
-      end
+      should_return_json_of %{
+        "error" => %{ "missing params" => ["regex"] }
+      }
     end
 
     with "both regex and subject params" do
@@ -73,12 +62,9 @@ defmodule Elixre.TestControllerTest do
       end
 
       should_respond_with :success
-
-      should "return error with reason", ctx do
-        assert parse!(ctx.connection.resp_body) == %{
-          "error" => ["nothing to repeat", 0]
-        }
-      end
+      should_return_json_of %{
+        "error" => ["nothing to repeat", 0]
+      }
     end
 
     with "a valid regex" do
@@ -89,15 +75,12 @@ defmodule Elixre.TestControllerTest do
         end
 
         should_respond_with :success
-
-        should "return the results", ctx do
-          assert parse!(ctx.connection.resp_body) == %{
-            "regex" => "~r/o+(.)?/",
-            "results" => [
-              %{"subject" => "foobar", "result" => ["oob", "b"]}
-            ]
-          }
-        end
+        should_return_json_of %{
+          "regex" => "~r/o+(.)?/",
+          "results" => [
+            %{"subject" => "foobar", "result" => ["oob", "b"]}
+          ]
+        }
       end
 
       with "multiple subjects" do
@@ -110,17 +93,14 @@ defmodule Elixre.TestControllerTest do
         end
 
         should_respond_with :success
-
-        should "return the results", ctx do
-          assert parse!(ctx.connection.resp_body) == %{
-            "regex" => "~r/(?:f|b)(.+)/",
-            "results" => [
-              %{"result" => ["foo", "oo"], "subject" => "foo"},
-              %{"result" => ["bar", "ar"], "subject" => "bar"},
-              %{"result" => ["baz", "az"], "subject" => "baz"}
-            ]
-          }
-        end
+        should_return_json_of %{
+          "regex" => "~r/(?:f|b)(.+)/",
+          "results" => [
+            %{"result" => ["foo", "oo"], "subject" => "foo"},
+            %{"result" => ["bar", "ar"], "subject" => "bar"},
+            %{"result" => ["baz", "az"], "subject" => "baz"}
+          ]
+        }
       end
     end
   end
