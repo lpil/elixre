@@ -1,82 +1,44 @@
 defmodule Elixre.TesterTest do
   use ExUnit.Case, async: true
-
-  @subject Elixre.Tester
-
-  test ".test with invalid regex" do
-    result   = @subject.test("?", "foo")
-    expected = %{ error: ["nothing to repeat", 0] }
-
-    assert expected == result
-  end
-
-
-  test ".text with valid regex and one subject" do
-    result   = @subject.test("o+(.)?", "foobar")
-    expected = %{
-      regex: "~r/o+(.)?/",
-      results: [
-        %{subject: "foobar", result: ["oob", "b"]}
-      ]
-    }
-
-    assert expected == result
-  end
-
-  test ".text with valid regex and multiple subjects" do
-    result   = @subject.test("(?:f|b)(.+)", ["foo", "bar", "baz"])
-    expected = %{
-      regex: "~r/(?:f|b)(.+)/",
-      results: [
-        %{result: ["foo", "oo"], subject: "foo"},
-        %{result: ["bar", "ar"], subject: "bar"},
-        %{result: ["baz", "az"], subject: "baz"}
-      ]
-    }
-
-  assert expected == result
-  end
-end
-
-defmodule Elixre.TesterTestWithShould do
-  use ExUnit.Case, async: true
   use ShouldI
+  import ShouldI.Matchers.Context
 
   @subject Elixre.Tester
 
   with "an invalid regex" do
-    should "return error key with explanatory val" do
-      result   = @subject.test("?", "foo")
-      expected = %{ error: ["nothing to repeat", 0] }
-      assert expected == result
+    setup context do
+      @subject.test("?", "foo")
     end
+
+    should_not_have_key :results
+    should_not_have_key :regex
+    should_assign_key error: ["nothing to repeat", 0]
   end
 
 
   with "a valid regex" do
-    should "return correct results for 1 subject" do
-      result   = @subject.test("o+(.)?", "foobar")
-      expected = %{
-        regex: "~r/o+(.)?/",
-        results: [
-          %{subject: "foobar", result: ["oob", "b"]}
-        ]
-      }
-      assert expected == result
+    with "one subject" do
+      setup context do
+        @subject.test("o+(.)?", "foobar")
+      end
+
+      should_not_have_key :error
+      should_assign_key regex: "~r/o+(.)?/"
+      should_assign_key results: [%{subject: "foobar", result: ["oob", "b"]}]
     end
 
-    should "return correct results for several subjects" do
-      result   = @subject.test("(?:f|b)(.+)", ["foo", "bar", "baz"])
-      expected = %{
-        regex: "~r/(?:f|b)(.+)/",
-        results: [
-          %{result: ["foo", "oo"], subject: "foo"},
-          %{result: ["bar", "ar"], subject: "bar"},
-          %{result: ["baz", "az"], subject: "baz"}
-        ]
-      }
+    with "multiple subjects" do
+      setup context do
+        @subject.test("(?:f|b)(.+)", ["foo", "bar", "baz"])
+      end
 
-      assert expected == result
+      should_not_have_key :error
+      should_assign_key regex: "~r/(?:f|b)(.+)/"
+      should_assign_key results: [
+        %{result: ["foo", "oo"], subject: "foo"},
+        %{result: ["bar", "ar"], subject: "bar"},
+        %{result: ["baz", "az"], subject: "baz"}
+      ]
     end
   end
 end
