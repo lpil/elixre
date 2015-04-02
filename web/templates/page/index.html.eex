@@ -4,6 +4,7 @@
       <label for="regex">Regex</label>
       <input name="regex"
              type="text"
+             autofocus
              ng-model="regex"
              ng-change="test(regex,subject)"
              ng-model-options="{ debounce: 100 }"/>
