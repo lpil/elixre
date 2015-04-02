@@ -8,7 +8,10 @@ code {
   line-height: 1.3em;
 
   .hl {
+    background-color: darken($c-secondary, 5);
     color: $c-bold;
+    margin: -1px;
+    padding: 1px;
   }
 }
 

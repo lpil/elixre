@@ -9,21 +9,18 @@ function ResultsController($scope, $sce) {
    * @returns {string} The subject with the match highlighted
    */
   var hightlightMatch = function(subject, match) {
-    console.log(subject, match);
-    if (match) {
-      var index = subject.indexOf(match),
-          start = subject.slice(0, index),
-          end   = subject.slice(index + match.length);
-      subject = `${start}<span class="hl">${match}</span>${end}`;
-    }
+    var index = subject.indexOf(match),
+        start = subject.slice(0, index),
+        end   = subject.slice(index + match.length);
+    subject = `${start}<span class="hl">${match}</span>${end}`;
     return subject;
   };
 
-  var transformReturn = function(x) {
-    var match;
-    if (x.result) { match = x.result[0]; }
-    x.subject = $sce.trustAsHtml(hightlightMatch(x.subject, match));
-    return x;
+  var transformReturn = function(ret) {
+    var sub = ret.subject;
+    if (ret.result) { sub = hightlightMatch(sub, ret.result[0]); }
+    ret.subject = $sce.trustAsHtml(sub);
+    return ret;
   };
 
   $scope.$watch('return', () => {
