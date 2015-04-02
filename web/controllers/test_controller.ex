@@ -1,12 +1,13 @@
 defmodule Elixre.TestController do
   use Elixre.Web, :controller
 
-  import Elixre.Tester, only: [test: 2]
+  import Elixre.Tester, only: [test: 3]
 
   plug :action
 
-  def index(conn, %{"regex" => regex, "subject" => subject}) do
-    render conn, "result.json", data: test(regex, subject)
+  def index(conn, params = %{"regex" => regex, "subject" => subject}) do
+    options = params["options"] || ""
+    render conn, "result.json", data: test(regex, subject, options)
   end
 
   def index(conn, params) do

@@ -3,10 +3,6 @@ defmodule Elixre.TestControllerTest do
 
   @index "/test"
 
-  ############
-  #  Params  #
-  ############
-
   with "the index action" do
     with "no subject or regex params" do
       setup context do
@@ -18,6 +14,7 @@ defmodule Elixre.TestControllerTest do
         "error" => %{ "missing params" => ["regex", "subject[]"] }
       }
     end
+
 
     with "only regex params" do
       setup context do
@@ -31,6 +28,7 @@ defmodule Elixre.TestControllerTest do
       }
     end
 
+
     with "only subject params" do
       setup context do
         params = %{"subject" => "foo"}
@@ -42,6 +40,7 @@ defmodule Elixre.TestControllerTest do
         "error" => %{ "missing params" => ["regex"] }
       }
     end
+
 
     with "both regex and subject params" do
       setup context do
@@ -67,6 +66,7 @@ defmodule Elixre.TestControllerTest do
       }
     end
 
+
     with "a valid regex" do
       with "one subject" do
         setup context do
@@ -82,6 +82,7 @@ defmodule Elixre.TestControllerTest do
           ]
         }
       end
+
 
       with "multiple subjects" do
         setup context do
@@ -99,6 +100,28 @@ defmodule Elixre.TestControllerTest do
             %{"result" => ["foo", "oo"], "subject" => "foo"},
             %{"result" => ["bar", "ar"], "subject" => "bar"},
             %{"result" => ["baz", "az"], "subject" => "baz"}
+          ]
+        }
+      end
+
+
+      with "the options param passed" do
+        setup context do
+          params = %{
+            "subject" => ["FOO", "bar", "BAZ"],
+            "regex" => "(?:f|b)(.+)",
+            "options" => "i"
+          }
+          get_index context, params
+        end
+
+        should_respond_with :success
+        should_return_json_of %{
+          "regex" => "~r/(?:f|b)(.+)/i",
+          "results" => [
+            %{"result" => ["FOO", "OO"], "subject" => "FOO"},
+            %{"result" => ["bar", "ar"], "subject" => "bar"},
+            %{"result" => ["BAZ", "AZ"], "subject" => "BAZ"}
           ]
         }
       end
