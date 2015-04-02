@@ -3,6 +3,8 @@ defmodule Elixre.Tester do
   Takes a regex in string form, and one or a list of subject strings
   to run the regex on, and returns the results of the test.
 
+  Regex options can be passed as a third argument.
+
   If the regex is invalid it is returned with the errors.
 
   ## Examples
@@ -10,6 +12,14 @@ defmodule Elixre.Tester do
       iex> Elixre.Tester.test(~S".+ (\w+)", "Hello World!")
       %{
         regex: ~S"~r/.+ (\w+)/",
+        results: [
+          %{subject: "Hello World!", result: ["Hello World", "World"]}
+        ]
+      }
+
+      iex> Elixre.Tester.test(~S"hello (\w+)", "Hello World!", "i")
+      %{
+        regex: ~S"~r/hello (\w+)/i",
         results: [
           %{subject: "Hello World!", result: ["Hello World", "World"]}
         ]
@@ -30,10 +40,10 @@ defmodule Elixre.Tester do
         error: ["nothing to repeat", 0]
       }
   """
-  def test(regex, subjects) do
+  def test(regex, subjects, options \\ "") do
     subjects = List.wrap subjects
 
-    case Regex.compile(regex) do
+    case Regex.compile(regex, options) do
       {:ok, regex} ->
         %{
           regex: inspect(regex),

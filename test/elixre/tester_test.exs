@@ -40,5 +40,15 @@ defmodule Elixre.TesterTest do
         %{result: ["baz", "az"], subject: "baz"}
       ]
     end
+
+    with "options passed" do
+      setup context do
+        @subject.test("o+(.)?", "FOOBAR", "i")
+      end
+
+      should_not_have_key :error
+      should_assign_key regex: "~r/o+(.)?/i"
+      should_assign_key results: [%{subject: "FOOBAR", result: ["OOB", "B"]}]
+    end
   end
 end
