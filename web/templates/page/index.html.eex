@@ -18,7 +18,8 @@
                 ng-model-options="{ debounce: 100 }"
                 ></textarea>
       <label for="split">Split on newlines?</label>
-      <input type="checkbox" name="split" ng-model="split">
+      <input type="checkbox" name="split"
+             ng-change="test(regex,subject)" ng-model="split">
     </div>
   </div>
 
