@@ -40,6 +40,8 @@ defmodule Elixre.Tester do
         error: ["nothing to repeat", 0]
       }
   """
+  @spec test(String.t, [String.t], String.t) :: %{}
+
   def test(regex, subjects, options \\ "")
 
   def test(regex, subjects, options) when is_binary(options) do
@@ -64,6 +66,9 @@ defmodule Elixre.Tester do
       error: ["FunctionClauseError. Invalid options", inspect(options)]
     }
   end
+
+
+  @spec result(Regex.t, [Bitstring]) :: %{}
 
   defp result(regex, subject) do
     %{
