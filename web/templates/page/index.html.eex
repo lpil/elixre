@@ -2,14 +2,21 @@
   <div class="inputs">
     <div>
       <label for="regex">Regex</label>
-      <input name="regex" type="text"
-            ng-model="regex" ng-change="test(regex,subject)"/>
+      <input name="regex"
+             type="text"
+             ng-model="regex"
+             ng-change="test(regex,subject)"
+             ng-model-options="{ debounce: 100 }"/>
     </div>
 
     <div>
       <label for="subject">Subject</label>
-      <textarea name="subject" rows=5
-                ng-model="subject" ng-change="test(regex,subject)"/></textarea>
+      <textarea name="subject"
+                rows=5
+                ng-model="subject"
+                ng-change="test(regex,subject)"
+                ng-model-options="{ debounce: 100 }"
+                ></textarea>
       <label for="split">Split on newlines?</label>
       <input type="checkbox" name="split" ng-model="split">
     </div>
