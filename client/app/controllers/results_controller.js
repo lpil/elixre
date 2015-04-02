@@ -16,11 +16,23 @@ function ResultsController($scope, $sce) {
     return subject;
   };
 
-  var comment = function(str) {
+  /**
+   * Prefix each line of a string with a span.no-hl of "# "
+   *
+   * @param {string} lines
+   * @returns {string}
+   */
+  var comment = function(lines) {
     var prefix = '<span class="no-hl"># </span>';
-    return prefix + str.split('\n').join('\n' + prefix);
+    return prefix + lines.split('\n').join('\n' + prefix);
   };
 
+  /**
+   * Highlights
+   *
+   * @param {object} ret The object returned from the test API
+   * @returns {object} ret with the subject highlighted & comment prefixed
+   */
   var transformReturn = function(ret) {
     var subject = ret.subject;
     if (ret.result) { subject = hightlightMatch(subject, ret.result[0]); }

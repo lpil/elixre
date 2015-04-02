@@ -27,8 +27,6 @@ function TestController($scope, $http) {
   };
 
 
-  this.scope = $scope;
-
   $scope.test    = test;
   $scope.split   = true;
   $scope.regex   = '';
