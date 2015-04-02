@@ -9,8 +9,9 @@ function TestController($scope, $http) {
    *
    * Side effect: Updates the scope with the results or error from server
    *
-   * @param {string} regex - The regex to test
-   * @param {string} subject - The string on which to run the regex
+   * @param {string} regex The regex to test
+   * @param {string} subject The string on which to run the regex
+   * @returns {string} The string on which to run the regex
    */
   const test = function test(regex, subject) {
     if ($scope.split) {
