@@ -16,10 +16,16 @@ function ResultsController($scope, $sce) {
     return subject;
   };
 
+  var comment = function(str) {
+    var prefix = '<span class="no-hl"># </span>';
+    return prefix + str.split('\n').join('\n' + prefix);
+  };
+
   var transformReturn = function(ret) {
-    var sub = ret.subject;
-    if (ret.result) { sub = hightlightMatch(sub, ret.result[0]); }
-    ret.subject = $sce.trustAsHtml(sub);
+    var subject = ret.subject;
+    if (ret.result) { subject = hightlightMatch(subject, ret.result[0]); }
+    subject     = comment(subject);
+    ret.subject = $sce.trustAsHtml(subject);
     return ret;
   };
 
