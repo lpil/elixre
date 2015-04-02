@@ -40,7 +40,9 @@ defmodule Elixre.Tester do
         error: ["nothing to repeat", 0]
       }
   """
-  def test(regex, subjects, options \\ "") do
+  def test(regex, subjects, options \\ "")
+
+  def test(regex, subjects, options) when is_binary(options) do
     subjects = List.wrap subjects
 
     case Regex.compile(regex, options) do
@@ -55,6 +57,12 @@ defmodule Elixre.Tester do
           error: [to_string(error), pos]
         }
     end
+  end
+
+  def test(_, _, options) do
+    %{
+      error: ["FunctionClauseError. Invalid options", inspect(options)]
+    }
   end
 
   defp result(regex, subject) do

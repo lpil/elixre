@@ -41,6 +41,7 @@ defmodule Elixre.TesterTest do
       ]
     end
 
+
     with "options passed" do
       setup context do
         @subject.test("o+(.)?", "FOOBAR", "i")
@@ -49,6 +50,17 @@ defmodule Elixre.TesterTest do
       should_not_have_key :error
       should_assign_key regex: "~r/o+(.)?/i"
       should_assign_key results: [%{subject: "FOOBAR", result: ["OOB", "B"]}]
+    end
+
+
+    with "non-string options passed" do
+      setup context do
+        @subject.test("o+(.)?", "FOOBAR", 123)
+      end
+
+      should_not_have_key :results
+      should_not_have_key :regex
+      should_assign_key error: ["FunctionClauseError. Invalid options", "123"]
     end
   end
 end
