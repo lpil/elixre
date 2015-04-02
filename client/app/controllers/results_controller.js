@@ -31,7 +31,10 @@ function ResultsController($scope, $sce) {
 
   $scope.$watch('return', () => {
     if (!$scope.return) { return; }
-    $scope.return.results = $scope.return.results.map(transformReturn);
+    var ret = $scope.return;
+    if (!ret.error) {
+      ret.results = ret.results.map(transformReturn);
+    }
   });
 }
 

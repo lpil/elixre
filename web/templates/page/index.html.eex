@@ -25,7 +25,10 @@
   </div>
 
   <div ng-controller="resultsController" class="results">
-    <pre><div class="results__result" 
+    <pre><div class="results__error"
+              ng-if="return.error"
+              >Compilation Error!{{ '\n' + (return.error | json) }}</div
+              ><div class="results__result"
               ng-repeat="case in return.results"
               ><result data="case"></div></pre>
   </div>
