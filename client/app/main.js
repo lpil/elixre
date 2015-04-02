@@ -1,9 +1,8 @@
 require('angular');
 
-import { TestController } from './controllers/test_controller';
+import { TestController    } from './controllers/test_controller';
 import { ResultsController } from './controllers/results_controller';
-
-import { resultDirective } from './directives/result';
+import { resultDirective   } from './directives/result';
 
 const dependencies = [
   require('angular-sanitize')

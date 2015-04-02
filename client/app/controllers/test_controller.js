@@ -1,7 +1,6 @@
 'use strict';
 
 function TestController($scope, $http) {
-
   /**
    * Submit a regex and subject to the server for testing.
    *
