@@ -5,6 +5,7 @@
       <input name="regex"
              type="text"
              autofocus
+             ng-trim="false"
              ng-model="regex"
              ng-change="test(regex,subject)"
              ng-model-options="{ debounce: 100 }"/>
@@ -14,6 +15,7 @@
       <label for="subject">Subject</label>
       <textarea name="subject"
                 rows=5
+                ng-trim="false"
                 ng-model="subject"
                 ng-change="test(regex,subject)"
                 ng-model-options="{ debounce: 100 }"
