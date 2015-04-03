@@ -10,9 +10,9 @@ module.exports = function(grunt) {
         files: ['client/**/*.js'],
         tasks: ['js', 'karma:test']
       },
-      scss: {
+      sass: {
         files: ['client/**/*.scss'],
-        tasks: ['scss']
+        tasks: ['sass:dev']
       }
     },
 
@@ -39,7 +39,16 @@ module.exports = function(grunt) {
       options: {
         sourceMap: true
       },
-      compile: {
+      dev: {
+        files: {
+          'priv/static/main.css': 'client/styles/main.scss'
+        }
+      },
+      prod: {
+        options: {
+          outputStyle: 'compressed',
+          sourceMap: false
+        },
         files: {
           'priv/static/main.css': 'client/styles/main.scss'
         }
@@ -59,7 +68,11 @@ module.exports = function(grunt) {
     'sass'
   ]);
 
+  grunt.registerTask('build', [
+    'sass:prod', 'js'
+  ]);
+
   grunt.registerTask('default', [
-    'scss', 'js', 'karma:test', 'watch'
+    'sass:dev', 'js', 'karma:test', 'watch'
   ]);
 };
