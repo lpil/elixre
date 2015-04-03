@@ -50,6 +50,7 @@
 </main>
 
 <div class="reference">
+  <p>Reference</p>
   <ul>
     <li><code>.</code> non-newline char</li>
     <li><code>^</code> start of line</li>
