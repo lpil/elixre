@@ -10,15 +10,17 @@ function TestController($scope, $http) {
    *
    * @param {string} regex The regex to test
    * @param {string} subject The string on which to run the regex
+   * @param {string} flags Regex flags
    * @returns {string} The string on which to run the regex
    */
-  const test = function test(regex, subject) {
+  const test = function test(regex, subject, flags) {
     if ($scope.split) {
       subject = subject.split('\n').filter(x => x !== '');
     }
     const args = {
-      regex: regex,
-      subject: subject
+      regex,
+      subject,
+      flags
     };
     $http.post('/test', args)
       .success(data => $scope.return = data)
