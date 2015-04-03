@@ -13,19 +13,23 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/angular/angular.min.js',
+      'node_modules/angular-mocks/angular-mocks.js',
       'priv/static/main.js',
       'client/test/**/*.js'
     ],
 
+    preprocessors: {
+      'client/test/**/*.js': ['babel']
+    },
+    'babelPreprocessor': {
+      options: {
+        sourceMap: 'inline'
+      }
+    },
+
     exclude: [
     ],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors:
-    //  https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
