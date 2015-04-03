@@ -41,5 +41,8 @@
         Reserved.
       </p>
     </footer>
+
+    <%= render "_tracking.html" %>
+    
   </body>
 </html>
