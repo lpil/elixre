@@ -14,12 +14,23 @@ describe('ResultsController', () => {
 
   describe('.comment', () => {
     it('returns the input with lines prefixed', () => {
-      var comment  = createController().comment,
+      var func     = createController().comment,
           input    = 'Hello\nWorld',
           expected = `<span class="no-hl"># </span>Hello
 <span class="no-hl"># </span>World`;
 
-      expect(comment(input)).toBe(expected);
+      expect(func(input)).toBe(expected);
+    });
+  });
+
+  describe('.hightlightMatch', () => {
+    it('wraps the match substring in a span.hl', () => {
+      var func     = createController().hightlightMatch,
+          subject  = 'Hello World',
+          match    = 'llo',
+          expected = 'He<span class="hl">llo</span> World';
+
+      expect(func(subject, match)).toBe(expected);
     });
   });
 });
