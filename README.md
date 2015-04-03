@@ -5,6 +5,8 @@
 
 An Elixir regular expression editor & tester.
 
+(A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/))
+
 ## Install it
 
 You've got Erlang, Elixir, and Node installed, right?
