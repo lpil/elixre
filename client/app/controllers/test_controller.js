@@ -10,24 +10,24 @@ function TestController($scope, $http) {
    *
    * @param {string} regex The regex to test
    * @param {string} subject The string on which to run the regex
-   * @param {string} flags Regex flags
+   * @param {string} modifiers Regex modifiers
    * @returns {string} The string on which to run the regex
    */
-  const test = function test(regex, subject, flags) {
+  const test = function test(regex, subject, modifiers) {
     if ($scope.split) {
       subject = subject.split('\n').filter(x => x !== '');
     }
     const args = {
       regex,
       subject,
-      flags
+      modifiers
     };
     $http.post('/test', args)
       .success(data => $scope.return = data)
       .error(data => console.log(data));
   };
 
-  $scope.validFlags = /^[uismxfr]*$/;
+  $scope.validModifiers = /^[uismxfr]*$/;
 
   $scope.test    = test;
   $scope.split   = true;

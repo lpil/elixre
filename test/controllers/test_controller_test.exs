@@ -105,12 +105,12 @@ defmodule Elixre.TestControllerTest do
       end
 
 
-      with "the options param passed" do
+      with "the modifiers param passed" do
         setup context do
           params = %{
             "subject" => ["FOO", "bar", "BAZ"],
             "regex" => "(?:f|b)(.+)",
-            "options" => "i"
+            "modifiers" => "i"
           }
           get_index context, params
         end

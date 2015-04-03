@@ -9,7 +9,7 @@
   }
 
   .regex-input,
-  .flags-input {
+  .modifiers-input {
     display: inline-block;
     margin-bottom: 5px;
   }
@@ -18,7 +18,7 @@
     width: calc(100% - 100px);
   }
 
-  .flags-input {
+  .modifiers-input {
     float: right;
     width: 90px;
   }

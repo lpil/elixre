@@ -6,8 +6,8 @@ defmodule Elixre.TestController do
   plug :action
 
   def index(conn, params = %{"regex" => regex, "subject" => subject}) do
-    options = params["options"] || ""
-    render conn, "result.json", data: test(regex, subject, options)
+    modifiers = params["modifiers"] || ""
+    render conn, "result.json", data: test(regex, subject, modifiers)
   end
 
   def index(conn, params) do

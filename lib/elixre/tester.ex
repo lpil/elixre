@@ -3,7 +3,7 @@ defmodule Elixre.Tester do
   Takes a regex in string form, and one or a list of subject strings
   to run the regex on, and returns the results of the test.
 
-  Regex options can be passed as a third argument.
+  Regex modifiers can be passed as a third argument.
 
   If the regex is invalid it is returned with the errors.
 
@@ -42,12 +42,12 @@ defmodule Elixre.Tester do
   """
   @spec test(String.t, [String.t], String.t) :: %{}
 
-  def test(regex, subjects, options \\ "")
+  def test(regex, subjects, modifiers \\ "")
 
-  def test(regex, subjects, options) when is_binary(options) do
+  def test(regex, subjects, modifiers) when is_binary(modifiers) do
     subjects = List.wrap subjects
 
-    case Regex.compile(regex, options) do
+    case Regex.compile(regex, modifiers) do
       {:ok, regex} ->
         %{
           regex: inspect(regex),
@@ -61,9 +61,9 @@ defmodule Elixre.Tester do
     end
   end
 
-  def test(_, _, options) do
+  def test(_, _, modifiers) do
     %{
-      error: ["FunctionClauseError. Invalid options", inspect(options)]
+      error: ["FunctionClauseError. Invalid modifiers", inspect(modifiers)]
     }
   end
 

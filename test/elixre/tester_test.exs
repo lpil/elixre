@@ -42,7 +42,7 @@ defmodule Elixre.TesterTest do
     end
 
 
-    with "options passed" do
+    with "modifiers passed" do
       setup context do
         @subject.test("o+(.)?", "FOOBAR", "i")
       end
@@ -53,14 +53,16 @@ defmodule Elixre.TesterTest do
     end
 
 
-    with "non-string options passed" do
+    with "non-string modifiers passed" do
       setup context do
         @subject.test("o+(.)?", "FOOBAR", 123)
       end
 
       should_not_have_key :results
       should_not_have_key :regex
-      should_assign_key error: ["FunctionClauseError. Invalid options", "123"]
+      should_assign_key error: [
+        "FunctionClauseError. Invalid modifiers", "123"
+      ]
     end
   end
 end

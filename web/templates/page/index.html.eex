@@ -8,14 +8,14 @@
              autofocus
              ng-trim="false"
              ng-model="regex"
-             ng-change="test(regex, subject, flags)"
+             ng-change="test(regex, subject, modifiers)"
              ng-model-options="{ debounce: 100 }"/>
-      <input name="flags"
+      <input name="modifiers"
              type="text"
-             class="flags-input"
-             ng-model="flags"
-             ng-pattern="validFlags"
-             ng-change="test(regex, subject, flags)"
+             class="modifiers-input"
+             ng-model="modifiers"
+             ng-pattern="validModifiers"
+             ng-change="test(regex, subject, modifiers)"
              ng-model-options="{ debounce: 100 }"/>
     </div>
 
@@ -25,7 +25,7 @@
                 rows=5
                 ng-trim="false"
                 ng-model="subject"
-                ng-change="test(regex, subject, flags)"
+                ng-change="test(regex, subject, modifiers)"
                 ng-model-options="{ debounce: 100 }"
                 ></textarea>
       <label for="split" class="subject-split">Split on newlines?</label>
