@@ -33,4 +33,47 @@ describe('ResultsController', () => {
       expect(func(subject, match)).toBe(expected);
     });
   });
+
+
+  describe('.transformReturn', () => {
+    describe('return value subject property', () => {
+      it('is trusted HTML', () => {
+        var ctrl   = createController(),
+            result = ctrl.transformReturn({
+              subject: 'foobar', result: ['foo']
+            });
+        expect(result.subject.$$unwrapTrustedValue).toBeDefined();
+      });
+
+      it('highlights subject match if there is one', () => {
+        var ctrl     = createController(),
+            expected = /<span class="hl">foo<\/span>bar/,
+            args     = { subject: 'foobar', result: ['foo'] },
+            result   = ctrl.transformReturn(args),
+            html = result.subject.$$unwrapTrustedValue();
+
+        expect(html).toMatch(expected);
+      });
+
+      it('does not highlight subject with no match', () => {
+        var ctrl     = createController(),
+            hlString = /<span class="hl">.*<\/span>/,
+            args     = { subject: 'foobar', result: null },
+            result   = ctrl.transformReturn(args),
+            html = result.subject.$$unwrapTrustedValue();
+
+        expect(html).not.toMatch(hlString);
+      });
+
+      it('prefixes with comments', () => {
+        var ctrl    = createController(),
+            expected = '<span class="not-hl"># <\/span>foobar',
+            args    = { subject: 'foobar', result: null },
+            result  = ctrl.transformReturn(args),
+            html = result.subject.$$unwrapTrustedValue();
+
+        expect(html).not.toMatch(expected);
+      });
+    });
+  });
 });
