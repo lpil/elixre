@@ -20,6 +20,7 @@ before_script: export PATH=`pwd`/elixir/bin:$PATH
 script:
   - MIX_ENV=test mix test
   - grunt test
+  - grunt build
 
 notifications:
   email: false
