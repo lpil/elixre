@@ -7,4 +7,16 @@
   textarea {
     width: 100%;
   }
+
+  .subject-split {
+    color: lighten($c-black-lt, 10);
+    display: inline-block;
+    font-size: .9em;
+    width: auto;
+  }
+
+  input.subject-split {
+    position: relative;
+    top: 2px;
+  }
 }
