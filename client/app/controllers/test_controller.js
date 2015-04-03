@@ -25,6 +25,7 @@ function TestController($scope, $http) {
       .error(data => console.log(data));
   };
 
+  $scope.validFlags = /^[uismxfr]*$/;
 
   $scope.test    = test;
   $scope.split   = true;

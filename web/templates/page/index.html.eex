@@ -13,8 +13,8 @@
       <input name="flags"
              type="text"
              class="flags-input"
-             ng-trim="true"
              ng-model="flags"
+             ng-pattern="validFlags"
              ng-change="test(regex, subject, flags)"
              ng-model-options="{ debounce: 100 }"/>
     </div>

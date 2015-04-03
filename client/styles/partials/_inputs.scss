@@ -5,4 +5,10 @@ textarea {
   font-size: 14px;
   padding: 8px 10px;
   resize: vertical;
+
+  &.ng-invalid {
+    border-color: $c-bold;
+    box-shadow: 0 0 5px 0 $c-bold;
+    outline: $c-bold;
+  }
 }
