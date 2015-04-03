@@ -48,6 +48,11 @@ function ResultsController($scope, $sce) {
       ret.results = ret.results.map(transformReturn);
     }
   });
+
+
+  this.comment         = comment;
+  this.hightlightMatch = hightlightMatch;
+  this.transformReturn = transformReturn;
 }
 
 export { ResultsController };

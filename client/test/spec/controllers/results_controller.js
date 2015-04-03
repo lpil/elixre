@@ -1,19 +1,25 @@
 describe('ResultsController', () => {
   'use strict';
   
-  var scope, $location, createController,
-      controllerType = 'ResultsController';
+  var scope, createController,
+      controllerType = 'resultsController';
 
   beforeEach(module('elixre'));
-  beforeEach(inject(($rootScope, $controller, _$location_) => {
-    $location = _$location_;
+  beforeEach(inject(($rootScope, $controller) => {
     scope = $rootScope.$new();
     createController = function() {
-      $controller(controllerType, { '$scope': scope });
+      return $controller(controllerType, { '$scope': scope });
     };
   }));
 
-  it('should have a method to check if the path is active', () => {
-    expect(1 + 1).toBe(2);
+  describe('.comment', () => {
+    it('returns the input with lines prefixed', () => {
+      var comment  = createController().comment,
+          input    = 'Hello\nWorld',
+          expected = `<span class="no-hl"># </span>Hello
+<span class="no-hl"># </span>World`;
+
+      expect(comment(input)).toBe(expected);
+    });
   });
 });
