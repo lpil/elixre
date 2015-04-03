@@ -8,6 +8,21 @@
     width: 100%;
   }
 
+  .regex-input,
+  .flags-input {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  .regex-input {
+    width: calc(100% - 100px);
+  }
+
+  .flags-input {
+    float: right;
+    width: 90px;
+  }
+
   .subject-split {
     color: lighten($c-black-lt, 10);
     display: inline-block;

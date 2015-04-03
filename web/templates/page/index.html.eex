@@ -4,10 +4,18 @@
       <label for="regex">Regex</label>
       <input name="regex"
              type="text"
+             class="regex-input"
              autofocus
              ng-trim="false"
              ng-model="regex"
-             ng-change="test(regex,subject)"
+             ng-change="test(regex, subject, flags)"
+             ng-model-options="{ debounce: 100 }"/>
+      <input name="flags"
+             type="text"
+             class="flags-input"
+             ng-trim="true"
+             ng-model="flags"
+             ng-change="test(regex, subject, flags)"
              ng-model-options="{ debounce: 100 }"/>
     </div>
 
@@ -17,7 +25,7 @@
                 rows=5
                 ng-trim="false"
                 ng-model="subject"
-                ng-change="test(regex,subject)"
+                ng-change="test(regex, subject, flags)"
                 ng-model-options="{ debounce: 100 }"
                 ></textarea>
       <label for="split" class="subject-split">Split on newlines?</label>
