@@ -27,6 +27,23 @@ module.exports = function(grunt) {
       }
     },
 
+    uglify: {
+      options: {
+        mangle: {
+          except: [
+            '$scope',
+            '$http',
+            '$sce'
+          ]
+        }
+      },
+      dist: {
+        files: {
+          'priv/static/main.js': 'priv/static/main.js'
+        }
+      }
+    },
+
     karma: {
       test: {
         options: {
@@ -69,7 +86,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'sass:prod', 'js'
+    'sass:prod', 'js', 'uglify'
   ]);
 
   grunt.registerTask('default', [
