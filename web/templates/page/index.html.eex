@@ -48,3 +48,49 @@
               ><result data="case"></div></pre>
   </div>
 </main>
+
+<div class="reference">
+  <ul>
+    <li><code>.</code> non-newline char</li>
+    <li><code>^</code> start of line</li>
+    <li><code>$</code> end of line</li>
+    <li><code>\b</code> word boundary</li>
+    <li><code>\b</code> word boundary</li>
+    <li><code>\A</code> start of subject</li>
+    <li><code>\z</code> end of subject</li>
+    <li><code>\d</code> decimal digit</li>
+    <li><code>\D</code> non-decimal digit</li>
+    <li><code>\s</code> whitespace</li>
+    <li><code>\S</code> non-whitespace</li>
+    <li><code>\w</code> word character</li>
+    <li><code>\W</code> non-word character</li>
+    <li><code>(a|z)</code> a or z</li>
+    <li><code>[az]</code> a or z</li>
+    <li><code>[^az]</code> not a or z</li>
+    <li><code>[a-z]</code> a through z</li>
+    <li><code>(foo)</code> capture foo</li>
+    <li><code>a?</code> 0 or 1 a</li>
+    <li><code>a*</code> 0 or more a</li>
+    <li><code>a+</code> 1 or more a</li>
+    <li><code>a{3}</code> 3 of a</li>
+    <li><code>a{3,}</code> 3 or more a</li>
+    <li><code>a{3,5}</code> 3 through 5 a</li>
+  </ul>
+  <p>Modifiers</p>
+  <ul>
+    <li><code>u</code> unicode</li>
+    <li><code>i</code> case insensitive</li>
+    <li><code>s</code> dot matches newline</li>
+    <li><code>m</code> multiline</li>
+    <li><code>x</code> whitespace ignored</li>
+    <li><code>f</code> start on first line</li>
+    <li><code>r</code> inverts greediness</li>
+  </ul>
+  <p class="reference__more">
+  For more information see the Elixir
+  <a href="http://elixir-lang.org/docs/v1.0/elixir/Regex.html" target="_blank">
+    Regex documentation</a>, and the Erlang
+  <a href="http://www.erlang.org/doc/man/re.html" target="_blank">re
+  documentation</a>.
+  </p>
+</div>
