@@ -68,7 +68,7 @@ defmodule Elixre.Tester do
   end
 
 
-  @spec result(Regex.t, [Bitstring]) :: %{}
+  @spec result(Regex.t, [String.t]) :: %{}
 
   defp result(regex, subject) do
     %{
