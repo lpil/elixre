@@ -9,14 +9,14 @@
              ng-trim="false"
              ng-model="regex"
              ng-change="test(regex, subject, modifiers)"
-             ng-model-options="{ debounce: 100 }"/>
+             ng-model-options="{ debounce: 150 }"/>
       <input name="modifiers"
              type="text"
              class="modifiers-input"
              ng-model="modifiers"
              ng-pattern="validModifiers"
              ng-change="test(regex, subject, modifiers)"
-             ng-model-options="{ debounce: 100 }"/>
+             ng-model-options="{ debounce: 150 }"/>
     </div>
 
     <div>
@@ -26,7 +26,7 @@
                 ng-trim="false"
                 ng-model="subject"
                 ng-change="test(regex, subject, modifiers)"
-                ng-model-options="{ debounce: 100 }"
+                ng-model-options="{ debounce: 150 }"
                 ></textarea>
       <label for="split" class="subject-split">Split on newlines?</label>
       <input type="checkbox" name="split" class="subject-split"
