@@ -37,11 +37,11 @@
   <div ng-controller="resultsController" class="results">
     <pre><div class="results__error"
               ng-if="return.error"
-              >Compilation Error!{{ '\n' + (return.error | json) }}</div
+              ng-bind="Compilation Error!{{ '\n' + (return.error | json)"></div
 
               ><div class="results__regex"
               ng-if="return.regex"
-              ># {{ return.regex + '\n\n'}}</div
+              ng-bind="# {{ return.regex + '\n\n'"></div
 
               ><div class="results__result"
               ng-repeat="case in return.results"
