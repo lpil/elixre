@@ -8,6 +8,12 @@ defmodule Elixre.PageControllerTest do
     end
 
     should_respond_with :success
+
+    should_match_body_to ~S"An Elixir regular expression editor & tester"
+
+    should_match_body_to ~S"Regex documentation"
+    should_match_body_to ~S"re\W+documentation"
+
     should_match_body_to ~S"Elixre"
     should_match_body_to ~S"Free software"
     should_match_body_to ~S"GNU\W+AGPL3"
