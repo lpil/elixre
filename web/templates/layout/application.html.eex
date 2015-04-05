@@ -24,7 +24,7 @@
 
     <footer class="footer">
       <p>
-        Elixre is
+        Elix<span class="b">re</span> is
         <a href="http://en.wikipedia.org/wiki/Free_software" target="_blank">
         Free software</a>, available under the
         <a href="https://gnu.org/licenses/agpl.html" target="_blank">GNU
