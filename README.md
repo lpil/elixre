@@ -7,7 +7,7 @@ An Elixir regular expression editor & tester.
 
 A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 
-## Install it
+### Install it
 
 You've got Erlang, Elixir, and Node installed, right?
 
@@ -16,7 +16,7 @@ mix deps.get
 npm install
 ```
 
-## Run it
+### Run it
 
 ```
 grunt
@@ -25,12 +25,23 @@ grunt
 mix phoenix.server
 ```
 
-## Test it
+### Test it
 
 ```
 mix test
 grunt test
 ```
+
+## Deployment
+
+We're currently on Heroku, using these buildpacks.
+
+* [ddollar/heroku-buildpack-multi](
+    https://github.com/ddollar/heroku-buildpack-multi)
+* [mbuchetics/heroku-buildpack-nodejs-grunt.git](
+    https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git)
+* [HashNuke/heroku-buildpack-elixir](
+    https://github.com/HashNuke/heroku-buildpack-elixir.git)
 
 ## LICENCE
 
