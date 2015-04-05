@@ -1,4 +1,4 @@
-describe('ResultsController', () => {
+describe('resultsController', () => {
   'use strict';
   
   var scope, createController,

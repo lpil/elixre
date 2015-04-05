@@ -13,7 +13,7 @@ function TestController($scope, $http) {
    * @param {string} modifiers Regex modifiers
    * @returns {string} The string on which to run the regex
    */
-  const test = function test(regex, subject, modifiers) {
+  var test = function test(regex, subject, modifiers) {
     if ($scope.split) {
       subject = subject.split('\n').filter(x => x !== '');
     }
@@ -26,6 +26,8 @@ function TestController($scope, $http) {
       .success(data => $scope.return = data)
       .error(data => console.log(data));
   };
+
+  this.test = test;
 
   $scope.validModifiers = /^[uismxfr]*$/;
 
