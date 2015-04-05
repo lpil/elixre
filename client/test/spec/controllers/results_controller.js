@@ -5,6 +5,7 @@ describe('resultsController', () => {
       controllerType = 'resultsController';
 
   beforeEach(module('elixre'));
+
   beforeEach(inject(($rootScope, $controller) => {
     $scope = $rootScope.$new();
     createController = function() {

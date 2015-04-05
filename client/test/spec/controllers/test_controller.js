@@ -5,6 +5,7 @@ describe('testController', () => {
       controllerType = 'testController';
 
   beforeEach(module('elixre'));
+
   beforeEach(inject(($rootScope, $controller, _$httpBackend_) => {
     $scope = $rootScope.$new();
     $httpBackend = _$httpBackend_;
