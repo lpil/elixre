@@ -1,14 +1,14 @@
 describe('resultsController', () => {
   'use strict';
   
-  var scope, createController,
+  var $scope, createController,
       controllerType = 'resultsController';
 
   beforeEach(module('elixre'));
   beforeEach(inject(($rootScope, $controller) => {
-    scope = $rootScope.$new();
+    $scope = $rootScope.$new();
     createController = function() {
-      return $controller(controllerType, { '$scope': scope });
+      return $controller(controllerType, { '$scope': $scope });
     };
   }));
 
