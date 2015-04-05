@@ -92,4 +92,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'sass:dev', 'js', 'karma:test', 'watch'
   ]);
+
+  grunt.registerTask('heroku:production', 'build');
 };
