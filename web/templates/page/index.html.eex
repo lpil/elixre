@@ -1,6 +1,6 @@
 <main class="test" role="main" ng-controller="testController">
   <div class="inputs">
-    <div>
+    <div id="regexAndModifierInput">
       <label for="regex">Regex</label>
       <input name="regex"
              type="text"
@@ -10,6 +10,7 @@
              ng-model="regex"
              ng-change="test(regex, subject, modifiers)"
              ng-model-options="{ debounce: 150 }"/>
+      <label for="modifiers" id="modifiersLabel">Modifiers</label>
       <input name="modifiers"
              type="text"
              class="modifiers-input"

@@ -23,6 +23,16 @@
     width: 90px;
   }
 
+  div#regexAndModifierInput {
+    position: relative;
+  }
+
+  label#modifiersLabel {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+  }
+
   .subject-split {
     color: lighten($c-black-lt, 10);
     display: inline-block;
