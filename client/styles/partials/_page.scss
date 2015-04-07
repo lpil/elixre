@@ -6,6 +6,10 @@
 
 }
 
+.inputs {
+  position: relative;
+}
+
 .test {
   @extend %clearfix;
 }

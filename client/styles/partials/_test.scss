@@ -23,14 +23,15 @@
     width: 90px;
   }
 
-  div#regexAndModifierInput {
-    position: relative;
-  }
-
-  label#modifiersLabel {
+  .modifiers-label {
     position: absolute;
-    right: 20px;
-    top: 0px;
+    right: 0;
+    top: 0;
+    width: 90px;
+
+    @media (min-width: $mq-large) {
+      right: 10px;
+    }
   }
 
   .subject-split {
