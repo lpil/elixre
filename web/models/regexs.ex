@@ -1,4 +1,4 @@
-defmodule Elixre.Tester do
+defmodule Elixre.Regex do
   @doc ~S"""
   Takes a regex in string form, and one or a list of subject strings
   to run the regex on, and returns the results of the test.
@@ -9,7 +9,7 @@ defmodule Elixre.Tester do
 
   ## Examples
 
-      iex> Elixre.Tester.test(~S".+ (\w+)", "Hello World!")
+      iex> Elixre.Regex.test(~S".+ (\w+)", "Hello World!")
       %{
         regex: ~S"~r/.+ (\w+)/",
         results: [
@@ -17,7 +17,7 @@ defmodule Elixre.Tester do
         ]
       }
 
-      iex> Elixre.Tester.test(~S"hello (\w+)", "Hello World!", "i")
+      iex> Elixre.Regex.test(~S"hello (\w+)", "Hello World!", "i")
       %{
         regex: ~S"~r/hello (\w+)/i",
         results: [
@@ -25,7 +25,7 @@ defmodule Elixre.Tester do
         ]
       }
 
-      iex> Elixre.Tester.test("foo(.+)", ~w(foobar food foo))
+      iex> Elixre.Regex.test("foo(.+)", ~w(foobar food foo))
       %{
         regex: ~S"~r/foo(.+)/",
         results: [
@@ -35,7 +35,7 @@ defmodule Elixre.Tester do
         ]
       }
 
-      iex> Elixre.Tester.test("*foo", ~w(foobar food foo))
+      iex> Elixre.Regex.test("*foo", ~w(foobar food foo))
       %{
         error: ["nothing to repeat", 0]
       }

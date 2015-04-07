@@ -16,6 +16,6 @@ defmodule Elixre.Router do
 
   scope "/", Elixre do
     pipe_through :api
-    post "/test", TestController, :index
+    post "/test", RegexController, :index
   end
 end

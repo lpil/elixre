@@ -1,9 +1,9 @@
-defmodule Elixre.TesterTest do
+defmodule Elixre.RegexTest do
   use ExUnit.Case, async: true
   use ShouldI
   import ShouldI.Matchers.Context
 
-  @subject Elixre.Tester
+  @subject Elixre.Regex
 
   with "an invalid regex" do
     setup context do

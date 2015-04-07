@@ -1,7 +1,7 @@
-defmodule Elixre.TestController do
+defmodule Elixre.RegexController do
   use Elixre.Web, :controller
 
-  import Elixre.Tester, only: [test: 3]
+  import Elixre.Regex, only: [test: 3]
 
   plug :action
 
