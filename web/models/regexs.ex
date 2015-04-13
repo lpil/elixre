@@ -13,7 +13,11 @@ defmodule Elixre.Regex do
       %{
         regex: ~S"~r/.+ (\w+)/",
         results: [
-          %{subject: "Hello World!", result: ["Hello World", "World"]}
+          %{
+            subject: "Hello World!",
+            result: ["Hello World", "World"],
+            indexes: [[0, 11], [6, 5]]
+          }
         ]
       }
 
@@ -21,17 +25,20 @@ defmodule Elixre.Regex do
       %{
         regex: ~S"~r/hello (\w+)/i",
         results: [
-          %{subject: "Hello World!", result: ["Hello World", "World"]}
+          %{
+            subject: "Hello World!",
+            result: ["Hello World", "World"],
+            indexes: [[0, 11], [6, 5]]
+          }
         ]
       }
 
-      iex> Elixre.Regex.test("foo(.+)", ~w(foobar food foo))
+      iex> Elixre.Regex.test("foo(.+)", ~w(food foo))
       %{
         regex: ~S"~r/foo(.+)/",
         results: [
-          %{subject: "foobar", result: ["foobar", "bar"]},
-          %{subject: "food",   result: ["food", "d"]},
-          %{subject: "foo",    result: nil}
+          %{subject: "food", result: ["food", "d"], indexes: [[0, 4], [3, 1]]},
+          %{subject: "foo", result: nil, indexes: nil}
         ]
       }
 
@@ -51,7 +58,7 @@ defmodule Elixre.Regex do
       {:ok, regex} ->
         %{
           regex: inspect(regex),
-          results: Enum.map(subjects, &result(regex, &1))
+          results: Enum.map(subjects, &results(regex, &1))
         }
 
       {:error, {error, pos}} ->
@@ -70,10 +77,24 @@ defmodule Elixre.Regex do
 
   @spec result(Regex.t, [String.t]) :: %{}
 
-  defp result(regex, subject) do
+  defp results(regex, subject) do
     %{
       subject: subject,
-      result: Regex.run(regex, subject)
+      result:  result(regex, subject),
+      indexes: indexes(regex, subject),
     }
+  end
+
+  defp result(regex, subject) do
+    Regex.run(regex, subject, return: :binary)
+  end
+
+  defp indexes(regex, subject) do
+    result = Regex.run(regex, subject, return: :index)
+    if result do
+      Enum.map result, &Tuple.to_list(&1)
+    else
+      result
+    end
   end
 end

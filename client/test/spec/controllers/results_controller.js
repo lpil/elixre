@@ -28,10 +28,11 @@ describe('resultsController', () => {
     it('wraps the match substring in a span.hl', () => {
       var func     = createController().hightlightMatch,
           subject  = 'Hello World',
-          match    = 'llo',
+          start    = 2,
+          length   = 3,
           expected = 'He<span class="hl">llo</span> World';
 
-      expect(func(subject, match)).toBe(expected);
+      expect(func(subject, start, length)).toBe(expected);
     });
   });
 
@@ -40,20 +41,19 @@ describe('resultsController', () => {
     describe('return value subject property', () => {
       it('is trusted HTML', () => {
         var ctrl   = createController(),
-            result = ctrl.transformReturn({
-              subject: 'foobar', result: ['foo']
-            });
+            args   = { subject: 'foobar', result: ['foo'], indexes: [[0, 3]] },
+            result = ctrl.transformReturn(args);
         expect(result.subject.$$unwrapTrustedValue).toBeDefined();
       });
 
       it('highlights subject match if there is one', () => {
-        var ctrl     = createController(),
-            expected = /<span class="hl">foo<\/span>bar/,
-            args     = { subject: 'foobar', result: ['foo'] },
-            result   = ctrl.transformReturn(args),
+        var ctrl   = createController(),
+            ideal = /<span class="hl">foo<\/span>bar/,
+            args   = { subject: 'foobar', result: ['foo'], indexes: [[0, 3]] },
+            result = ctrl.transformReturn(args),
             html = result.subject.$$unwrapTrustedValue();
 
-        expect(html).toMatch(expected);
+        expect(html).toMatch(ideal);
       });
 
       it('does not highlight subject with no match', () => {

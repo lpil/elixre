@@ -5,13 +5,14 @@ function ResultsController($scope, $sce) {
    * Wraps the subject's match substring in a highlight span
    *
    * @param {string} subject The string to highlighted
-   * @param {string} match The substring of the subject
+   * @param {int} index Match start char index
+   * @param {int} length Match length
    * @returns {string} The subject with the match highlighted
    */
-  var hightlightMatch = function(subject, match) {
-    var index = subject.indexOf(match),
-        start = subject.slice(0, index),
-        end   = subject.slice(index + match.length);
+  var hightlightMatch = function(subject, index, length) {
+    var start = subject.slice(0, index),
+        match = subject.slice(index, index + length),
+        end   = subject.slice(index + length);
     subject = `${start}<span class="hl">${match}</span>${end}`;
     return subject;
   };
@@ -34,8 +35,11 @@ function ResultsController($scope, $sce) {
    * @returns {object} ret with the subject highlighted & comment prefixed
    */
   var transformReturn = function(ret) {
-    var subject = ret.subject;
-    if (ret.result) { subject = hightlightMatch(subject, ret.result[0]); }
+    var subject = ret.subject, s, l;
+    if (ret.result) {
+      [s, l]  = ret.indexes[0];
+      subject = hightlightMatch(subject, s, l);
+    }
     subject     = comment(subject);
     ret.subject = $sce.trustAsHtml(subject);
     return ret;

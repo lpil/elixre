@@ -24,7 +24,9 @@ defmodule Elixre.RegexTest do
 
       should_not_have_key :error
       should_assign_key regex: "~r/o+(.)?/"
-      should_assign_key results: [%{subject: "foobar", result: ["oob", "b"]}]
+      should_assign_key results: [
+        %{subject: "foobar", result: ["oob", "b"], indexes: [[1, 3], [3, 1]]}
+      ]
     end
 
     with "multiple subjects" do
@@ -35,9 +37,9 @@ defmodule Elixre.RegexTest do
       should_not_have_key :error
       should_assign_key regex: "~r/(?:f|b)(.+)/"
       should_assign_key results: [
-        %{result: ["foo", "oo"], subject: "foo"},
-        %{result: ["bar", "ar"], subject: "bar"},
-        %{result: ["baz", "az"], subject: "baz"}
+        %{result: ["foo", "oo"], indexes: [[0, 3], [1, 2]], subject: "foo"},
+        %{result: ["bar", "ar"], indexes: [[0, 3], [1, 2]], subject: "bar"},
+        %{result: ["baz", "az"], indexes: [[0, 3], [1, 2]], subject: "baz"}
       ]
     end
 
@@ -49,7 +51,9 @@ defmodule Elixre.RegexTest do
 
       should_not_have_key :error
       should_assign_key regex: "~r/o+(.)?/i"
-      should_assign_key results: [%{subject: "FOOBAR", result: ["OOB", "B"]}]
+      should_assign_key results: [
+        %{subject: "FOOBAR", result: ["OOB", "B"], indexes: [[1, 3], [3, 1]]}
+      ]
     end
 
 

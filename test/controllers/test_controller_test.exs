@@ -78,7 +78,11 @@ defmodule Elixre.TestControllerTest do
         should_return_json_of %{
           "regex" => "~r/o+(.)?/",
           "results" => [
-            %{"subject" => "foobar", "result" => ["oob", "b"]}
+            %{
+              "subject" => "foobar",
+              "result" => ["oob", "b"],
+              "indexes" => [[1, 3], [3, 1]]
+            }
           ]
         }
       end
@@ -97,9 +101,21 @@ defmodule Elixre.TestControllerTest do
         should_return_json_of %{
           "regex" => "~r/(?:f|b)(.+)/",
           "results" => [
-            %{"result" => ["foo", "oo"], "subject" => "foo"},
-            %{"result" => ["bar", "ar"], "subject" => "bar"},
-            %{"result" => ["baz", "az"], "subject" => "baz"}
+            %{
+              "result" => ["foo", "oo"],
+              "subject" => "foo",
+              "indexes" => [[0, 3], [1, 2]],
+            },
+            %{
+              "result" => ["bar", "ar"],
+              "subject" => "bar",
+              "indexes" => [[0, 3], [1, 2]],
+            },
+            %{
+              "result" => ["baz", "az"],
+              "subject" => "baz",
+              "indexes" => [[0, 3], [1, 2]],
+            }
           ]
         }
       end
@@ -119,9 +135,21 @@ defmodule Elixre.TestControllerTest do
         should_return_json_of %{
           "regex" => "~r/(?:f|b)(.+)/i",
           "results" => [
-            %{"result" => ["FOO", "OO"], "subject" => "FOO"},
-            %{"result" => ["bar", "ar"], "subject" => "bar"},
-            %{"result" => ["BAZ", "AZ"], "subject" => "BAZ"}
+            %{
+              "result" => ["FOO", "OO"],
+              "subject" => "FOO",
+              "indexes" => [[0, 3], [1, 2]],
+            },
+            %{
+              "result" => ["bar", "ar"],
+              "subject" => "bar",
+              "indexes" => [[0, 3], [1, 2]],
+            },
+            %{
+              "result" => ["BAZ", "AZ"],
+              "subject" => "BAZ",
+              "indexes" => [[0, 3], [1, 2]],
+            }
           ]
         }
       end
