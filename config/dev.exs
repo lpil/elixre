@@ -12,8 +12,9 @@ config :elixre, Elixre.Endpoint,
   code_reloader: true,
   debug_errors: true,
   cache_static_lookup: false,
-  watchers: []
+  # watchers: []
   # watchers: [node: ["node_modules/brunch/bin/brunch", "watch"]]
+  watchers: [node: ["node_modules/grunt-cli/bin/grunt"]]
   # watchers: [node: ["grunt"]]
 
 config :elixre, Elixre.Endpoint,
