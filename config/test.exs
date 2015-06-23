@@ -8,5 +8,3 @@ config :elixre, Elixre.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-config :hound, driver: "phantomjs"

@@ -7,22 +7,23 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :elixre, Elixre.Endpoint,
+  root: Path.expand("..", __DIR__),
   http: [port: 4000],
+  code_reloader: true,
   debug_errors: true,
   cache_static_lookup: false,
   watchers: []
+  # watchers: [node: ["node_modules/brunch/bin/brunch", "watch"]]
+  # watchers: [node: ["grunt"]]
 
-# Watch static and templates for browser reloading.
-# *Note*: Be careful with wildcards. Larger projects
-# will use higher CPU in dev as the number of files
-# grow. Adjust as necessary.
 config :elixre, Elixre.Endpoint,
-  live_reload: [Path.expand("priv/static/main.js"),
-                Path.expand("priv/static/main.css"),
-                Path.expand("web/templates/**/*.eex")]
-
-# Enables code reloading for development
-config :phoenix, :code_reloader, true
+  live_reload: [
+    patterns: [
+      ~r{priv/static/.*(js|css)$},
+      ~r{web/views/.*(ex)$},
+      ~r{web/templates/.*(eex)$}
+    ]
+  ]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

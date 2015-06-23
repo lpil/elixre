@@ -18,14 +18,8 @@ defmodule Elixre.Mixfile do
      applications: applications(Mix.env)]
   end
 
-  defp applications do
-    [:phoenix, :cowboy, :logger]
-  end
-  defp applications(:test) do
-    [:hound] ++ applications
-  end
   defp applications(_) do
-    applications
+    [:phoenix, :cowboy, :logger]
   end
 
   # Specifies your project dependencies
@@ -33,9 +27,10 @@ defmodule Elixre.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [
-      {:phoenix, "~> 0.10.0"},
+      {:phoenix, "~> 0.13.1"},
+      {:phoenix_html, "~> 1.0"},
+      {:phoenix_live_reload, "~> 0.4", only: :dev},
       {:cowboy, "~> 1.0"},
-      {:hound, "~> 0.6.0", only: :test},
       {:shouldi, "~> 0.2.2", only: :test}
     ]
   end
