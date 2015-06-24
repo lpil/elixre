@@ -1,26 +1,25 @@
-language: erlang
+language: elixir
+
+elixir:
+  - 1.0.4
 
 otp_release:
   - 17.4
-  - 17.3
-  - 17.0
 
-before_install:
-  - git clone https://github.com/elixir-lang/elixir
-  - cd elixir
-  - git checkout v1.0.3
-  - cd ..
-  - make -C elixir
-  - yes | MIX_ENV=test mix deps.get
-  - MIX_ENV=test mix compile
-  - npm install
+env: MIX_ENV=test
 
-before_script: export PATH=`pwd`/elixir/bin:$PATH
-
-script:
-  - MIX_ENV=test mix test
-  - grunt test
-  - grunt build
+sudo: false # faster builds
 
 notifications:
   email: false
+
+before_install:
+  - npm install
+
+script:
+  - mix test
+  - grunt test
+  - grunt build
+
+after_success:
+  - mix coveralls.travis
