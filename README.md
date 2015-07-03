@@ -19,9 +19,6 @@ npm install
 ### Run it
 
 ```
-grunt
-```
-```
 mix phoenix.server
 ```
 
