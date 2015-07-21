@@ -1,7 +1,12 @@
 use Mix.Config
 
+random_64_char_string = :crypto.strong_rand_bytes(64)
+                        |> :base64.encode_to_string
+                        |> to_string
+                        |> String.slice(0, 64)
+
 # In this file, we keep production configuration that
 # you likely want to automate and keep it away from
 # your version control system.
 config :elixre, Elixre.Endpoint,
-  secret_key_base: "qn16hCM40aSoTQJxytAq0++IcZJLXUXnby0c59TGWUJFVPxQq4pkdnWL2l5X0zcJ"
+  secret_key_base: random_64_char_string
