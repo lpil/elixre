@@ -86,7 +86,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'sass:prod', 'js', 'uglify', 'karma:test'
+    'sass:prod', 'js', 'uglify'
   ]);
 
   grunt.registerTask('default', [
