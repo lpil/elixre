@@ -5,10 +5,12 @@
 # is restricted to this project.
 use Mix.Config
 
+secret = "S0gXWNsZCCWVNxNLZ3wQmf9rhHNqLk1qnYtIgQO58x23FNu9ssC0K9Wc867YjiyU"
+
 # Configures the endpoint
 config :elixre, Elixre.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "S0gXWNsZCCWVNxNLZ3wQmf9rhHNqLk1qnYtIgQO58x23FNu9ssC0K9Wc867YjiyU",
+  secret_key_base: secret,
   debug_errors: false,
   pubsub: [name: Elixre.PubSub,
            adapter: Phoenix.PubSub.PG2]

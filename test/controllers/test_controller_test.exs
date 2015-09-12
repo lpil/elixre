@@ -6,7 +6,7 @@ defmodule Elixre.TestControllerTest do
   with "the index action" do
     with "no subject or regex params" do
       setup context do
-        get_index context
+        post_index context
       end
 
       should_respond_with :bad_request
@@ -19,7 +19,7 @@ defmodule Elixre.TestControllerTest do
     with "only regex params" do
       setup context do
         params = %{"regex" => "foo"}
-        get_index context, params
+        post_index context, params
       end
 
       should_respond_with :bad_request
@@ -32,7 +32,7 @@ defmodule Elixre.TestControllerTest do
     with "only subject params" do
       setup context do
         params = %{"subject" => "foo"}
-        get_index context, params
+        post_index context, params
       end
 
       should_respond_with :bad_request
@@ -45,8 +45,7 @@ defmodule Elixre.TestControllerTest do
     with "both regex and subject params" do
       setup context do
         params = %{"subject" => "foo", "regex" => "bar"}
-        connection = conn(:post, @index, params) |> send_request
-        Dict.put context, :connection, connection
+        post_index context, params
       end
 
       should_respond_with :success
@@ -57,7 +56,7 @@ defmodule Elixre.TestControllerTest do
     with "an invalid regex" do
       setup context do
         params = %{"subject" => "foo", "regex" => "?"}
-        get_index context, params
+        post_index context, params
       end
 
       should_respond_with :success
@@ -71,7 +70,7 @@ defmodule Elixre.TestControllerTest do
       with "one subject" do
         setup context do
           params = %{"subject" => "foobar", "regex" => "o+(.)?"}
-          get_index context, params
+          post_index context, params
         end
 
         should_respond_with :success
@@ -94,7 +93,7 @@ defmodule Elixre.TestControllerTest do
             "subject" => ["foo", "bar", "baz"],
             "regex" => "(?:f|b)(.+)"
           }
-          get_index context, params
+          post_index context, params
         end
 
         should_respond_with :success
@@ -128,7 +127,7 @@ defmodule Elixre.TestControllerTest do
             "regex" => "(?:f|b)(.+)",
             "modifiers" => "i"
           }
-          get_index context, params
+          post_index context, params
         end
 
         should_respond_with :success
@@ -156,12 +155,12 @@ defmodule Elixre.TestControllerTest do
     end
   end
 
-  defp get_index(context) do
-    connection = conn(:post, @index) |> send_request
+  defp post_index(context) do
+    connection = :post |> conn(@index) |> send_request
     Dict.put context, :connection, connection
   end
-  defp get_index(context, params) do
-    connection = conn(:post, @index, params) |> send_request
+  defp post_index(context, params) do
+    connection = :post |> conn(@index, params) |> send_request
     Dict.put context, :connection, connection
   end
 end

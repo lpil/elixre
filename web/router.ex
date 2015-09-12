@@ -1,4 +1,6 @@
 defmodule Elixre.Router do
+  @moduledoc false
+
   use Phoenix.Router
 
   pipeline :browser do

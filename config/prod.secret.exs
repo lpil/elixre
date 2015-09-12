@@ -1,6 +1,7 @@
 use Mix.Config
 
-random_64_char_string = :crypto.strong_rand_bytes(64)
+random_64_char_string = 64
+                        |> :crypto.strong_rand_bytes
                         |> :base64.encode_to_string
                         |> to_string
                         |> String.slice(0, 64)

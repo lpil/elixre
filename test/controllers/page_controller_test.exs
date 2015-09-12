@@ -3,7 +3,7 @@ defmodule Elixre.PageControllerTest do
 
   with "/" do
     setup context do
-      connection = conn(:get, "/") |> send_request
+      connection = :get |> conn("/") |> send_request
       Dict.put context, :connection, connection
     end
 

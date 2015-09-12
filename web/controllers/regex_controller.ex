@@ -1,4 +1,8 @@
 defmodule Elixre.RegexController do
+  @moduledoc """
+  Responsible for running regexes against test strings.
+  """
+
   use Elixre.Web, :controller
 
   import Elixre.Regex, only: [test: 3]

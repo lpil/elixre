@@ -1,4 +1,8 @@
 defmodule Elixre.ErrorView do
+  @moduledoc """
+  Views used for error pages.
+  """
+
   use Elixre.Web, :view
 
   def render("404.html", _assigns) do

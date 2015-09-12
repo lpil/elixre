@@ -41,9 +41,9 @@ defmodule Elixre.Mixfile do
       # Test framework
       {:shouldi, "~> 0.2", only: :test},
       # Code linter
-      # {:dogma, only: ~a(dev test)},
+      {:dogma, only: ~w(dev test)a},
       # Automatically run tests on file changes
-      # {:mix_test_watch, only: :dev},
+      {:mix_test_watch, only: :dev},
     ]
   end
 end

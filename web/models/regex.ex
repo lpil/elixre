@@ -1,4 +1,8 @@
 defmodule Elixre.Regex do
+  @moduledoc """
+  Our regex tester. Pow.
+  """
+
   @doc ~S"""
   Takes a regex in string form, and one or a list of subject strings
   to run the regex on, and returns the results of the test.
