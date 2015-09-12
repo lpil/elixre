@@ -3,8 +3,6 @@ defmodule Elixre.RegexController do
 
   import Elixre.Regex, only: [test: 3]
 
-  plug :action
-
   def index(conn, params = %{"regex" => regex, "subject" => subject}) do
     modifiers = params["modifiers"] || ""
     render conn, "result.json", data: test(regex, subject, modifiers)

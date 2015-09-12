@@ -20,6 +20,3 @@ script:
   - mix test
   - grunt test
   - grunt build
-
-after_success:
-  - mix coveralls.travis

@@ -19,6 +19,7 @@ defmodule Elixre.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
+    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
   end
@@ -34,8 +35,7 @@ defmodule Elixre.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_elixre_key",
-    signing_salt: "OfvwamQP",
-    encryption_salt: "Ar/vd12f"
+    signing_salt: "OfvwamQP"
 
-  plug :router, Elixre.Router
+  plug Elixre.Router
 end

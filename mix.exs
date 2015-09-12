@@ -14,12 +14,14 @@ defmodule Elixre.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [mod: {Elixre, []},
-     applications: applications(Mix.env)]
+    [
+      mod: {Elixre, []},
+      applications: applications(Mix.env),
+   ]
   end
 
   defp applications(_) do
-    [:phoenix, :cowboy, :logger]
+    ~w(phoenix cowboy logger)a
   end
 
   # Specifies your project dependencies
@@ -27,11 +29,21 @@ defmodule Elixre.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [
-      {:phoenix, "~> 0.13.1"},
+      # Web app framework
+      {:phoenix, "~> 1.0"},
+      # Our app renders HTML
       {:phoenix_html, "~> 1.0"},
-      {:phoenix_live_reload, "~> 0.4", only: :dev},
+      # Reload web code in development
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      # Web server
       {:cowboy, "~> 1.0"},
-      {:shouldi, "~> 0.2.2", only: :test}
+
+      # Test framework
+      {:shouldi, "~> 0.2", only: :test},
+      # Code linter
+      # {:dogma, only: ~a(dev test)},
+      # Automatically run tests on file changes
+      # {:mix_test_watch, only: :dev},
     ]
   end
 end
