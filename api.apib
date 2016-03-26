@@ -38,7 +38,7 @@ rather then just the first.
 
 + Response 200
 
-    A successfully run regex.
+    A successful request with a valid regex.
 
     + Body
 
@@ -46,6 +46,7 @@ rather then just the first.
               "regex": {
                 "pattern": "^foo",
                 "modifiers": "iu",
+                "valid": true,
                 "results": [
                   {
                     "subject": "foobar",
@@ -62,6 +63,46 @@ rather then just the first.
                     "binaries": [],
                     "indexes": []
                   }
+                ]
+              }
+            }
+
+
++ Response 200
+
+    A successful request with an invalid regex which could not be compiled.
+
+    The `errors` field contains the regex compilation errors passed back from
+    the Elixre `Regex` module.
+
+    + Body
+
+            {
+              "regex": {
+                "pattern": "?",
+                "modifiers": "iu",
+                "valid_regex": false,
+                "errors": [
+                  [
+                    "nothing to repeat",
+                    0
+                  ]
+                ]
+              }
+            }
+
+
++ Response 401
+
+    An Unsuccessful request due to one or more missing parameters.
+
+    + Body
+
+            {
+              "errors": {
+                "missing params": [
+                  "pattern",
+                  "modifiers"
                 ]
               }
             }
