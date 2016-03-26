@@ -1,0 +1,67 @@
+FORMAT: 1A
+HOST: http://elixre.uk
+
+# Elixre API
+
+API used by the Elixre regualar expression tester/editor.
+
+
+# Group Regex
+
+
+## Regex [/regex]
+
+### Perform Regex [POST]
+
+Takes a regex with a pattern, modifiers, and subjects, and returns the result
+of applying the pattern to the subject, if possible.
+
+`Regex.scan/3` is used, so all matches inside the subjects will be returned,
+rather then just the first.
+
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "regex": {
+                "pattern": "foo",
+                "modifiers": "iu",
+                "subjects": [
+                  "foobarfoo",
+                  "FOOBAR",
+                  "barfoo",
+                ],
+              }
+            }
+
++ Response 200
+
+    A successfully run regex.
+
+    + Body
+
+            {
+              "regex": {
+                "pattern": "^foo",
+                "modifiers": "iu",
+                "results": [
+                  {
+                    "subject": "foobar",
+                    "binaries": ["foo"],
+                    "indexes": [[0, 3]]
+                  },
+                  {
+                    "subject": "FOOBAR",
+                    "binaries": ["FOO"],
+                    "indexes": [[0, 3]]
+                  },
+                  {
+                    "subject": "barfoo",
+                    "binaries": [],
+                    "indexes": []
+                  }
+                ]
+              }
+            }
