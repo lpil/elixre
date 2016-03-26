@@ -1,4 +1,5 @@
-# Elixre
+Elixre
+======
 
 [![Build Status](https://travis-ci.org/lpil/elixre.svg?branch=master)](https://travis-ci.org/lpil/elixre)
 [![Code Climate](https://codeclimate.com/github/lpil/elixre/badges/gpa.svg)](https://codeclimate.com/github/lpil/elixre)
@@ -7,44 +8,12 @@ An Elixir regular expression editor & tester.
 
 A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 
-### Install it
-
-You've got Erlang, Elixir, and Node installed, right?
-
-```
-mix deps.get
-npm install
-```
-
-### Run it
-
-```
-mix phoenix.server
-```
-
-### Test it
-
-```
-mix test
-grunt test
-```
-
-## Deployment
-
-We're currently on Heroku, using these buildpacks.
-
-* [ddollar/heroku-buildpack-multi](
-    https://github.com/ddollar/heroku-buildpack-multi)
-* [mbuchetics/heroku-buildpack-nodejs-grunt.git](
-    https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git)
-* [HashNuke/heroku-buildpack-elixir](
-    https://github.com/HashNuke/heroku-buildpack-elixir.git)
 
 ## LICENCE
 
 ```
 Elixre - An Elixir regular expression editor & tester
-Copyright © 2015 Louis Pilfold
+Copyright © 2015 - Present Louis Pilfold
 
 This program  is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
