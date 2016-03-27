@@ -59,6 +59,9 @@
     "plugins": [
       "react"
     ],
+    "globals": {
+      "assert": true
+    },
     "extends": "eslint:recommended",
     "rules": {
       "indent": [
@@ -102,9 +105,17 @@
       "react/self-closing-comp": 1,
       "react/sort-comp": 1,
       "react/wrap-multilines": 1,
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
       "quotes": [
         2,
         "double"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
       ]
     }
   }

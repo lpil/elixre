@@ -1,6 +1,6 @@
 var webpack      = require("karma-webpack");
 var js_pattern  = "**/*.js";
-var test_pattern = "**/*_test.js";
+var test_pattern = "**/*test.js";
 
 var preprocessors = {};
 preprocessors[js_pattern] = ["webpack"];
