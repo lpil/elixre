@@ -5,3 +5,9 @@ export function setSubject(text) {
     type: types.SET_SUBJECT, text,
   };
 }
+
+export function setModifiers(text) {
+  return {
+    type: types.SET_MODIFIERS, text,
+  };
+}
