@@ -1,5 +1,15 @@
+import { SET_SUBJECT } from "../../constants/action_types";
+
 const initialState = "";
 
-export default function(state = initialState, action = undefined) {
-  return state;
+function subject(state = initialState, action = undefined) {
+  switch (action.type) {
+    case SET_SUBJECT:
+      return action.text;
+
+    default:
+      return state;
+  }
 }
+
+export default subject;
