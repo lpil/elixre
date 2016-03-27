@@ -9,6 +9,15 @@ An Elixir regular expression editor & tester.
 A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 
 
+## Usage
+
+```sh
+# Run the JS test watcher
+npm test
+# Build the front end
+npm build
+```
+
 ## LICENCE
 
 ```

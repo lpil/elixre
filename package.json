@@ -4,8 +4,8 @@
   "description": "An Elixir regular expression editor & tester.",
   "main": "n/a",
   "scripts": {
-    "build": "./node_modules/webpack/bin/webpack.js --progress --colors",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/webpack/bin/webpack.js --config js/webpack.config.js --progress --colors",
+    "test": "./node_modules/karma/bin/karma start js/karma.conf.js --colors"
   },
   "repository": {
     "type": "git",
@@ -30,5 +30,15 @@
     "react-redux": "^4.4.1",
     "redux": "^3.3.1",
     "webpack": "^1.12.14"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "karma": "^0.13.22",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.7"
   }
 }
