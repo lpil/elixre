@@ -20,4 +20,4 @@ script:
   # - mix test
   # - mix dogma
   - npm build
-  - npm test
+  - npm run single-run-test

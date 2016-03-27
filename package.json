@@ -5,7 +5,8 @@
   "main": "n/a",
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js --config js/webpack.config.js --progress --colors",
-    "test": "./node_modules/karma/bin/karma start js/karma.conf.js --colors"
+    "test": "./node_modules/karma/bin/karma start js/karma.conf.js --colors",
+    "single-run-test": "./node_modules/karma/bin/karma start js/karma.conf.js --single-run --colors"
   },
   "repository": {
     "type": "git",
