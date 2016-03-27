@@ -4,10 +4,7 @@ import modifiers from ".";
 it("has default arguments", () => {
   assert.deepEqual(
     modifiers(undefined, {}),
-    {
-      valid: true,
-      flags: "",
-    }
+    ""
   );
 });
 
@@ -16,9 +13,6 @@ it("handles SET_MODIFIERS", () => {
   const action = setModifiers(flags);
   assert.deepEqual(
     modifiers(undefined, action),
-    {
-      valid: true,
-      flags,
-    }
+    flags
   );
 });
