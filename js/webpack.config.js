@@ -1,3 +1,10 @@
+var babelPresets = [
+  "es2015",
+];
+var babelPlugins = [
+  "transform-object-assign",
+];
+
 module.exports = {
   entry: "./js/main.js",
   output: {
@@ -17,8 +24,9 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: "babel-loader",
-        query: { presets: ["es2015"], },
+        query: { presets: babelPresets, plugins: babelPlugins },
       },
     ],
   },

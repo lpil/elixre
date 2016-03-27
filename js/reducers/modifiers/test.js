@@ -2,17 +2,23 @@ import { setModifiers } from "../../actions";
 import modifiers from ".";
 
 it("has default arguments", () => {
-  assert.equal(
+  assert.deepEqual(
     modifiers(undefined, {}),
-    ""
+    {
+      valid: true,
+      flags: "",
+    }
   );
 });
 
 it("handles SET_MODIFIERS", () => {
-  const text   = "ui";
-  const action = setModifiers(text);
-  assert.equal(
+  const flags   = "ui";
+  const action = setModifiers(flags);
+  assert.deepEqual(
     modifiers(undefined, action),
-    text
+    {
+      valid: true,
+      flags,
+    }
   );
 });

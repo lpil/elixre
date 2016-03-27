@@ -6,8 +6,9 @@ export function setSubject(text) {
   };
 }
 
-export function setModifiers(text) {
+export function setModifiers(flags) {
   return {
-    type: types.SET_MODIFIERS, text,
+    type: types.SET_MODIFIERS,
+    flags,
   };
 }
