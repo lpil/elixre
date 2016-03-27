@@ -17,7 +17,7 @@ before_install:
   - npm install
 
 script:
-  # - mix test
-  # - mix dogma
+  - mix test
+  - mix dogma
   - npm build
   - npm run single-run-test
