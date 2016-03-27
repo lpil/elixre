@@ -8,6 +8,12 @@ module.exports = {
   devtool: "#inline-source-map",
 
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: "eslint-loader",
+      },
+    ],
     loaders: [
       {
         test: /\.js$/,
