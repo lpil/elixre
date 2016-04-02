@@ -1,2 +1,6 @@
-%{"dogma": {:hex, :dogma, "0.1.4"},
-  "poison": {:hex, :poison, "2.1.0"}}
+%{"cowboy": {:hex, :cowboy, "1.0.4"},
+  "cowlib": {:hex, :cowlib, "1.0.2"},
+  "dogma": {:hex, :dogma, "0.1.4"},
+  "plug": {:hex, :plug, "1.1.3"},
+  "poison": {:hex, :poison, "2.1.0"},
+  "ranch": {:hex, :ranch, "1.2.1"}}

@@ -14,7 +14,7 @@ defmodule Elixre.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:cowboy, :plug, :logger]]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +27,13 @@ defmodule Elixre.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:dogma, "~> 0.1", only: [:dev, :test]}]
+    [
+      # Style linter.
+      {:dogma, "~> 0.1", only: [:dev, :test]},
+      # Webserver.
+      {:cowboy, "~> 1.0.0"},
+      # Web app abstracton.
+      {:plug, "~> 1.0"},
+    ]
   end
 end
