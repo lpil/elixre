@@ -3,6 +3,10 @@ defmodule Elixre do
   Back end for Elixre.
   """
   use Plug.Router
+
+  if Mix.env != :test do
+    plug Plug.Logger
+  end
   plug :match
   plug :dispatch
 
