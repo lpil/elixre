@@ -13,4 +13,8 @@ defmodule Elixre do
   get "/" do
     send_resp(conn, 200, "hello dinosaur")
   end
+
+  match _ do
+    send_resp(conn, 404, "Page not found")
+  end
 end
