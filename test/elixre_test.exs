@@ -1,8 +1,27 @@
 defmodule ElixreTest do
   use ExUnit.Case
+  use Plug.Test
   doctest Elixre
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  @opts Elixre.init []
+
+  test "test home route" do
+    conn =
+      :get
+      |> conn("/")
+      |> Elixre.call(@opts)
+    assert conn.state == :sent
+    assert conn.status == 200
+    assert conn.resp_body == "hello dinosaur"
+  end
+
+  test "unknown route" do
+    conn =
+      :get
+      |> conn("/no-dinosaurs-EVER")
+      |> Elixre.call(@opts)
+    assert conn.state == :sent
+    assert conn.status == 404
+    assert conn.resp_body == "Page not found"
   end
 end
