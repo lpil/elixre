@@ -12,7 +12,8 @@ defmodule ElixreTest do
       |> Elixre.call(@opts)
     assert conn.state == :sent
     assert conn.status == 200
-    assert conn.resp_body == "hello dinosaur"
+    assert conn.resp_body =~ "Elixre"
+    assert conn.resp_body =~ "<head>"
   end
 
   test "unknown route" do
