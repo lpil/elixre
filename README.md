@@ -16,6 +16,8 @@ A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 npm test
 # Build the front end
 npm build
+# Run the backend
+mix server
 ```
 
 ## LICENCE
