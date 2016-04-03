@@ -8,14 +8,10 @@ defmodule Elixre do
     plug Plug.Logger
   end
 
+  plug Plug.NormalizeRootRequests
   plug Plug.Static, at: "/", from: "public"
   plug :match
   plug :dispatch
-
-  @html File.read!("public/index.html")
-  get "/" do
-    send_resp(conn, 200, @html)
-  end
 
   match _ do
     send_resp(conn, 404, "Page not found")
