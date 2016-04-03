@@ -10,8 +10,9 @@ defmodule Elixre do
   plug :match
   plug :dispatch
 
+  @html File.read!("public/index.html")
   get "/" do
-    send_resp(conn, 200, "hello dinosaur")
+    send_resp(conn, 200, @html)
   end
 
   match _ do
