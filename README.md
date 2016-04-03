@@ -14,10 +14,24 @@ A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 ```sh
 # Run the JS test watcher
 npm test
-# Start the front end compiler
+# Compile the front end
+npm run build
+# Start the front end dev watcher
 npm run
 # Run the backend
 mix server
+```
+
+
+## Setup
+
+Install Elixir and Node.
+
+```sh
+# Install the front end deps
+npm install
+# Install the back end deps
+mix deps.get
 ```
 
 ## LICENCE
