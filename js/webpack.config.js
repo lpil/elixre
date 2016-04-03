@@ -12,7 +12,7 @@ module.exports = {
     filename: "main.js",
   },
 
-  devtool: "#inline-source-map",
+  devtool: "inline-source-map",
 
   module: {
     preLoaders: [
@@ -27,6 +27,10 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
         query: { presets: babelPresets, plugins: babelPlugins },
+      },
+      {
+        test: /\.scss$/,
+        loader: "style!css!sass",
       },
     ],
   },
