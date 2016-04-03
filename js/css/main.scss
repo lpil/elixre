@@ -1,5 +1,6 @@
-$color: hotpink;
+@import "~normalize.css/normalize.css";
 
-body {
-  background: $color;
-}
+@import "abstracts/colors";
+
+@import "base/box-sizing";
+@import "base/typography";

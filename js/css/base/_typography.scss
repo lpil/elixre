@@ -1,0 +1,26 @@
+@import url(http://fonts.googleapis.com/css?family=Bitter);
+
+body {
+  color: $color-black-lt;
+  font-family: "Bitter", Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.7em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color-black;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.3em;
+  margin: 0 0 15px;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
