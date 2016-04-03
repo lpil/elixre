@@ -14,8 +14,8 @@ A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 ```sh
 # Run the JS test watcher
 npm test
-# Build the front end
-npm build
+# Start the front end compiler
+npm run
 # Run the backend
 mix server
 ```

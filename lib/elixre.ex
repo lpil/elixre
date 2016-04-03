@@ -7,6 +7,8 @@ defmodule Elixre do
   if Mix.env != :test do
     plug Plug.Logger
   end
+
+  plug Plug.Static, at: "/", from: "public"
   plug :match
   plug :dispatch
 
