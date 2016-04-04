@@ -28,6 +28,8 @@ mix server
 Install Elixir and Node.
 
 ```sh
+cd path/to/elixre
+
 # Install the front end deps
 npm install
 # Install the back end deps
