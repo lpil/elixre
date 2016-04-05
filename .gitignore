@@ -5,4 +5,5 @@ erl_crash.dump
 *.ez
 node_modules
 public/*.js
+!public/array.js
 public/*.css

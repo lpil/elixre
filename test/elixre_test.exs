@@ -25,4 +25,14 @@ defmodule ElixreTest do
     assert conn.status == 404
     assert conn.resp_body == "Page not found"
   end
+
+  test "/regex" do
+    conn =
+      :post
+      |> conn("/regex")
+      |> Elixre.call(@opts)
+    assert conn.state == :sent
+    assert conn.status == 200
+    assert conn.resp_body =~ "Jason"
+  end
 end
