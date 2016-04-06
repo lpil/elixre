@@ -29,7 +29,8 @@ defmodule ElixreTest do
   test "/regex" do
     conn =
       :post
-      |> conn("/regex")
+      |> conn("/regex", File.read!("public/array.json"))
+      |> put_req_header("content-type", "application/json")
       |> Elixre.call(@opts)
     assert conn.state == :sent
     assert conn.status == 200

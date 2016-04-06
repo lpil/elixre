@@ -17,11 +17,16 @@ defmodule Elixre do
   plug :match
   plug :dispatch
 
-  @array Poison.encode!(File.read!("public/array.js"))
   post "/regex" do
+    list = conn.body_params["_json"]
+    reversed = list |> Enum.reverse
+    IO.inspect conn.body_params
+    json = Poison.encode!(reversed)
+    IO.inspect json
+
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Poison.decode!(@array))
+    |> send_resp(200, json)
   end
 
   match _ do
