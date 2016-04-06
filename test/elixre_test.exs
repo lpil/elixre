@@ -26,7 +26,7 @@ defmodule ElixreTest do
     assert conn.resp_body == "Page not found"
   end
 
-  @tag :skip
+  # @tag :skip
   test "/regex" do
     conn =
       :post
@@ -36,6 +36,7 @@ defmodule ElixreTest do
     assert conn.state == :sent
     assert conn.status == 200
     assert conn.resp_body == "[4,3,2,1]"
-    assert "application/json" in get_resp_header(conn, "content-type")
+    [header] = get_resp_header(conn, "content-type")
+    assert header =~ "application/json"
   end
 end
