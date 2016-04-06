@@ -26,7 +26,6 @@ defmodule ElixreTest do
     assert conn.resp_body == "Page not found"
   end
 
-  # @tag :skip
   test "/regex" do
     conn =
       :post
