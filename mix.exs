@@ -14,7 +14,7 @@ defmodule Elixre.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:cowboy, :plug, :logger]]
+    [applications: [:cowboy, :plug, :logger, :poison,]]
   end
 
   # Dependencies can be Hex packages:
@@ -34,6 +34,8 @@ defmodule Elixre.Mixfile do
       {:cowboy, "~> 1.0.0"},
       # Web app abstracton.
       {:plug, "~> 1.0"},
+      # JSON library
+      {:poison, "~> 2.0"},
     ]
   end
 end
