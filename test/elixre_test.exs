@@ -5,7 +5,16 @@ defmodule ElixreTest do
 
   @opts Elixre.init []
 
-  test "test home route" do
+  defp post_regex(body) do
+    conn = :post
+      |> conn("/regex", Poison.encode!(body))
+      |> put_req_header("content-type", "application/json")
+      |> Elixre.call(@opts)
+    assert conn.state == :sent
+    conn
+  end
+
+  test "Home page renders OK" do
     conn =
       :get
       |> conn("/")
@@ -13,10 +22,9 @@ defmodule ElixreTest do
     assert conn.state == :sent
     assert conn.status == 200
     assert conn.resp_body =~ "Elixre"
-    assert conn.resp_body =~ "<head>"
   end
 
-  test "unknown route" do
+  test "unknown routes 404" do
     conn =
       :get
       |> conn("/no-dinosaurs-EVER")
@@ -26,16 +34,63 @@ defmodule ElixreTest do
     assert conn.resp_body == "Page not found"
   end
 
-  test "/regex" do
-    conn =
-      :post
-      |> conn("/regex", "[1,2,3,4]")
-      |> put_req_header("content-type", "application/json")
-      |> Elixre.call(@opts)
-    assert conn.state == :sent
-    assert conn.status == 200
-    assert conn.resp_body == "[4,3,2,1]"
-    [header] = get_resp_header(conn, "content-type")
-    assert header =~ "application/json"
+  describe "/regex" do
+    test "request missing pattern and subjects" do
+      conn = post_regex(%{
+        regex: %{
+        },
+      })
+      assert conn.status == 400
+      body = conn.resp_body |> Poison.decode!
+      assert body == %{
+        "errors" => %{
+          "missing_params" => [
+            "regex.subjects",
+            "regex.pattern",
+          ],
+        },
+      }
+    end
+
+    @tag :skip
+    test "valid request with modifiers" do
+      conn = post_regex(%{
+        regex: %{
+          pattern: "foo",
+          modifiers: "iu",
+          subjects: [
+            "foobarfoo",
+            "FOOBAR",
+            "barfoo",
+          ],
+        },
+      })
+      assert conn.status == 200
+      body = conn.resp_body |> Poison.decode!
+      assert body == %{
+        "regex" => %{
+          "pattern" => "^foo",
+          "modifiers" => "iu",
+          "valid_regex" => true,
+          "results" => [
+            %{
+              "subject" => "foobar",
+              "binaries" => ["foo"],
+              "indexes" => [[0, 3]]
+            },
+            %{
+              "subject" => "FOOBAR",
+              "binaries" => ["FOO"],
+              "indexes" => [[0, 3]]
+            },
+            %{
+              "subject" => "barfoo",
+              "binaries" => [],
+              "indexes" => []
+            },
+          ],
+        },
+      }
+    end
   end
 end

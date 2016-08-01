@@ -3,6 +3,7 @@ defmodule Elixre do
   Back end for Elixre.
   """
   use Plug.Router
+  alias Elixre.Params
 
   if Mix.env != :test do
     plug Plug.Logger
@@ -14,15 +15,23 @@ defmodule Elixre do
   plug :match
   plug :dispatch
 
-  post "/regex" do
-    json =
-    conn.body_params["_json"]
-    |> Enum.reverse
-    |> Poison.encode!
+  @regex_params %{
+    pattern: ["regex", "pattern"],
+    subjects: ["regex", "subjects"],
+  }
 
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, json)
+  post "/regex" do
+    conn = conn |> put_resp_content_type("application/json")
+    case Params.get(conn.body_params, @regex_params) do
+      {:ok, params} ->
+        result = params
+        send_resp(conn, 200, Poison.encode!(%{ regex: result }))
+
+      {:missing_params, params} ->
+        send_resp(conn, 400, Poison.encode!(%{
+          errors: %{ missing_params: params },
+        }))
+    end
   end
 
   match _ do
