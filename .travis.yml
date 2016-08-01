@@ -15,11 +15,8 @@ notifications:
 
 before_install:
   - npm install
-  - gem install scss_lint
 
 script:
+  - make build
   - mix test
   - mix dogma
-  - npm build
-  - npm run single-run-test
-  - scss-lint .

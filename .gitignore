@@ -1,8 +1,8 @@
-/_build
-/cover
-/deps
+_build
+cover
+deps
 erl_crash.dump
 *.ez
 node_modules
-public/*.js
-public/*.css
+elm-stuff
+dist

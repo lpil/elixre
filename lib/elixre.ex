@@ -10,7 +10,7 @@ defmodule Elixre do
 
   plug Plug.Parsers, parsers: [:json], json_decoder: Poison
   plug Plug.NormalizeRootRequests
-  plug Plug.Static, at: "/", from: "public"
+  plug Plug.Static, at: "/", from: "dist"
   plug :match
   plug :dispatch
 
