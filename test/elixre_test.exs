@@ -52,20 +52,18 @@ defmodule ElixreTest do
       }
     end
 
-    @tag :skip
     test "valid request with modifiers" do
       conn = post_regex(%{
         regex: %{
-          pattern: "foo",
+          pattern: "^foo",
           modifiers: "iu",
           subjects: [
-            "foobarfoo",
+            "foobar",
             "FOOBAR",
             "barfoo",
           ],
         },
       })
-      assert conn.status == 200
       body = conn.resp_body |> Poison.decode!
       assert body == %{
         "regex" => %{
@@ -91,6 +89,63 @@ defmodule ElixreTest do
           ],
         },
       }
+      assert conn.status == 200
+    end
+
+    test "valid request without modifiers" do
+      conn = post_regex(%{
+        regex: %{
+          pattern: "^foo",
+          subjects: [
+            "foobar",
+            "FOOBAR",
+          ],
+        },
+      })
+      body = conn.resp_body |> Poison.decode!
+      assert body == %{
+        "regex" => %{
+          "pattern" => "^foo",
+          "modifiers" => "",
+          "valid_regex" => true,
+          "results" => [
+            %{
+              "subject" => "foobar",
+              "binaries" => ["foo"],
+              "indexes" => [[0, 3]]
+            },
+            %{
+              "subject" => "FOOBAR",
+              "binaries" => [],
+              "indexes" => []
+            },
+          ],
+        },
+      }
+      assert conn.status == 200
+    end
+
+    test "valid request with invalid regex" do
+      conn = post_regex(%{
+        regex: %{
+          pattern: "*",
+          subjects: [
+            "foobar",
+          ],
+        },
+      })
+      body = conn.resp_body |> Poison.decode!
+      assert body == %{
+        "regex" => %{
+          "pattern" => "*",
+          "modifiers" => "",
+          "valid_regex" => false,
+          "errors" => [
+            ["nothing to repeat", 0]
+          ],
+        },
+      }
+      assert conn.status == 200
     end
   end
 end

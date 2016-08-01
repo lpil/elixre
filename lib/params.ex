@@ -1,7 +1,5 @@
 defmodule Elixre.Params do
-  @moduledoc """
-  Pulling params out of nested maps.
-  """
+  @moduledoc false
 
   @doc """
   The params schema is described like so:

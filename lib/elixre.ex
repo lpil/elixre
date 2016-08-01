@@ -4,6 +4,7 @@ defmodule Elixre do
   """
   use Plug.Router
   alias Elixre.Params
+  alias Elixre.RegexTest
 
   if Mix.env != :test do
     plug Plug.Logger
@@ -24,7 +25,8 @@ defmodule Elixre do
     conn = conn |> put_resp_content_type("application/json")
     case Params.get(conn.body_params, @regex_params) do
       {:ok, params} ->
-        result = params
+        modifiers = get_in(conn.body_params, ["regex", "modifiers"]) || ""
+        result = RegexTest.test(params.pattern, modifiers, params.subjects)
         send_resp(conn, 200, Poison.encode!(%{ regex: result }))
 
       {:missing_params, params} ->
