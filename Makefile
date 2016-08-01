@@ -10,7 +10,7 @@ start: ## Start dev server
 
 build: ## Compile the app
 	rm -rf dist
-	./node_modules/webpack/bin/webpack.js
+	NODE_ENV=production ./node_modules/webpack/bin/webpack.js -p
 
 .PHONY: \
 	install \
