@@ -1,42 +1,27 @@
 defmodule Elixre do
-  @moduledoc """
-  Back end for Elixre.
-  """
-  use Plug.Router
-  alias Elixre.Params
-  alias Elixre.RegexTest
+  use Application
 
-  if Mix.env != :test do
-    plug Plug.Logger
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
+    opts = [strategy: :one_for_one, name: Elixre.Supervisor]
+    Supervisor.start_link(children(Mix.env), opts)
   end
 
-  plug Plug.Parsers, parsers: [:json], json_decoder: Poison
-  plug Plug.NormalizeRootRequests
-  plug Plug.Static, at: "/", from: "dist"
-  plug :match
-  plug :dispatch
-
-  @regex_params %{
-    pattern: ["regex", "pattern"],
-    subjects: ["regex", "subjects"],
-  }
-
-  post "/regex" do
-    conn = conn |> put_resp_content_type("application/json")
-    case Params.get(conn.body_params, @regex_params) do
-      {:ok, params} ->
-        modifiers = get_in(conn.body_params, ["regex", "modifiers"]) || ""
-        result = RegexTest.test(params.pattern, modifiers, params.subjects)
-        send_resp(conn, 200, Poison.encode!(%{ regex: result }))
-
-      {:missing_params, params} ->
-        send_resp(conn, 400, Poison.encode!(%{
-          errors: %{ missing_params: params },
-        }))
-    end
+  defp children(:dev) do
+    [rest_worker()]
   end
 
-  match _ do
-    send_resp(conn, 404, "Page not found")
+  defp children(:prod) do
+    [rest_worker()]
+  end
+
+  defp children(_) do
+    []
+  end
+
+  defp rest_worker do
+    port = System.get_env("PORT") || 4000
+    Plug.Adapters.Cowboy.child_spec(:http, Elixre.REST, [], [port: port])
   end
 end

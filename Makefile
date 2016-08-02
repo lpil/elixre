@@ -6,8 +6,14 @@ install: ## Install deps
 	npm install
 	./node_modules/elm/binwrappers/elm-package install
 
-start: ## Start dev server
-	NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base src/,
+start: ## Start the server in dev mode
+	iex -S mix
+
+start-production:
+	MIX_ENV=production mix app.start
+
+webpack-dev-server:
+	NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base src/, --no-info
 
 build: ## Compile the app
 	rm -rf dist

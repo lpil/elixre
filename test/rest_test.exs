@@ -1,15 +1,15 @@
-defmodule ElixreTest do
+defmodule Elixre.RESTTest do
   use ExUnit.Case
   use Plug.Test
-  doctest Elixre
+  doctest Elixre.REST
 
-  @opts Elixre.init []
+  @opts Elixre.REST.init []
 
   defp post_regex(body) do
     conn = :post
       |> conn("/regex", Poison.encode!(body))
       |> put_req_header("content-type", "application/json")
-      |> Elixre.call(@opts)
+      |> Elixre.REST.call(@opts)
     assert conn.state == :sent
     conn
   end
@@ -18,7 +18,7 @@ defmodule ElixreTest do
     conn =
       :get
       |> conn("/")
-      |> Elixre.call(@opts)
+      |> Elixre.REST.call(@opts)
     assert conn.state == :sent
     assert conn.status == 200
     assert conn.resp_body =~ "Elixre"
@@ -28,7 +28,7 @@ defmodule ElixreTest do
     conn =
       :get
       |> conn("/no-dinosaurs-EVER")
-      |> Elixre.call(@opts)
+      |> Elixre.REST.call(@opts)
     assert conn.state == :sent
     assert conn.status == 404
     assert conn.resp_body == "Page not found"

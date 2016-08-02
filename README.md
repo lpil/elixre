@@ -11,7 +11,9 @@ A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 ## Usage
 
 ```sh
-# Start the front end dev server
+# Print dev usage
+make
+# Start the app in dev mode
 make start
 ```
 
