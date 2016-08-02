@@ -15,13 +15,13 @@ defmodule Elixre.Frontend do
 
   use GenServer
 
-  ## Client API
+  # Client API
 
   def start_link do
     GenServer.start_link(__MODULE__, :ok, [])
   end
 
-  ## Server Callbacks
+  # Server Callbacks
 
   def init(:ok) do
     send self(), :start

@@ -55,6 +55,12 @@ var commonConfig = {
 if (process.env.NODE_ENV === 'development') {
   console.log('Serving locally...');
 
+  // Exit on end of STDIN
+  process.stdin.resume();
+  process.stdin.on('end', function() {
+    process.exit(0);
+  });
+
   module.exports = merge(commonConfig, {
 
     entry: [
@@ -84,7 +90,7 @@ if (process.env.NODE_ENV === 'production') {
 
   module.exports = merge(commonConfig, {
 
-    entry: path.join(__dirname, 'src/index.js'),
+    entry: path.join(__dirname, 'client/index.js'),
 
     module: {
       loaders: [
@@ -106,9 +112,3 @@ if (process.env.NODE_ENV === 'production') {
     ]
   });
 }
-
-// Exit on end of STDIN
-process.stdin.resume();
-process.stdin.on('end', function() {
-  process.exit(0);
-});
