@@ -12,14 +12,8 @@ A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 ## Usage
 
 ```sh
-# Run the JS test watcher
-npm test
-# Compile the front end
-npm run build
-# Start the front end dev watcher
-npm run
-# Run the backend
-mix server
+# Start the front end dev server
+make start
 ```
 
 
@@ -30,10 +24,8 @@ Install Elixir and Node.
 ```sh
 cd path/to/elixre
 
-# Install the front end deps
-npm install
-# Install the back end deps
-mix deps.get
+# Install the deps
+make install
 ```
 
 ## LICENCE
