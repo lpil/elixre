@@ -20,6 +20,8 @@ build: ## Compile the app
 	NODE_ENV=production ./node_modules/webpack/bin/webpack.js -p
 
 .PHONY: \
+	start-production \
+	frontend-server \
 	install \
 	start \
 	build \
