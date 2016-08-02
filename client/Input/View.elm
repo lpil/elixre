@@ -22,7 +22,7 @@ pattern =
 modifiers : List (Html a)
 modifiers =
     [ label [ for "modifiers", class "modifiers-label" ] [ text "Modifiers" ]
-    , input [ name "modifiers", class "regex-input", autofocus True ] []
+    , input [ name "modifiers", class "modifiers-input", autofocus True ] []
     ]
 
 
@@ -31,5 +31,5 @@ subject =
     [ label [ for "subject" ] [ text "Subject" ]
     , textarea [ name "subject", rows 5 ] []
     , label [ for "split", class "subject-split" ] [ text "Split on newlines?" ]
-    , input [ name "split", type' "checkbox" ] []
+    , input [ name "split", class "subject-split", type' "checkbox" ] []
     ]
