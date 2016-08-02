@@ -1,7 +1,5 @@
 require("./styles/main.scss");
 
-console.log(regexEndpoint);
-
 // Flag variables are injects via Webpack DefinePlugin
 var flags = {
   regexEndpoint: regexEndpoint,

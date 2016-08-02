@@ -106,3 +106,9 @@ if (process.env.NODE_ENV === 'production') {
     ]
   });
 }
+
+// Exit on end of STDIN
+process.stdin.resume();
+process.stdin.on('end', function() {
+  process.exit(0);
+});

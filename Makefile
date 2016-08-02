@@ -12,8 +12,8 @@ start: ## Start the server in dev mode
 start-production:
 	MIX_ENV=production mix app.start
 
-webpack-dev-server:
-	NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base src/, --no-info
+frontend-server:
+	NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base src/, --no-info --colors
 
 build: ## Compile the app
 	rm -rf dist
