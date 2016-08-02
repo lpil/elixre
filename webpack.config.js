@@ -5,18 +5,17 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer      = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var TARGET_ENV = process.env.npm_lifecycle_event === 'build' ? 'production' : 'development';
+var inProd = process.env.NODE_ENV === "production";
+
+var regexEndpoint = JSON.stringify(
+  inProd ? "/regex" : "//localhost:3000/regex"
+);
 
 var commonConfig = {
   output: {
     path:     path.resolve(__dirname, 'dist/'),
     filename: '[hash].js',
   },
-
-  // resolve: {
-  //   modulesDirectories: ['node_modules'],
-  //   extensions:         ['', '.js', '.elm']
-  // },
 
   module: {
     noParse: /\.elm$/,
@@ -37,6 +36,10 @@ var commonConfig = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      regexEndpoint: regexEndpoint,
+    }),
+
     new HtmlWebpackPlugin({
       template: 'client/index.html',
       inject:   'body',
@@ -49,7 +52,7 @@ var commonConfig = {
   postcss: [ autoprefixer( { browsers: ['last 2 versions'] } ) ],
 }
 
-if (TARGET_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   console.log('Serving locally...');
 
   module.exports = merge(commonConfig, {
@@ -76,7 +79,7 @@ if (TARGET_ENV === 'development') {
   });
 }
 
-if (TARGET_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   console.log('Building for prod...');
 
   module.exports = merge(commonConfig, {

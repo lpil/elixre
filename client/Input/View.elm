@@ -2,10 +2,11 @@ module Input.View exposing (root)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Input.State exposing (Model)
 
 
-root : Html a
-root =
+root : Model -> Html a
+root model =
     div [ class "inputs" ]
         [ div [] (pattern ++ modifiers)
         , div [] subject

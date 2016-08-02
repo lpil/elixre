@@ -4,11 +4,12 @@ import Html exposing (..)
 import Html.App as Html
 import Input.View
 import Results.View
+import Input.State
 
 
-main : Program Never
+main : Program Flags
 main =
-    Html.program
+    Html.programWithFlags
         { init = init
         , view = view
         , subscriptions = subscriptions
@@ -17,12 +18,21 @@ main =
 
 
 type alias Model =
-    Int
+    { inputModel : Input.State.Model
+    }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( 0, Cmd.none )
+type alias Flags =
+    { regexEndpoint : Input.State.EndpointUrl
+    }
+
+
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    ( { inputModel = Input.State.init flags.regexEndpoint
+      }
+    , Cmd.none
+    )
 
 
 subscriptions : Model -> Sub a
@@ -41,6 +51,6 @@ update msg model =
 
 view model =
     div []
-        [ Input.View.root
+        [ Input.View.root model.inputModel
         , Results.View.root
         ]

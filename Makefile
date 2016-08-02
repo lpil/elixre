@@ -7,7 +7,7 @@ install: ## Install deps
 	./node_modules/elm/binwrappers/elm-package install
 
 start: ## Start dev server
-	./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base src/,
+	NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base src/,
 
 build: ## Compile the app
 	rm -rf dist
