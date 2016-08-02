@@ -3,6 +3,7 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.App as Html
 import Input.View
+import Results.View
 
 
 main : Program Never
@@ -41,4 +42,5 @@ update msg model =
 view model =
     div []
         [ Input.View.root
+        , Results.View.root
         ]
