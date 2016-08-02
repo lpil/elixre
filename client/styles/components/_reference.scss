@@ -1,0 +1,41 @@
+.reference {
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style-type: none;
+    white-space: nowrap;
+
+    @media (min-width: 520px) and (max-width: $mq-large - 1px) {
+      display: inline-block;
+      width: 40%;
+      &:nth-child(2n+2) {
+        margin: 0 0 0 11%;
+      }
+    }
+
+    @media (min-width: $mq-large) {
+      display: inline-block;
+      width: 28%;
+      &:nth-child(3n+2) {
+        margin: 0 (13% / 2);
+      }
+    }
+  }
+
+  code {
+    display: inline-block;
+    margin-right: 5px;
+    text-align: center;
+    width: 60px;
+  }
+
+  a {
+    white-space: nowrap;
+  }
+}
+
+.reference__more {
+  text-align: center;
+}

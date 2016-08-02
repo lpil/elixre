@@ -1,0 +1,12 @@
+.header {
+  padding-top: 1em;
+  text-align: center;
+
+  h1 {
+    color: $color-primary;
+    font-size: 5em;
+    line-height: 1em;
+    margin: 0;
+    text-shadow: $color-grey-lt 2px 2px;
+  }
+}

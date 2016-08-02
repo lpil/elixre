@@ -1,0 +1,18 @@
+.footer {
+  clear: both;
+  font-size: .9em;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    white-space: nowrap;
+  }
+
+  .b {
+    color: $color-bold;
+    font-weight: bold;
+  }
+}
