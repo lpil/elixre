@@ -2,7 +2,7 @@
     "version": "1.0.0",
     "summary": "An Elixir regular expression editor & tester.",
     "repository": "https://github.com/lpil/elixre.git",
-    "license": "MIT",
+    "license": "AGPL-3.0",
     "source-directories": [
         "client"
     ],
