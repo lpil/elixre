@@ -8,13 +8,13 @@
     width: 100%;
   }
 
-  .regex-input,
+  .pattern-input,
   .modifiers-input {
     display: inline-block;
     margin-bottom: 5px;
   }
 
-  .regex-input {
+  .pattern-input {
     width: calc(100% - 100px);
   }
 

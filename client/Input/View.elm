@@ -2,28 +2,36 @@ module Input.View exposing (root)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Input.State exposing (Model)
+import Html.Events exposing (onInput)
+import Input.State exposing (Model, Msg(PatternChange))
 
 
-root : Model -> Html a
+root : Model -> Html Msg
 root model =
     div [ class "inputs" ]
-        [ div [] (pattern ++ modifiers)
+        [ div [] ((pattern model.pattern) ++ (modifiers model.modifiers))
         , div [] subject
         ]
 
 
-pattern : List (Html a)
-pattern =
-    [ label [ for "regex", class "regex-label" ] [ text "Regex" ]
-    , input [ name "regex", class "regex-input", autofocus True ] []
+pattern : String -> List (Html Msg)
+pattern patternValue =
+    [ label [ for "pattern", class "pattern-label" ] [ text "Regex" ]
+    , input
+        [ name "pattern"
+        , class "pattern-input"
+        , autofocus True
+        , value patternValue
+        , onInput PatternChange
+        ]
+        []
     ]
 
 
-modifiers : List (Html a)
-modifiers =
+modifiers : String -> List (Html a)
+modifiers modifiersValue =
     [ label [ for "modifiers", class "modifiers-label" ] [ text "Modifiers" ]
-    , input [ name "modifiers", class "modifiers-input", autofocus True ] []
+    , input [ name "modifiers", class "modifiers-input" ] []
     ]
 
 

@@ -1,7 +1,8 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Html.App as Html
+import Html.App as App
+import Types exposing (..)
 import Input.View
 import Results.View
 import Input.State
@@ -9,7 +10,7 @@ import Input.State
 
 main : Program Flags
 main =
-    Html.programWithFlags
+    App.programWithFlags
         { init = init
         , view = view
         , subscriptions = subscriptions
@@ -17,20 +18,9 @@ main =
         }
 
 
-type alias Model =
-    { inputModel : Input.State.Model
-    }
-
-
-type alias Flags =
-    { regexEndpoint : Input.State.EndpointUrl
-    }
-
-
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( { inputModel = Input.State.init flags.regexEndpoint
-      }
+    ( { inputModel = Input.State.init flags.regexEndpoint }
     , Cmd.none
     )
 
@@ -40,17 +30,14 @@ subscriptions model =
     Sub.none
 
 
-type Msg
-    = NoOp
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     ( model, Cmd.none )
 
 
+view : Model -> Html Msg
 view model =
     div []
-        [ Input.View.root model.inputModel
+        [ App.map InputMsg (Input.View.root model.inputModel)
         , Results.View.root
         ]

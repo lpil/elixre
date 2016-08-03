@@ -6,6 +6,7 @@ textarea {
   padding: 8px 10px;
   resize: vertical;
 
+  // TODO
   &.ng-invalid {
     border-color: $color-bold;
     box-shadow: 0 0 5px 0 $color-bold;
