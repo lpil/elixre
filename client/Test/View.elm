@@ -1,16 +1,16 @@
-module Input.View exposing (root)
+module Test.View exposing (root)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
-import Input.State exposing (Model, Msg(PatternChange))
+import Test.State exposing (..)
 
 
 root : Model -> Html Msg
 root model =
     div [ class "inputs" ]
         [ div [] ((pattern model.pattern) ++ (modifiers model.modifiers))
-        , div [] subject
+        , div [] (subject model.subject)
         ]
 
 
@@ -28,17 +28,30 @@ pattern patternValue =
     ]
 
 
-modifiers : String -> List (Html a)
+modifiers : String -> List (Html Msg)
 modifiers modifiersValue =
     [ label [ for "modifiers", class "modifiers-label" ] [ text "Modifiers" ]
-    , input [ name "modifiers", class "modifiers-input" ] []
+    , input
+        [ name "modifiers"
+        , class "modifiers-input"
+        , value modifiersValue
+        , onInput ModifiersChange
+        ]
+        []
     ]
 
 
-subject : List (Html a)
-subject =
+subject : String -> List (Html Msg)
+subject subjectValue =
     [ label [ for "subject" ] [ text "Subject" ]
-    , textarea [ name "subject", rows 5 ] []
+    , textarea
+        [ name "subject", rows 5, onInput SubjectChange, value subjectValue ]
+        []
     , label [ for "split", class "subject-split" ] [ text "Split on newlines?" ]
-    , input [ name "split", class "subject-split", type' "checkbox" ] []
+    , input
+        [ name "split"
+        , class "subject-split"
+        , type' "checkbox"
+        ]
+        []
     ]

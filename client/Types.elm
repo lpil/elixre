@@ -1,16 +1,16 @@
 module Types exposing (..)
 
-import Input.State as Input
+import Test.State as Test
 
 
 type alias Model =
-    { inputModel : Input.Model }
+    { testModel : Test.Model }
 
 
 type alias Flags =
-    { regexEndpoint : Input.EndpointUrl
+    { regexEndpoint : Test.EndpointUrl
     }
 
 
 type Msg
-    = InputMsg Input.Msg
+    = TestMsg Test.Msg

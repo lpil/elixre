@@ -3,9 +3,9 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.App as App
 import Types exposing (..)
-import Input.View
 import Results.View
-import Input.State
+import Test.State
+import Test.View
 
 
 main : Program Flags
@@ -20,7 +20,7 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( { inputModel = Input.State.init flags.regexEndpoint }
+    ( { testModel = Test.State.init flags.regexEndpoint }
     , Cmd.none
     )
 
@@ -32,12 +32,18 @@ subscriptions model =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        TestMsg subMsg ->
+            let
+                ( testModel, cmd ) =
+                    Test.State.update subMsg model.testModel
+            in
+                ( { model | testModel = testModel }, Cmd.map TestMsg cmd )
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ App.map InputMsg (Input.View.root model.inputModel)
+        [ App.map TestMsg (Test.View.root model.testModel)
         , Results.View.root
         ]
