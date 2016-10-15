@@ -26,6 +26,7 @@ Install Elixir and Node.
 cd path/to/elixre
 
 # Install the deps
+npm i -g yarn
 make install
 ```
 
