@@ -20,11 +20,11 @@ defmodule Elixre.Mixfile do
       # Style linter.
       {:dogma, "~> 0.1", only: [:dev, :test]},
       # Webserver.
-      {:cowboy, "~> 1.0.0"},
+      {:cowboy, "~> 1.0"},
       # Web app abstracton.
-      {:plug, "~> 1.0"},
+      {:plug, "~> 1.2"},
       # JSON library
-      {:poison, "~> 2.0"},
+      {:poison, "~> 3.0"},
     ]
   end
 end
