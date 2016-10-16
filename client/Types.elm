@@ -1,16 +1,20 @@
 module Types exposing (..)
 
-import Test.State as Test
-
 
 type alias Model =
-    { testModel : Test.Model }
+    { regexEndpoint : String
+    , pattern : String
+    , modifiers : String
+    , subject : String
+    }
 
 
 type alias Flags =
-    { regexEndpoint : Test.EndpointUrl
+    { regexEndpoint : String
     }
 
 
 type Msg
-    = TestMsg Test.Msg
+    = PatternChange String
+    | ModifiersChange String
+    | SubjectChange String

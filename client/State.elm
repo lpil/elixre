@@ -1,27 +1,11 @@
-module Test.State exposing (..)
+module State exposing (..)
+
+import Types exposing (..)
 
 
-type alias EndpointUrl =
-    String
-
-
-type Msg
-    = PatternChange String
-    | ModifiersChange String
-    | SubjectChange String
-
-
-type alias Model =
-    { regexEndpoint : EndpointUrl
-    , pattern : String
-    , modifiers : String
-    , subject : String
-    }
-
-
-init : EndpointUrl -> Model
-init url =
-    { regexEndpoint = url
+init : Flags -> Model
+init flags =
+    { regexEndpoint = flags.regexEndpoint
     , pattern = ""
     , modifiers = ""
     , subject = "shop"
