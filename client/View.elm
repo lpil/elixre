@@ -81,7 +81,7 @@ subject subjectValue =
     , input
         [ name "split"
         , class "subject-split"
-        , type' "checkbox"
+        , type_ "checkbox"
         ]
         []
     ]

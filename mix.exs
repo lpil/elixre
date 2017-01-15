@@ -17,8 +17,6 @@ defmodule Elixre.Mixfile do
 
   defp deps do
     [
-      # Style linter.
-      {:dogma, "~> 0.1", only: [:dev, :test]},
       # Webserver.
       {:cowboy, "~> 1.0"},
       # Web app abstracton.

@@ -1,14 +1,14 @@
 module Main exposing (..)
 
-import Html.App as App
+import Html
 import Types exposing (..)
 import State
 import View
 
 
-main : Program Flags
+main : Program Flags Model Msg
 main =
-    App.programWithFlags
+    Html.programWithFlags
         { init = init
         , view = View.root
         , subscriptions = subscriptions
