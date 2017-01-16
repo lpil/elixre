@@ -12,7 +12,7 @@ defmodule Elixre.Mixfile do
 
   def application do
     [mod: {Elixre, []},
-     applications: [:cowboy, :plug, :logger, :poison]]
+     additional_applications: [:logger]]
   end
 
   defp deps do
@@ -23,6 +23,8 @@ defmodule Elixre.Mixfile do
       {:plug, "~> 1.2"},
       # JSON library
       {:poison, "~> 3.0"},
+      # CORS request middleware
+      {:corsica, "~> 0.5"}
     ]
   end
 end

@@ -9,6 +9,9 @@ defmodule Elixre.REST do
   if Mix.env != :test do
     plug Plug.Logger
   end
+  if Mix.env == :dev do
+    plug Corsica, allow_headers: ["content-type"]
+  end
 
   plug Plug.Parsers, parsers: [:json], json_decoder: Poison
   plug Plug.NormalizeRootRequests
