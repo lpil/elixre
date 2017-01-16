@@ -3,7 +3,6 @@ module View exposing (root)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
-import State exposing (..)
 import Types exposing (..)
 
 

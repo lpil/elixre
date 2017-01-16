@@ -8,7 +8,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var inProd = process.env.NODE_ENV === "production";
 
 var regexEndpoint = JSON.stringify(
-  inProd ? "/regex" : "//localhost:3000/regex"
+  inProd ? "/regex" : "//localhost:4000/regex"
 );
 
 var commonConfig = {

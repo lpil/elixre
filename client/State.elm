@@ -1,6 +1,7 @@
 module State exposing (..)
 
 import Types exposing (..)
+import Backend
 
 
 init : Flags -> Model
@@ -25,6 +26,20 @@ update msg model =
         SubjectChange value ->
             enqueueTestQuery { model | subject = value }
 
+        ServerRegexResult (Ok x) ->
+            let
+                _ =
+                    Debug.log "ok" x
+            in
+                model ! []
+
+        ServerRegexResult (Err x) ->
+            let
+                _ =
+                    Debug.log "Err" x
+            in
+                model ! []
+
 
 {-| The server is only hit if a request is not already in progress.
 If one is in progress we make note there is a queued request and do
@@ -34,17 +49,10 @@ enqueueTestQuery : Model -> ( Model, Cmd Msg )
 enqueueTestQuery model =
     case model.queryStatus of
         NoRequest ->
-            ( model, queryServer model )
+            model ! [ Backend.regexQuery model ]
 
         AwaitingResult ->
-            ( { model | queryStatus = AwaitingResultWithQueue }, Cmd.none )
+            { model | queryStatus = AwaitingResultWithQueue } ! []
 
         AwaitingResultWithQueue ->
-            ( model, Cmd.none )
-
-
-{-| TODO: Hit server
--}
-queryServer : Model -> Cmd Msg
-queryServer model =
-    Cmd.none
+            model ! []
