@@ -8,7 +8,7 @@ import Json.Encode exposing (encode, string, object, list)
 
 regexQuery : Model -> Cmd Msg
 regexQuery model =
-    Http.send ServerRegexResult <|
+    Http.send NewResults <|
         Http.post
             model.regexEndpoint
             (regexQueryBody model)
@@ -34,20 +34,36 @@ regexQueryBody { pattern, modifiers, subject } =
         |> Http.jsonBody
 
 
-regexRespDecoder : Json.Decoder RegexResultData
+regexRespDecoder : Json.Decoder RegexResult
 regexRespDecoder =
+    Json.oneOf [ okRespDecoder, errRespDecoder ]
+
+
+errRespDecoder : Json.Decoder RegexResult
+errRespDecoder =
     let
-        binaryDecoder =
-            Json.map2 (,)
+        errorDecoder =
+            Json.map2 ErrorResultDetail
+                (Json.index 0 Json.string)
+                (Json.index 1 Json.int)
+    in
+        Json.map ErrResult
+            (Json.at [ "regex", "errors" ] (Json.list errorDecoder))
+
+
+okRespDecoder : Json.Decoder RegexResult
+okRespDecoder =
+    let
+        indexesDecoder =
+            Json.map2 RegexIndex
                 (Json.index 0 Json.int)
                 (Json.index 1 Json.int)
 
         resultDecoder =
-            Json.map3 SingleRegexResultData
+            Json.map3 SubjectResult
                 (Json.field "subject" Json.string)
                 (Json.field "binaries" (Json.list Json.string))
-                (Json.field "binaries" (Json.list binaryDecoder))
+                (Json.field "indexes" (Json.list indexesDecoder))
     in
-        Json.map2 RegexResultData
-            (Json.at [ "regex", "valid_regex" ] Json.bool)
-            (Json.at [ "regex", "results" ] (Json.list resultDecoder))
+        Json.at [ "regex", "results" ] (Json.list resultDecoder)
+            |> Json.map OkResult

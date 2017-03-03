@@ -7,7 +7,7 @@ type Msg
     = PatternChange String
     | ModifiersChange String
     | SubjectChange String
-    | ServerRegexResult (Result Http.Error RegexResultData)
+    | NewResults (Result Http.Error RegexResult)
 
 
 type RequestStatus
@@ -30,14 +30,25 @@ type alias Flags =
     }
 
 
-type alias RegexResultData =
-    { validRegex : Bool
-    , results : List SingleRegexResultData
+type RegexResult
+    = OkResult (List SubjectResult)
+    | ErrResult (List ErrorResultDetail)
+
+
+type alias RegexIndex =
+    { start : Int
+    , length : Int
     }
 
 
-type alias SingleRegexResultData =
+type alias SubjectResult =
     { subject : String
     , binaries : List String
-    , indexes : List ( Int, Int )
+    , indexes : List RegexIndex
+    }
+
+
+type alias ErrorResultDetail =
+    { message : String
+    , position : Int
     }

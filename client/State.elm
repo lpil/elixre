@@ -26,14 +26,14 @@ update msg model =
         SubjectChange value ->
             enqueueTestQuery { model | subject = value }
 
-        ServerRegexResult (Ok x) ->
+        NewResults (Ok x) ->
             let
                 _ =
                     Debug.log "ok" x
             in
                 model ! []
 
-        ServerRegexResult (Err x) ->
+        NewResults (Err x) ->
             let
                 _ =
                     Debug.log "Err" x
