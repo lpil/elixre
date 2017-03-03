@@ -22,6 +22,7 @@ type alias Model =
     , pattern : String
     , modifiers : String
     , subject : String
+    , results : Maybe RegexResult
     }
 
 

@@ -2,6 +2,7 @@ module State exposing (..)
 
 import Types exposing (..)
 import Backend
+import Http
 
 
 init : Flags -> Model
@@ -11,6 +12,7 @@ init flags =
     , pattern = ""
     , modifiers = ""
     , subject = "shop"
+    , results = Nothing
     }
 
 
@@ -26,19 +28,8 @@ update msg model =
         SubjectChange value ->
             enqueueTestQuery { model | subject = value }
 
-        NewResults (Ok x) ->
-            let
-                _ =
-                    Debug.log "ok" x
-            in
-                model ! []
-
-        NewResults (Err x) ->
-            let
-                _ =
-                    Debug.log "Err" x
-            in
-                model ! []
+        NewResults result ->
+            handleResults result model
 
 
 {-| The server is only hit if a request is not already in progress.
@@ -56,3 +47,17 @@ enqueueTestQuery model =
 
         AwaitingResultWithQueue ->
             model ! []
+
+
+handleResults : Result Http.Error RegexResult -> Model -> ( Model, Cmd Msg )
+handleResults result model =
+    case result of
+        Ok results ->
+            { model | queryStatus = NoRequest, results = Just results } ! []
+
+        Err x ->
+            let
+                _ =
+                    Debug.log "Err" x
+            in
+                { model | queryStatus = NoRequest } ! []

@@ -4,13 +4,14 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import Types exposing (..)
+import Regex
 
 
 root : Model -> Html Msg
 root model =
     div []
         [ testSection model
-        , resultsSection
+        , resultsSection model
         ]
 
 
@@ -22,11 +23,57 @@ testSection model =
         ]
 
 
-resultsSection : Html a
-resultsSection =
-    div [ class "results" ]
-        [ pre [] [ text "Hello, world!" ]
-        ]
+resultsSection : Model -> Html a
+resultsSection model =
+    let
+        preformatted =
+            case model.results of
+                Nothing ->
+                    []
+
+                Just (OkResult results) ->
+                    List.map subjectResult results
+
+                Maybe.Just (ErrResult errors) ->
+                    Debug.crash "err results rendering"
+    in
+        div [ class "results" ] [ pre [] preformatted ]
+
+
+subjectResult : SubjectResult -> Html a
+subjectResult { subject, binaries } =
+    let
+        subjectComment =
+            subject
+                |> String.split "\n"
+                |> List.intersperse "\n# "
+                |> String.join ""
+
+        binaryResults =
+            binaries
+                |> List.map (\s -> "\"" ++ (escape s) ++ "\"")
+                |> String.join "\n "
+    in
+        "# "
+            ++ subjectComment
+            ++ "\n\n["
+            ++ binaryResults
+            ++ "]"
+            |> text
+
+
+escape : String -> String
+escape =
+    Regex.replace Regex.All
+        (Regex.regex "[\n]")
+        (\{ match } ->
+            case match of
+                "\n" ->
+                    "\\n"
+
+                _ ->
+                    ""
+        )
 
 
 
