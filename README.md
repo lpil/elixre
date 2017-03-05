@@ -15,6 +15,11 @@ A massive rip off of Michael Lovitt's [Rubular](http://rubular.com/).
 make
 # Start the app in dev mode
 make start
+
+# Run backend tests
+mix test
+# Run frontend tests
+make elm-test-watch
 ```
 
 
