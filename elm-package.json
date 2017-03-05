@@ -4,7 +4,7 @@
     "repository": "https://github.com/lpil/elixre.git",
     "license": "AGPL-3.0",
     "source-directories": [
-        "client"
+        "src"
     ],
     "exposed-modules": [],
     "dependencies": {

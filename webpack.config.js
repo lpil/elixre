@@ -41,7 +41,7 @@ var commonConfig = {
     }),
 
     new HtmlWebpackPlugin({
-      template: 'client/index.html',
+      template: 'src/index.html',
       inject:   'body',
       filename: 'index.html'
     }),
@@ -64,8 +64,8 @@ if (process.env.NODE_ENV === 'development') {
   module.exports = merge(commonConfig, {
 
     entry: [
-      'webpack-dev-server/client?http://localhost:8080',
-      path.join(__dirname, 'client/index.js')
+      'webpack-dev-server/src?http://localhost:8080',
+      path.join(__dirname, 'src/index.js')
     ],
 
     devServer: {
@@ -90,7 +90,7 @@ if (process.env.NODE_ENV === 'production') {
 
   module.exports = merge(commonConfig, {
 
-    entry: path.join(__dirname, 'client/index.js'),
+    entry: path.join(__dirname, 'src/index.js'),
 
     module: {
       loaders: [

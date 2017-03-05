@@ -5,10 +5,11 @@
     "license": "AGPLv3",
     "source-directories": [
         ".",
-        "../client"
+        "../src"
     ],
     "exposed-modules": [],
     "dependencies": {
+        "elm-lang/http": "1.0.0 <= v < 2.0.0",
         "elm-community/json-extra": "2.0.0 <= v < 3.0.0",
         "elm-lang/html": "2.0.0 <= v < 3.0.0",
         "mgold/elm-random-pcg": "4.0.2 <= v < 5.0.0",
