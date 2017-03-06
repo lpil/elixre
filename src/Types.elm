@@ -8,6 +8,7 @@ type Msg
     | ModifiersChange String
     | SubjectChange String
     | NewResults (Result Http.Error RegexResult)
+    | ToggleSplitSubject Bool
 
 
 type RequestStatus
@@ -23,6 +24,7 @@ type alias Model =
     , modifiers : String
     , subject : String
     , results : Maybe RegexResult
+    , splitSubject : Bool
     }
 
 

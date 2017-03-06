@@ -25,13 +25,20 @@ regexQuery model =
    }
 -}
 regexQueryBody : Model -> Http.Body
-regexQueryBody { pattern, modifiers, subject } =
-    [ ( "pattern", string pattern )
-    , ( "modifiers", string modifiers )
-    , ( "subjects", list [ string subject ] )
-    ]
-        |> (\o -> object [ ( "regex", object o ) ])
-        |> Http.jsonBody
+regexQueryBody { pattern, modifiers, subject, splitSubject } =
+    let
+        subjects =
+            if splitSubject then
+                subject |> String.lines |> List.map string
+            else
+                [ string subject ]
+    in
+        [ ( "pattern", string pattern )
+        , ( "modifiers", string modifiers )
+        , ( "subjects", list subjects )
+        ]
+            |> (\o -> object [ ( "regex", object o ) ])
+            |> Http.jsonBody
 
 
 regexRespDecoder : Json.Decoder RegexResult

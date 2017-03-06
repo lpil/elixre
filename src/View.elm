@@ -2,7 +2,7 @@ module View exposing (root)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
+import Html.Events exposing (onInput, onCheck)
 import Types exposing (..)
 import Regex
 import SubjectResult
@@ -33,25 +33,33 @@ resultsSection model =
                     []
 
                 Just (OkResult results) ->
-                    List.concatMap preformattedSubjectResult results
+                    results
+                        |> List.map preformattedSubjectResult
+                        |> List.intersperse ([ text "\n\n" ])
+                        |> List.concat
 
                 Maybe.Just (ErrResult errors) ->
-                    let
-                        fmt =
-                            (\{ position, message } ->
-                                "{\"" ++ message ++ "\", " ++ toString position ++ "}"
-                            )
-
-                        errorMsgs =
-                            errors
-                                |> List.map fmt
-                                |> String.join "\n"
-                    in
-                        [ span [ class "results__error" ]
-                            [ text ("# Compilation error\n\n" ++ errorMsgs) ]
-                        ]
+                    formatErrors errors
     in
         div [ class "results" ] [ pre [] preformatted ]
+
+
+formatErrors : List ErrorResultDetail -> List (Html a)
+formatErrors errors =
+    let
+        fmt =
+            (\{ position, message } ->
+                "{\"" ++ message ++ "\", " ++ toString position ++ "}"
+            )
+
+        errorMsgs =
+            errors
+                |> List.map fmt
+                |> String.join "\n"
+    in
+        [ span [ class "results__error" ]
+            [ text ("# Compilation error\n\n" ++ errorMsgs) ]
+        ]
 
 
 preformattedSubjectResult : SubjectResult -> List (Html a)
@@ -81,20 +89,6 @@ escape =
                 _ ->
                     ""
         )
-
-
-
--- <div ng-controller="resultsController" class="results">
---   <pre><div class="results__error"
---             ng-if="return.error"
---             ng-bind="'Compilation Error! \n' + (return.error | json)"></div
---             ><div class="results__regex"
---             ng-if="return.regex"
---             ng-bind="'# ' + return.regex + '\n\n'"></div
---             ><div class="results__result"
---             ng-repeat="case in return.results"
---             ><result data="case"></div></pre>
--- </div>
 
 
 pattern : String -> List (Html Msg)
@@ -135,6 +129,7 @@ subject subjectValue =
         [ name "split"
         , class "subject-split"
         , type_ "checkbox"
+        , onCheck ToggleSplitSubject
         ]
         []
     ]

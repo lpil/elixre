@@ -13,6 +13,7 @@ init flags =
     , modifiers = ""
     , subject = "shop"
     , results = Nothing
+    , splitSubject = True
     }
 
 
@@ -27,6 +28,9 @@ update msg model =
 
         SubjectChange value ->
             enqueueTestQuery { model | subject = value }
+
+        ToggleSplitSubject split ->
+            enqueueTestQuery { model | splitSubject = split }
 
         NewResults result ->
             handleResults result model
@@ -58,6 +62,6 @@ handleResults result model =
         Err x ->
             let
                 _ =
-                    Debug.log "Err" x
+                    Debug.crash "Err" x
             in
                 { model | queryStatus = NoRequest } ! []
