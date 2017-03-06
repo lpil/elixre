@@ -33,11 +33,23 @@ resultsSection model =
                     []
 
                 Just (OkResult results) ->
-                    results
-                        |> List.concatMap preformattedSubjectResult
+                    List.concatMap preformattedSubjectResult results
 
                 Maybe.Just (ErrResult errors) ->
-                    Debug.crash "err results rendering"
+                    let
+                        fmt =
+                            (\{ position, message } ->
+                                "{\"" ++ message ++ "\", " ++ toString position ++ "}"
+                            )
+
+                        errorMsgs =
+                            errors
+                                |> List.map fmt
+                                |> String.join "\n"
+                    in
+                        [ span [ class "results__error" ]
+                            [ text ("# Compilation error\n\n" ++ errorMsgs) ]
+                        ]
     in
         div [ class "results" ] [ pre [] preformatted ]
 
@@ -51,7 +63,7 @@ preformattedSubjectResult subjectResult =
         binaryResults =
             subjectResult.binaries
                 |> List.map (\s -> "\"" ++ (escape s) ++ "\"")
-                |> String.join "\n "
+                |> String.join ",\n "
     in
         subjectComment
             ++ [ text ("\n\n[" ++ binaryResults ++ "]") ]
