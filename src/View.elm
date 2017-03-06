@@ -5,6 +5,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import Types exposing (..)
 import Regex
+import SubjectResult
 
 
 root : Model -> Html Msg
@@ -32,7 +33,8 @@ resultsSection model =
                     []
 
                 Just (OkResult results) ->
-                    List.map subjectResult results
+                    results
+                        |> List.concatMap preformattedSubjectResult
 
                 Maybe.Just (ErrResult errors) ->
                     Debug.crash "err results rendering"
@@ -40,26 +42,19 @@ resultsSection model =
         div [ class "results" ] [ pre [] preformatted ]
 
 
-subjectResult : SubjectResult -> Html a
-subjectResult { subject, binaries } =
+preformattedSubjectResult : SubjectResult -> List (Html a)
+preformattedSubjectResult subjectResult =
     let
         subjectComment =
-            subject
-                |> String.split "\n"
-                |> List.intersperse "\n# "
-                |> String.join ""
+            SubjectResult.toHtml subjectResult
 
         binaryResults =
-            binaries
+            subjectResult.binaries
                 |> List.map (\s -> "\"" ++ (escape s) ++ "\"")
                 |> String.join "\n "
     in
-        "# "
-            ++ subjectComment
-            ++ "\n\n["
-            ++ binaryResults
-            ++ "]"
-            |> text
+        subjectComment
+            ++ [ text ("\n\n[" ++ binaryResults ++ "]") ]
 
 
 escape : String -> String

@@ -29,7 +29,9 @@ all =
                     }
                         |> SubjectResult.highlightMatch
                         |> Expect.equal
-                            [ Text "# ", Highlight "Hi" ]
+                            [ Text "# "
+                            , Highlight "Hi"
+                            ]
             , test "match entire subject, subject has newlines" <|
                 \() ->
                     { subject = "Hi,\nworld!"
@@ -40,7 +42,7 @@ all =
                         |> Expect.equal
                             [ Text "# "
                             , Highlight "Hi,"
-                            , Text "# "
+                            , Text "\n# "
                             , Highlight "world!"
                             ]
             , test "match start of subject" <|
@@ -77,7 +79,7 @@ all =
                         |> Expect.equal
                             [ Text "# a"
                             , Highlight "b"
-                            , Text "# "
+                            , Text "\n# "
                             , Highlight "c"
                             , Text "d"
                             ]
@@ -91,7 +93,7 @@ all =
                         |> Expect.equal
                             [ Text "# a"
                             , Highlight "b"
-                            , Text "# "
+                            , Text "\n# "
                             , Highlight "cd"
                             ]
             , test "full match, multi line" <|
@@ -104,8 +106,32 @@ all =
                         |> Expect.equal
                             [ Text "# "
                             , Highlight "ab"
-                            , Text "# "
+                            , Text "\n# "
                             , Highlight "cd"
+                            ]
+            , test "1:1 subject, 2 match, newline matched" <|
+                \() ->
+                    { subject = "a\nb"
+                    , binaries = []
+                    , indexes = [ { start = 0, length = 2 } ]
+                    }
+                        |> SubjectResult.highlightMatch
+                        |> Expect.equal
+                            [ Text "# "
+                            , Highlight "a"
+                            , Text "\n# b"
+                            ]
+            , test "3:1 subject, 2 match, newline matched" <|
+                \() ->
+                    { subject = "abc\nd"
+                    , binaries = []
+                    , indexes = [ { start = 2, length = 2 } ]
+                    }
+                        |> SubjectResult.highlightMatch
+                        |> Expect.equal
+                            [ Text "# ab"
+                            , Highlight "c"
+                            , Text "\n# d"
                             ]
             ]
         ]
