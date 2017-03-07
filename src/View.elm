@@ -20,7 +20,7 @@ testSection : Model -> Html Msg
 testSection model =
     div [ class "inputs" ]
         [ div [] ((pattern model.pattern) ++ (modifiers model.modifiers))
-        , div [] (subject model.subject)
+        , div [] (subject model.subject model.splitSubject)
         ]
 
 
@@ -118,8 +118,8 @@ modifiers modifiersValue =
     ]
 
 
-subject : String -> List (Html Msg)
-subject subjectValue =
+subject : String -> Bool -> List (Html Msg)
+subject subjectValue splitSubject =
     [ label [ for "subject" ] [ text "Subject" ]
     , textarea
         [ name "subject", rows 5, onInput SubjectChange, value subjectValue ]
@@ -129,6 +129,7 @@ subject subjectValue =
         [ name "split"
         , class "subject-split"
         , type_ "checkbox"
+        , checked splitSubject
         , onCheck ToggleSplitSubject
         ]
         []

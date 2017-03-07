@@ -22,8 +22,7 @@ defmodule Elixre do
   end
 
   defp rest_worker do
-    {port, _} = "PORT" |> System.get_env() |> Integer.parse()
-    port = port || 4000
+    {port, _} = Integer.parse(System.get_env("PORT") || "4000")
     Plug.Adapters.Cowboy.child_spec(:http, Elixre.REST, [], [port: port])
   end
 end
