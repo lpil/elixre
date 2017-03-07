@@ -11,7 +11,7 @@ help:
 install: ## Install deps
 	mix deps.get
 	yarn install
-	$(NBIN)/elm-package install
+	$(NBIN)/elm-package install --yes
 
 
 .PHONY: start
@@ -20,8 +20,8 @@ start: ## Start the server in dev mode
 
 
 .PHONY: start-production
-start-production:
-	MIX_ENV=production mix app.start
+start-prod:
+	MIX_ENV=prod mix run --no-halt
 
 
 .PHONY: frontend-server
@@ -30,10 +30,14 @@ frontend-server:
 
 
 .PHONY: build
-build: ## Compile the frontend
+build: ## Compile frontend
 	rm -rf dist
 	NODE_ENV=production $(NBIN)/webpack -p
 
+.PHONY: compile-production
+compile-prod: ## Compile backend for prod
+	mix local.rebar --force
+	MIX_ENV=prod mix compile
 
 .PHONY: elm-test
 elm-test: ## Run the front end tests
