@@ -48,8 +48,8 @@ formatErrors : List ErrorResultDetail -> List (Html a)
 formatErrors errors =
     let
         fmt =
-            (\{ position, message } ->
-                "{\"" ++ message ++ "\", " ++ toString position ++ "}"
+            (\{ detail, message } ->
+                "{\"" ++ message ++ "\", " ++ detail ++ "}"
             )
 
         errorMsgs =

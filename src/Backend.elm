@@ -49,10 +49,16 @@ regexRespDecoder =
 errRespDecoder : Json.Decoder RegexResult
 errRespDecoder =
     let
+        detailDecoder =
+            Json.oneOf
+                [ Json.string
+                , Json.map toString Json.int
+                ]
+
         errorDecoder =
             Json.map2 ErrorResultDetail
                 (Json.index 0 Json.string)
-                (Json.index 1 Json.int)
+                (Json.index 1 detailDecoder)
     in
         Json.map ErrResult
             (Json.at [ "regex", "errors" ] (Json.list errorDecoder))

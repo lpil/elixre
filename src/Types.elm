@@ -53,5 +53,5 @@ type alias SubjectResult =
 
 type alias ErrorResultDetail =
     { message : String
-    , position : Int
+    , detail : String
     }
