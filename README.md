@@ -35,6 +35,20 @@ npm i -g yarn
 make install
 ```
 
+## Deployment
+
+```sh
+cd path/to/elixre
+
+heroku login
+heroku git:remote -a $HEROKU_PROJECT_NAME
+heroku buildpacks:set https://github.com/HashNuke/heroku-buildpack-elixir.git
+heroku buildpacks:add --index 1 heroku/nodejs
+git push heroku v2/master:master
+```
+
+
+
 ## LICENCE
 
 ```
