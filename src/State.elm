@@ -11,7 +11,7 @@ init flags =
     , queryStatus = NoRequest
     , pattern = ""
     , modifiers = ""
-    , subject = "shop"
+    , subject = ""
     , results = Nothing
     , splitSubject = True
     }
