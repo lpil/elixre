@@ -1,1 +1,1 @@
-web: make start-prod
+web: node web.js
