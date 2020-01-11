@@ -1,17 +1,235 @@
 @import "~normalize.css/normalize.css";
+@import url(//fonts.googleapis.com/css?family=Bitter);
 
-@import "abstracts/colors";
-@import "abstracts/clearfix";
-@import "abstracts/media-queries";
+* {
+  box-sizing: border-box;
+}
 
-@import "base/box-sizing";
-@import "base/typography";
+body {
+  color: #555;
+  font-family: Bitter, Georgia, Times New Roman, Times, serif;
+  font-size: 15px;
+  line-height: 1.7em;
+}
 
-@import "components/code";
-@import "components/page";
-@import "components/header";
-@import "components/footer";
-@import "components/test";
-@import "components/results";
-@import "components/reference";
-@import "components/inputs";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3em;
+  margin: 0 0 15px;
+}
+
+a {
+  color: #4e2a8e;
+  text-decoration: none;
+}
+
+code,
+pre {
+  background-color: #fff8ed;
+  border: 1px solid #f6e4cc;
+  color: #333;
+  font-family: Monaco, monospace, Courier, Courier New;
+  font-size: 13px;
+  line-height: 1.3em;
+}
+
+code .hl,
+pre .hl {
+  background-color: #ffeed4;
+  color: #d14;
+  margin: -1px;
+  padding: 1px;
+}
+
+code {
+  padding: 1px 3px;
+}
+
+pre {
+  padding: 15px 20px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 300px;
+  padding: 0 20px;
+}
+
+.inputs {
+  position: relative;
+}
+
+@media (min-width: 800px) {
+  .inputs,
+  .results {
+    float: left;
+    width: 50%;
+  }
+
+  .inputs {
+    padding: 0 10px 0 0;
+  }
+
+  .results {
+    padding: 12px 0 0 10px;
+  }
+
+  .results pre {
+    min-height: 182px;
+  }
+}
+
+.header {
+  padding-top: 1em;
+  text-align: center;
+}
+
+.header h1 {
+  color: #4e2a8e;
+  font-size: 5em;
+  line-height: 1em;
+  margin: 0;
+  text-shadow: #e9e9e9 2px 2px;
+}
+
+.footer {
+  clear: both;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  white-space: nowrap;
+}
+
+.footer .b {
+  color: #d14;
+  font-weight: 700;
+}
+
+.test label {
+  display: block;
+}
+
+.test input,
+.test textarea {
+  width: 100%;
+}
+
+.test .modifiers-input,
+.test .pattern-input {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.test .pattern-input {
+  width: calc(100% - 100px);
+}
+
+.test .modifiers-input {
+  float: right;
+  width: 90px;
+}
+
+.test .modifiers-label {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 90px;
+}
+
+@media (min-width: 800px) {
+  .test .modifiers-label {
+    right: 10px;
+  }
+}
+
+.test .subject-split {
+  color: #6f6f6f;
+  display: inline-block;
+  font-size: 0.9em;
+  width: auto;
+}
+
+.results pre {
+  overflow: auto;
+}
+
+.results__result {
+  padding-bottom: 1.1em;
+}
+
+.results__result:last-child {
+  padding-bottom: 0;
+}
+
+.results__error {
+  color: #d14;
+}
+
+.reference ul {
+  padding: 0;
+}
+
+.reference li {
+  list-style-type: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 520px) and (max-width: 799px) {
+  .reference li {
+    display: inline-block;
+    width: 40%;
+  }
+
+  .reference li:nth-child(2n + 2) {
+    margin: 0 0 0 11%;
+  }
+}
+
+@media (min-width: 800px) {
+  .reference li {
+    display: inline-block;
+    width: 28%;
+  }
+
+  .reference li:nth-child(3n + 2) {
+    margin: 0 6.5%;
+  }
+}
+
+.reference code {
+  display: inline-block;
+  margin-right: 5px;
+  text-align: center;
+  width: 60px;
+}
+
+.reference a {
+  white-space: nowrap;
+}
+
+.reference__more {
+  text-align: center;
+}
+
+input,
+textarea {
+  border: 1px solid #ddd;
+  font-family: Monaco, monospace, Courier, Courier New;
+  font-size: 14px;
+  padding: 8px 10px;
+  resize: vertical;
+}
