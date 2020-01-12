@@ -1,1 +1,0 @@
-web: make start-prod

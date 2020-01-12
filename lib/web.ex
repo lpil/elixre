@@ -9,7 +9,7 @@ defmodule Elixre.Web do
 
   plug(Plug.Parsers, parsers: [:json], json_decoder: Poison)
   plug(Plug.NormalizeRootRequests)
-  plug(Plug.Static, at: "/", from: "public")
+  plug(Plug.Static, at: "/", from: {:elixre, "priv/public"})
   plug(:match)
   plug(:dispatch)
 
