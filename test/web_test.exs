@@ -1,16 +1,16 @@
-defmodule Elixre.RESTTest do
+defmodule Elixre.WebTest do
   use ExUnit.Case
   use Plug.Test
-  doctest Elixre.REST
+  doctest Elixre.Web
 
-  @opts Elixre.REST.init([])
+  @opts Elixre.Web.init([])
 
   defp post_regex(body) do
     conn =
       :post
       |> conn("/regex", Poison.encode!(body))
       |> put_req_header("content-type", "application/json")
-      |> Elixre.REST.call(@opts)
+      |> Elixre.Web.call(@opts)
 
     assert conn.state == :sent
     conn
@@ -20,7 +20,7 @@ defmodule Elixre.RESTTest do
     conn =
       :get
       |> conn("/")
-      |> Elixre.REST.call(@opts)
+      |> Elixre.Web.call(@opts)
 
     assert conn.state == :file
     assert conn.status == 200
@@ -31,7 +31,7 @@ defmodule Elixre.RESTTest do
     conn =
       :get
       |> conn("/no-dinosaurs-EVER")
-      |> Elixre.REST.call(@opts)
+      |> Elixre.Web.call(@opts)
 
     assert conn.state == :sent
     assert conn.status == 404

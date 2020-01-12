@@ -1,7 +1,4 @@
-defmodule Elixre.REST do
-  @moduledoc """
-  Back end for Elixre.
-  """
+defmodule Elixre.Web do
   use Plug.Router
   alias Elixre.Params
   alias Elixre.RegexTest
@@ -49,7 +46,7 @@ defmodule Elixre.REST do
     if Application.get_env(:elixre, :start_http) do
       {port, _} = Integer.parse(System.get_env("PORT") || "3000")
       IO.puts("Starting HTTP interface on localhost:#{port}")
-      Plug.Cowboy.child_spec(scheme: :http, plug: Elixre.REST, options: [port: port])
+      Plug.Cowboy.child_spec(scheme: :http, plug: __MODULE__, options: [port: port])
     else
       %{id: __MODULE__, start: {__MODULE__, :ignore, []}}
     end

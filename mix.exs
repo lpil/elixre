@@ -19,7 +19,7 @@ defmodule Elixre.Mixfile do
   end
 
   def application do
-    [mod: {Elixre, []}, additional_applications: [:logger]]
+    [mod: {Elixre.Application, []}, additional_applications: [:logger]]
   end
 
   defp deps do
