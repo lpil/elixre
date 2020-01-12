@@ -12,7 +12,7 @@ defmodule Elixre do
     {port, _} = Integer.parse(System.get_env("PORT") || "4000")
 
     [
-      {Plug.Cowboy, scheme: :http, plug: Elixre.REST, options: [port: 4040]},
+      {Plug.Cowboy, scheme: :http, plug: Elixre.REST, options: [port: port]},
       Elixre.Frontend
     ]
   end

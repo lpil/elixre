@@ -24,9 +24,7 @@ defmodule Elixre.Mixfile do
       {:plug, "~> 1.2"},
       {:plug_cowboy, "~> 2.0"},
       # JSON library
-      {:poison, "~> 4.0"},
-      # CORS request middleware
-      {:corsica, "~> 1.0"}
+      {:poison, "~> 4.0"}
     ]
   end
 end
