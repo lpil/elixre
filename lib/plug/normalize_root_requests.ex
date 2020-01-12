@@ -10,9 +10,10 @@ defmodule Plug.NormalizeRootRequests do
     opts
   end
 
-  def call(%{ path_info: [] } = conn, _opts) do
-    %{ conn | path_info: ["index.html"] }
+  def call(%{path_info: []} = conn, _opts) do
+    %{conn | path_info: ["index.html"]}
   end
+
   def call(conn, _opts) do
     conn
   end

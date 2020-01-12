@@ -8,7 +8,7 @@ defmodule Elixre.RegexTest do
           pattern: pattern,
           modifiers: modifiers,
           valid_regex: true,
-          results: Enum.map(subjects, &run(regex, &1)),
+          results: Enum.map(subjects, &run(regex, &1))
         }
 
       {:error, reason} ->
@@ -23,11 +23,12 @@ defmodule Elixre.RegexTest do
 
   defp run(regex, subject) do
     binaries = Regex.run(regex, subject, return: :binary) || []
-    indexes  = Regex.run(regex, subject, return: :index) || []
+    indexes = Regex.run(regex, subject, return: :index) || []
+
     %{
       subject: subject,
       binaries: binaries,
-      indexes: Enum.map(indexes, &Tuple.to_list/1),
+      indexes: Enum.map(indexes, &Tuple.to_list/1)
     }
   end
 

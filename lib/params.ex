@@ -28,6 +28,7 @@ defmodule Elixre.Params do
     case get_in(data, pattern) do
       nil ->
         {params, [Enum.join(pattern, ".") | missing_params]}
+
       value ->
         {Map.put(params, label, value), missing_params}
     end
