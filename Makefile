@@ -26,13 +26,13 @@ start-prod:
 
 .PHONY: frontend-server
 frontend-server:
-	NODE_ENV=development $(NBIN)/webpack-dev-server --hot --inline --content-base src/, --no-info --colors
+	exit 1 # TODO
 
 
 .PHONY: build
 build: ## Compile frontend
 	rm -rf dist
-	NODE_ENV=production $(NBIN)/webpack -p
+	exit 1 # TODO
 
 .PHONY: compile-production
 compile-prod: ## Compile backend for prod
