@@ -3,10 +3,8 @@ defmodule Elixre do
   use Application
 
   def start(_type, _args) do
-    {port, _} = Integer.parse(System.get_env("PORT") || "3000")
-
     children = [
-      {Plug.Cowboy, scheme: :http, plug: Elixre.REST, options: [port: port]},
+      Elixre.REST,
       Elixre.Frontend
     ]
 

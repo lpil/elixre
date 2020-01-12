@@ -44,4 +44,18 @@ defmodule Elixre.REST do
   match _ do
     send_resp(conn, 404, "Page not found")
   end
+
+  def child_spec(_arg) do
+    if Application.get_env(:elixre, :start_http) do
+      {port, _} = Integer.parse(System.get_env("PORT") || "3000")
+      IO.puts("Starting HTTP interface on localhost:#{port}")
+      Plug.Cowboy.child_spec(scheme: :http, plug: Elixre.REST, options: [port: port])
+    else
+      %{id: __MODULE__, start: {__MODULE__, :ignore, []}}
+    end
+  end
+
+  def ignore do
+    :ignore
+  end
 end

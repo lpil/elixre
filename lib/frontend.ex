@@ -17,9 +17,10 @@ defmodule Elixre.Frontend do
   def init(:ok) do
     send(self(), :start)
 
-    case Mix.env() do
-      :dev -> {:ok, []}
-      _ -> :ignore
+    if Application.get_env(:elixre, :build_frontend) do
+      {:ok, []}
+    else
+      :ignore
     end
   end
 
