@@ -1,6 +1,6 @@
 module SubjectResult exposing (DisplayElement(..), highlightMatch, toHtml)
 
-import Html exposing (Html, text, span)
+import Html exposing (Html, span, text)
 import Html.Attributes exposing (class)
 import List
 import Maybe
@@ -64,7 +64,8 @@ doHighlight subject { start, length } =
                     rest =
                         doHighlight lines { start = 0, length = 0 }
                 in
-                    Text "\n# " :: Highlight line :: rest
+                Text "\n# " :: Highlight line :: rest
+
             else if String.length line <= length then
                 -- If the entire line is matched, and more
                 let
@@ -74,7 +75,8 @@ doHighlight subject { start, length } =
                             , length = max 0 (length - 1 - String.length line)
                             }
                 in
-                    Text "\n# " :: Highlight line :: rest
+                Text "\n# " :: Highlight line :: rest
+
             else if length == 0 then
                 -- If there is nothing matched
                 let
@@ -84,7 +86,8 @@ doHighlight subject { start, length } =
                             , length = 0
                             }
                 in
-                    Text ("\n# " ++ line) :: rest
+                Text ("\n# " ++ line) :: rest
+
             else
                 -- If the first part of the string is matched
                 let
@@ -100,7 +103,7 @@ doHighlight subject { start, length } =
                             , length = max 0 (start + length - String.length line)
                             }
                 in
-                    Text "\n# " :: Highlight match :: Text after :: rest
+                Text "\n# " :: Highlight match :: Text after :: rest
 
         ( line :: lines, _ ) ->
             if String.length line <= start + length - 1 then
@@ -118,7 +121,8 @@ doHighlight subject { start, length } =
                             , length = max 0 (start + length - 1 - String.length line)
                             }
                 in
-                    Text ("\n# " ++ before) :: Highlight match :: rest
+                Text ("\n# " ++ before) :: Highlight match :: rest
+
             else
                 -- If there is some unmatched, some matched, and then the rest
                 -- of the line is unmatched
@@ -141,4 +145,4 @@ doHighlight subject { start, length } =
                             , length = max 0 (start + length - String.length line)
                             }
                 in
-                    Text ("\n# " ++ before) :: Highlight match :: Text after :: rest
+                Text ("\n# " ++ before) :: Highlight match :: Text after :: rest

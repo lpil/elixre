@@ -1,8 +1,8 @@
-module SubjectResultTests exposing (..)
+module SubjectResultTests exposing (all)
 
-import Test exposing (..)
 import Expect
-import SubjectResult exposing (DisplayElement(Text, Highlight))
+import SubjectResult exposing (DisplayElement(Highlight, Text))
+import Test exposing (..)
 
 
 all : Test

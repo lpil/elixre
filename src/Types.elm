@@ -1,4 +1,13 @@
-module Types exposing (..)
+module Types exposing
+    ( ErrorResultDetail
+    , Flags
+    , Model
+    , Msg(..)
+    , RegexIndex
+    , RegexResult(..)
+    , RequestStatus(..)
+    , SubjectResult
+    )
 
 import Http
 

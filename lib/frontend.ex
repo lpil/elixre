@@ -4,10 +4,6 @@ defmodule Elixre.Frontend do
   so let's do it inside the app.
   """
 
-  @cmd_bin "make"
-  @cmd_arg ["frontend-server"]
-  @cmd_opt [into: IO.stream(:stdio, :line), stderr_to_stdout: true]
-
   use GenServer
 
   # Client API
@@ -28,8 +24,15 @@ defmodule Elixre.Frontend do
   end
 
   def handle_info(:start, []) do
-    IO.puts("Starting front end compiler...")
-    System.cmd(@cmd_bin, @cmd_arg, @cmd_opt)
+    IO.puts("Starting Elm compilation watcher...")
+
+    System.cmd(
+      "make",
+      ["frontend-watch"],
+      into: IO.stream(:stdio, :line),
+      stderr_to_stdout: true
+    )
+
     {:noreply, []}
   end
 end

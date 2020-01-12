@@ -22,7 +22,7 @@ defmodule Elixre.RESTTest do
       |> conn("/")
       |> Elixre.REST.call(@opts)
 
-    assert conn.state == :sent
+    assert conn.state == :file
     assert conn.status == 200
     assert conn.resp_body =~ "Elixre"
   end

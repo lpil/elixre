@@ -12,7 +12,7 @@ defmodule Elixre.REST do
 
   plug(Plug.Parsers, parsers: [:json], json_decoder: Poison)
   plug(Plug.NormalizeRootRequests)
-  plug(Plug.Static, at: "/", from: "dist")
+  plug(Plug.Static, at: "/", from: "public")
   plug(:match)
   plug(:dispatch)
 

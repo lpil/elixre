@@ -1,8 +1,8 @@
-module State exposing (..)
+module State exposing (enqueueTestQuery, handleResults, init, update)
 
-import Types exposing (..)
 import Backend
 import Http
+import Types exposing (..)
 
 
 init : Flags -> Model
@@ -64,4 +64,4 @@ handleResults result model =
                 _ =
                     Debug.crash "Err" x
             in
-                { model | queryStatus = NoRequest } ! []
+            { model | queryStatus = NoRequest } ! []

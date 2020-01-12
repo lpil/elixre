@@ -1,9 +1,9 @@
 module Backend exposing (regexQuery)
 
-import Types exposing (..)
 import Http
 import Json.Decode as Json
-import Json.Encode exposing (encode, string, object, list)
+import Json.Encode exposing (encode, list, object, string)
+import Types exposing (..)
 
 
 regexQuery : Model -> Cmd Msg
@@ -16,13 +16,13 @@ regexQuery model =
 
 
 {-| Request JSON body:
-   {
-       "regex": {
-       "pattern": "foo",
-       "modifiers": "iu",
-       "subjects": [ "foobarfoo", "FOOBAR", "barfoo" ]
-       }
-   }
+{
+"regex": {
+"pattern": "foo",
+"modifiers": "iu",
+"subjects": [ "foobarfoo", "FOOBAR", "barfoo" ]
+}
+}
 -}
 regexQueryBody : Model -> Http.Body
 regexQueryBody { pattern, modifiers, subject, splitSubject } =
@@ -30,15 +30,16 @@ regexQueryBody { pattern, modifiers, subject, splitSubject } =
         subjects =
             if splitSubject then
                 subject |> String.lines |> List.map string
+
             else
                 [ string subject ]
     in
-        [ ( "pattern", string pattern )
-        , ( "modifiers", string modifiers )
-        , ( "subjects", list subjects )
-        ]
-            |> (\o -> object [ ( "regex", object o ) ])
-            |> Http.jsonBody
+    [ ( "pattern", string pattern )
+    , ( "modifiers", string modifiers )
+    , ( "subjects", list subjects )
+    ]
+        |> (\o -> object [ ( "regex", object o ) ])
+        |> Http.jsonBody
 
 
 regexRespDecoder : Json.Decoder RegexResult
@@ -60,8 +61,8 @@ errRespDecoder =
                 (Json.index 0 Json.string)
                 (Json.index 1 detailDecoder)
     in
-        Json.map ErrResult
-            (Json.at [ "regex", "errors" ] (Json.list errorDecoder))
+    Json.map ErrResult
+        (Json.at [ "regex", "errors" ] (Json.list errorDecoder))
 
 
 okRespDecoder : Json.Decoder RegexResult
@@ -78,5 +79,5 @@ okRespDecoder =
                 (Json.field "binaries" (Json.list Json.string))
                 (Json.field "indexes" (Json.list indexesDecoder))
     in
-        Json.at [ "regex", "results" ] (Json.list resultDecoder)
-            |> Json.map OkResult
+    Json.at [ "regex", "results" ] (Json.list resultDecoder)
+        |> Json.map OkResult

@@ -2,10 +2,10 @@ module View exposing (root)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput, onCheck)
-import Types exposing (..)
+import Html.Events exposing (onCheck, onInput)
 import Regex
 import SubjectResult
+import Types exposing (..)
 
 
 root : Model -> Html Msg
@@ -19,7 +19,7 @@ root model =
 testSection : Model -> Html Msg
 testSection model =
     div [ class "inputs" ]
-        [ div [] ((pattern model.pattern) ++ (modifiers model.modifiers))
+        [ div [] (pattern model.pattern ++ modifiers model.modifiers)
         , div [] (subject model.subject model.splitSubject)
         ]
 
@@ -35,31 +35,30 @@ resultsSection model =
                 Just (OkResult results) ->
                     results
                         |> List.map preformattedSubjectResult
-                        |> List.intersperse ([ text "\n\n" ])
+                        |> List.intersperse [ text "\n\n" ]
                         |> List.concat
 
                 Maybe.Just (ErrResult errors) ->
                     formatErrors errors
     in
-        div [ class "results" ] [ pre [] preformatted ]
+    div [ class "results" ] [ pre [] preformatted ]
 
 
 formatErrors : List ErrorResultDetail -> List (Html a)
 formatErrors errors =
     let
         fmt =
-            (\{ detail, message } ->
+            \{ detail, message } ->
                 "{\"" ++ message ++ "\", " ++ detail ++ "}"
-            )
 
         errorMsgs =
             errors
                 |> List.map fmt
                 |> String.join "\n"
     in
-        [ span [ class "results__error" ]
-            [ text ("# Compilation error\n\n" ++ errorMsgs) ]
-        ]
+    [ span [ class "results__error" ]
+        [ text ("# Compilation error\n\n" ++ errorMsgs) ]
+    ]
 
 
 preformattedSubjectResult : SubjectResult -> List (Html a)
@@ -70,11 +69,11 @@ preformattedSubjectResult subjectResult =
 
         binaryResults =
             subjectResult.binaries
-                |> List.map (\s -> "\"" ++ (escape s) ++ "\"")
+                |> List.map (\s -> "\"" ++ escape s ++ "\"")
                 |> String.join ",\n "
     in
-        subjectComment
-            ++ [ text ("\n\n[" ++ binaryResults ++ "]") ]
+    subjectComment
+        ++ [ text ("\n\n[" ++ binaryResults ++ "]") ]
 
 
 escape : String -> String
