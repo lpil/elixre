@@ -25,7 +25,7 @@ frontend-watch:
 
 .PHONY: build
 build: ## Compile frontend
-	$(NBIN)/elm-make src/Main.elm --output public/main.js
+	$(NBIN)/elm-make src/Main.elm --output public/main.js --yes
 
 .PHONY: compile-prod
 compile-prod: ## Compile backend for prod
